@@ -42,16 +42,18 @@ const MaintenancePage = () => {
           />
         </g>
       </svg>
-      <h1 className="text-4xl font-bold text-destructive mt-8">
+      <h1 className="text-2xl md:text-4xl font-bold text-destructive mt-8">
         Under Maintenance
       </h1>
-      <h2 className="text-xl font-normal mt-2">Sorry for the inconvenience.</h2>
-      <h3 className="text-xl font-normal mt-1">
+      <h2 className="text-md md:text-xl font-normal mt-2">
+        Sorry for the inconvenience.
+      </h2>
+      <h3 className="text-md md:text-xl text-center font-normal mt-1">
         To contact us in the meantime please email:
       </h3>
       <a
         href="mailto:mhmdrizki0812@gmail.com"
-        className="text-lg font-medium text-destructive underline mt-1"
+        className="text-sm md:text-lg font-medium text-destructive underline mt-1"
       >
         admin@mangeakkk.my.id
       </a>
