@@ -1,0 +1,147 @@
+import { Card, CardBody } from "@heroui/card";
+import { Image } from "@heroui/image";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
+import { Metadata } from "next";
+import PopularDrama from "@/components/popular-drama";
+import ListBoxUpdate from "@/components/list-box-update";
+import MyBreadcrumbs from "@/components/my-breadcrumbs";
+import { getSeoMetadata } from "@/libs/seo";
+import { Episode } from "@/app/generated/prisma";
+import { getDramaBySlug } from "@/app/actions/drama/getDramaBySlug";
+import getAllPopularDrama from "@/app/actions/drama/getAllPopularDrama";
+import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
+
+interface DramaBySlug {
+  success: boolean;
+  drama: {
+    id: string;
+    title: string;
+    slug: string;
+    description: string;
+    thumbnail: string;
+    status: string;
+    releaseDate: Date;
+    isPopular: boolean;
+    episodes: Episode[];
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const data = (await getDramaBySlug(slug)) as DramaBySlug;
+
+  if (!data) {
+    return {
+      title: "Drama tidak ditemukan | MangEakkk Drama",
+    };
+  }
+
+  return getSeoMetadata({
+    title: `${data.drama.title} | Tonton Drama Melayu - MangEakkk Drama`,
+    description:
+      data.drama?.description ??
+      `Tonton ${data.drama.title} hanya di MangEakkk Drama.`,
+    url: `https://mangeakkk.my.id/${slug}`,
+  });
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const data = (await getDramaBySlug(slug)) as DramaBySlug;
+  const populars = await getAllPopularDrama();
+  const episodes = await getLatestEpisodes();
+
+  return (
+    <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">
+      <div className="md:w-4/5">
+        <MyBreadcrumbs
+          dramaSlug={data.drama.slug}
+          dramaTitle={data.drama.title}
+        />
+        <Card className="w-full my-4">
+          <CardBody className="px-6">
+            <Image
+              alt={data.drama.title}
+              className="md:w-1/2 mx-auto my-4"
+              src={data.drama.thumbnail}
+            />
+            <div className="my-4">
+              <h1 className="md:text-2xl text-xl font-bold">
+                {data.drama.title}
+              </h1>
+              <p className="max-w-xl font-semibold text-sm">
+                Description:
+                <span className="text-tiny font-light ml-1">
+                  {data.drama.description}
+                </span>
+              </p>
+              <p className="max-w-xl font-semibold text-sm my-1">
+                Status:
+                <span className="text-tiny font-light ml-1">
+                  {data.drama.status}
+                </span>
+              </p>
+              <p className="max-w-xl font-semibold text-sm my-1">
+                Release Date:
+                <time
+                  className="text-tiny font-light ml-1"
+                  dateTime={data.drama.releaseDate.toISOString()}
+                >
+                  {data.drama.releaseDate.toLocaleDateString("ms-MY", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </time>
+              </p>
+            </div>
+
+            <p className="text-tiny font-light mb-3">
+              Nikmati koleksi drama Melayu popular dan drama Malaysia full
+              episod hanya di MangEakk Drama. Di halaman ini, anda boleh tonton
+              drama terkini dari pelbagai genre — dari cinta, aksi, hingga
+              keluarga — semuanya dalam kualiti HD dan subtitle Melayu atau
+              Indonesia. Sesuai untuk penonton dari Malaysia, Brunei, Singapura,
+              dan Indonesia yang ingin mengikuti drama terbaru 2025 secara mudah
+              dan percuma.
+              <span className="font-bold mr-1">
+                Tonton Drama {data.drama.title} hanya di
+              </span>
+              <Link className="text-tiny font-bold" color="primary" href="/">
+                MangEakkk Drama
+              </Link>
+            </p>
+
+            <div className="flex flex-wrap justify-start items-center gap-2 py-4 px-4 rounded-md bg-content2">
+              {data.drama.episodes.map((episode) => (
+                <Button
+                  key={episode.id}
+                  isIconOnly
+                  as={Link}
+                  color="success"
+                  href={`/${episode.slug}`}
+                  variant="flat"
+                >
+                  {episode.episodeNum}
+                </Button>
+              ))}
+            </div>
+          </CardBody>
+        </Card>
+        <div className="my-4">
+          <PopularDrama drama={populars} />
+        </div>
+      </div>
+      <ListBoxUpdate episodes={episodes} />
+    </section>
+  );
+}

@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+import { NextResponse } from "next/server";
+
 export function middleware(request: NextRequest) {
-  const maintenanceMode = true; // Ubah jadi `false` kalau mau normal kembali
+  const maintenanceMode = false; // Ubah jadi `false` kalau mau normal kembali
 
   const url = request.nextUrl.clone();
 
@@ -13,6 +14,7 @@ export function middleware(request: NextRequest) {
     !url.pathname.startsWith("/favicon.ico")
   ) {
     url.pathname = "/maintenance";
+
     return NextResponse.redirect(url);
   }
 
