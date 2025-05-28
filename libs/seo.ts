@@ -24,5 +24,8 @@ export function getSeoMetadata({
     alternates: {
       canonical: url,
     },
+    other: {
+      monetag: "537203fc5a517341cec2a061ef16c4e6",
+    },
   };
 }

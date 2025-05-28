@@ -9,7 +9,7 @@ import { getSeoMetadata } from "@/libs/seo";
 export const metadata = getSeoMetadata({
   title: "Tonton Drama Melayu Terkini Percuma | MangEakk Drama",
   description:
-    "MangEakk Drama ialah laman web streaming drama Melayu terkini yang menawarkan tontonan percuma berkualiti tinggi. Tonton drama Malaysia full episod dengan subtitle Melayu dan Indonesia. Sesuai untuk penonton dari Malaysia, Brunei, Singapura dan Indonesia yang ingin menonton drama terbaru 2025 secara online tanpa gangguan iklan.",
+    "MangEakkk Drama - Nikmati streaming drama Melayu terbaru dan terbaik dari Indonesia, Malaysia, Brunei, dan Singapura. Tersedia untuk semua kalangan, dari remaja hingga dewasa. Tonton kapan saja, di mana saja dengan kualitas terbaik!",
 });
 
 const Page = async () => {
