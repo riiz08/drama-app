@@ -28,11 +28,18 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <script
+          src="https://fpyf8.com/88/tag.min.js"
+          data-zone="149566"
+          async
+          data-cfasync="false"
+        ></script>
+      </head>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
