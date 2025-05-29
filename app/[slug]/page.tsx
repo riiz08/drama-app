@@ -9,10 +9,10 @@ import { Drama, Episode } from "@/app/generated/prisma";
 import ListBoxUpdate from "@/components/list-box-update";
 import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import NextPrev from "@/components/next-prev";
-import PlayWithAds from "@/components/play-with-ads";
 import PopularDrama from "@/components/popular-drama";
 import { getSeoMetadata } from "@/libs/seo";
 import { Link } from "@heroui/link";
+import VideoPlayer from "@/components/video-player";
 
 interface EpisodeDetail {
   slug: string;
@@ -56,8 +56,8 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `${episode.drama.title} | Episod ${episode.episodeNum} - MangEakkk Drama`,
-    description: `Tonton episod ${episode.episodeNum} (${episode.drama.title}) secara percuma hanya di MangEakkk Drama.`,
+    title: `${episode.drama.title} Episod ${episode.episodeNum} | Tonton Drama Melayu Subtitle Gratis`,
+    description: `Streaming ${episode.drama.title} Episod ${episode.episodeNum} drama Melayu terbaru 2025. Tonton full episode dengan subtitle Melayu/Indonesia gratis dan kualitas HD di MangEakkk`,
     url: `https://mangeakkk.my.id/${slug}`,
   });
 }
@@ -88,17 +88,15 @@ export default async function Page({
 
           <Card className="mt-4">
             <CardBody className="px-6 py-4">
-              <PlayWithAds src={episode.videoUrl} />
+              <VideoPlayer src={episode.videoUrl} />
               <div className="my-4">
-                <h1 className="md:text-2xl text-xl font-bold">
-                  {episode.drama.title} - Episode {episode.episodeNum}
+                <h1 className="md:text-2xl text-md mb-2 font-bold">
+                  Tonton Drama Melayu {episode.drama.title} Episod{" "}
+                  {episode.episodeNum}
                 </h1>
-                <p className="max-w-xl font-semibold text-sm">
-                  Description:
-                  <span className="text-tiny font-light ml-1">
-                    {episode.drama.description}
-                  </span>
-                </p>
+                <h2 className="text-tiny font-light">
+                  {episode.drama.description}
+                </h2>
                 <p className="max-w-xl font-semibold text-sm my-1">
                   Status:
                   <span className="text-tiny font-light ml-1">

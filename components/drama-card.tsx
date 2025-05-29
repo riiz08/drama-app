@@ -23,7 +23,11 @@ const DramaCard: React.FC<DramaCardProps> = ({
       {/* Background image */}
       <Image
         removeWrapper
-        alt={`Poster ${title}`}
+        alt={
+          episodeNum
+            ? `Poster drama melayu ${title} episode ${episodeNum}`
+            : `Poster drama melayu ${title}`
+        }
         className="absolute inset-0 w-full h-full object-cover z-0"
         src={image}
       />

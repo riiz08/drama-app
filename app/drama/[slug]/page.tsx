@@ -42,10 +42,10 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `${data.drama.title} | Tonton Drama Melayu - MangEakkk Drama`,
+    title: `${data.drama.title} - Tonton Drama Melayu Full Episode Gratis`,
     description:
       data.drama?.description ??
-      `Tonton ${data.drama.title} hanya di MangEakkk Drama.`,
+      `Tonton drama Melayu terbar ${data.drama.title}  full episode HD. Streaming gratis di MangEakkk.`,
     url: `https://mangeakkk.my.id/${slug}`,
   });
 }
@@ -75,15 +75,10 @@ export default async function Page({
               src={data.drama.thumbnail}
             />
             <div className="my-4">
-              <h1 className="md:text-2xl text-xl font-bold">
-                {data.drama.title}
+              <h1 className="md:text-2xl text-md mb-2 font-bold">
+                Drama Melayu {data.drama.title} - Tonton Full Episode Gratis
               </h1>
-              <p className="max-w-xl font-semibold text-sm">
-                Description:
-                <span className="text-tiny font-light ml-1">
-                  {data.drama.description}
-                </span>
-              </p>
+              <h2 className="text-tiny font-light">{data.drama.description}</h2>
               <p className="max-w-xl font-semibold text-sm my-1">
                 Status:
                 <span className="text-tiny font-light ml-1">

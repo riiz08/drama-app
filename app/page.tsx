@@ -12,9 +12,9 @@ import ListBoxUpdate from "@/components/list-box-update";
 import { getSeoMetadata } from "@/libs/seo";
 
 export const metadata = getSeoMetadata({
-  title: "Tonton Drama Melayu Terkini Percuma | MangEakk Drama",
+  title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
   description:
-    "MangEakkk Drama - Nikmati streaming drama Melayu terbaru dan terbaik dari Indonesia, Malaysia, Brunei, dan Singapura. Tersedia untuk semua kalangan, dari remaja hingga dewasa. Tonton kapan saja, di mana saja dengan kualitas terbaik!",
+    "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
 });
 
 export default async function Home() {
@@ -45,7 +45,7 @@ export default async function Home() {
           </p>
         </ScrollShadow>
         <div>
-          <Heading href="/latest-update" title="Latest Update" />
+          <Heading href="/latest-update" title="Rilis terbaru" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
             {episodes.map((episode, i) => (
               <Link key={i} href={`/${episode.slug}`}>

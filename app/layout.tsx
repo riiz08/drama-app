@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   icons: {
@@ -30,11 +31,24 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head>
         <script
-          src="https://fpyf8.com/88/tag.min.js"
-          data-zone="149566"
           async
           data-cfasync="false"
-        ></script>
+          data-zone="149566"
+          src="https://fpyf8.com/88/tag.min.js"
+        />
+
+        <Script
+          async
+          id="gtag"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MG1B3ZG1YZ"
+        />
+        <Script id="gtag2">
+          {` window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MG1B3ZG1YZ')`}
+        </Script>
       </head>
       <body
         className={clsx(

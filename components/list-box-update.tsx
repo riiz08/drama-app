@@ -27,7 +27,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
   return (
     <div className="bg-content1 md:w-1/4 w-full px-4 py-2 rounded-md">
       <div className="space-y-1">
-        <h4 className="text-sm md:text-medium font-medium">Drama Ongoing</h4>
+        <h3 className="text-sm md:text-medium font-medium">Drama Ongoing</h3>
       </div>
       <Divider className="my-2" />
       <div>

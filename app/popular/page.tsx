@@ -7,9 +7,9 @@ import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
 import { getSeoMetadata } from "@/libs/seo";
 
 export const metadata = getSeoMetadata({
-  title: "Tonton Drama Melayu Terkini Percuma | MangEakk Drama",
+  title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
   description:
-    "MangEakkk Drama - Nikmati streaming drama Melayu terbaru dan terbaik dari Indonesia, Malaysia, Brunei, dan Singapura. Tersedia untuk semua kalangan, dari remaja hingga dewasa. Tonton kapan saja, di mana saja dengan kualitas terbaik!",
+    "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
 });
 
 const Page = async () => {

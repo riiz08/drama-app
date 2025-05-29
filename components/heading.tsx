@@ -33,7 +33,7 @@ const Heading: React.FC<HeadingProps> = ({ title, href }) => {
         <Link
           showAnchorIcon
           anchorIcon={<ChevronRight />}
-          className="text-sm font-semibold"
+          className="text-xs font-semibold"
           color="foreground"
           href={href}
         >
