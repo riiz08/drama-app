@@ -1,7 +1,6 @@
 import { Link } from "@heroui/link";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 
-import { getLatestEpisodes } from "./actions/episode/getLatestEpisodes";
 import getAllPopularDrama from "./actions/drama/getAllPopularDrama";
 
 import Heading from "@/components/heading";
@@ -10,6 +9,8 @@ import CarouselSlider from "@/components/carousel";
 import PopularDrama from "@/components/popular-drama";
 import ListBoxUpdate from "@/components/list-box-update";
 import { getSeoMetadata } from "@/libs/seo";
+import { getLatestEpisodes } from "./actions/episode/getLatestEpisodes";
+import { Pagination } from "@heroui/pagination";
 
 export const metadata = getSeoMetadata({
   title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
@@ -17,8 +18,15 @@ export const metadata = getSeoMetadata({
     "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
 });
 
-export default async function Home() {
-  const episodes = await getLatestEpisodes();
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ page: number | 1 }>;
+}) {
+  const currentPage = (await params).page;
+  const limit = 8;
+
+  const { episodes, totalPages } = await getLatestEpisodes(currentPage, limit);
   const populars = await getAllPopularDrama();
 
   return (
@@ -57,6 +65,9 @@ export default async function Home() {
                 />
               </Link>
             ))}
+          </div>
+          <div className="mx-auto mb-4">
+            <Pagination initialPage={currentPage} total={totalPages} />
           </div>
           <PopularDrama drama={populars} />
         </div>

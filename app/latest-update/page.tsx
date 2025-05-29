@@ -14,7 +14,7 @@ export const metadata = getSeoMetadata({
 });
 
 const Page = async () => {
-  const episodes = await getLatestEpisodes();
+  const { episodes } = await getLatestEpisodes();
   const populars = await getAllPopularDrama();
 
   return (

@@ -2,20 +2,35 @@
 
 import { prisma } from "@/libs/db";
 
-export async function getLatestEpisodes(limit = 8) {
+export async function getLatestEpisodes(page = 1, limit = 8) {
   try {
-    const episodes = await prisma.episode.findMany({
-      orderBy: {
-        releaseDate: "desc", // urutkan berdasarkan tanggal rilis
-      },
-      take: limit,
-      include: {
-        drama: true, // jika kamu ingin info drama-nya juga
-      },
-    });
+    const skip = (page - 1) * limit;
+    const [episodes, total] = await Promise.all([
+      prisma.episode.findMany({
+        orderBy: {
+          releaseDate: "desc",
+        },
+        skip: skip,
+        take: limit,
+        include: {
+          drama: true,
+        },
+      }),
+      prisma.episode.count(),
+    ]);
 
-    return episodes;
+    return {
+      episodes,
+      total,
+      totalPages: Math.ceil(total / limit),
+      currentPage: page,
+    };
   } catch (error) {
-    return [];
+    return {
+      episodes: [],
+      total: 0,
+      totalPages: 0,
+      currentPage: page,
+    };
   }
 }

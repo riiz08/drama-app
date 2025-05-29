@@ -2,9 +2,7 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { ToastProvider } from "@heroui/toast";
-
 import { Providers } from "./providers";
-
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
@@ -30,13 +28,6 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <script
-          async
-          data-cfasync="false"
-          data-zone="149566"
-          src="https://fpyf8.com/88/tag.min.js"
-        />
-
         <Script
           async
           id="gtag"

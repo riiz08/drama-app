@@ -58,7 +58,7 @@ export default async function Page({
   const { slug } = await params;
   const data = (await getDramaBySlug(slug)) as DramaBySlug;
   const populars = await getAllPopularDrama();
-  const episodes = await getLatestEpisodes();
+  const { episodes } = await getLatestEpisodes();
 
   return (
     <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">

@@ -8,7 +8,7 @@ import PopularDrama from "@/components/popular-drama";
 import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 
 const Page = async () => {
-  const episodes = await getLatestEpisodes();
+  const { episodes } = await getLatestEpisodes();
   const dramas = await getAllDramas();
   const populars = await getAllPopularDrama();
 

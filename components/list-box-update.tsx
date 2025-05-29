@@ -36,7 +36,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
             key={list.id}
             className="w-full hover:bg-content2 text-xs"
             color="foreground"
-            href={`/${list.drama.slug}/${list.slug}`}
+            href={`/${list.slug}`}
           >
             <div className="flex items-center justify-between w-full my-1">
               <div className="flex">

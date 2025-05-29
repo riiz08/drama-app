@@ -14,7 +14,7 @@ export const metadata = getSeoMetadata({
 
 const Page = async () => {
   const dramas = await getAllPopularDrama();
-  const episodes = await getLatestEpisodes();
+  const { episodes } = await getLatestEpisodes();
 
   return (
     <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">
