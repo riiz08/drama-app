@@ -1,6 +1,29 @@
 "use client";
 
+import { Episode } from "@/app/generated/prisma";
 import { Input } from "@heroui/input";
+import { Listbox, ListboxItem } from "@heroui/listbox";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface jsonResp {
+  success: boolean;
+  drama: DramaResult;
+}
+
+interface DramaResult {
+  status: string;
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  thumbnail: string;
+  releaseDate: Date;
+  isPopular: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  episodes: Episode[];
+}
 
 export const SearchIcon = (props: { className: string }) => {
   return (
@@ -33,18 +56,67 @@ export const SearchIcon = (props: { className: string }) => {
 };
 
 const SearchInput = () => {
-  return (
-    <Input
-      isClearable
-      aria-label="search"
-      id="search"
-      placeholder="Type to search..."
-      radius="lg"
-      size="md"
-      startContent={
-        <SearchIcon className="pointer-events-none flex-shrink-0" />
+  const [searchValue, setSearchValue] = useState("");
+  const [result, setResult] = useState<DramaResult[]>([]);
+  const router = useRouter();
+
+  const fetchData = async (title: string) => {
+    const res = await fetch("/api/drama", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title }),
+      cache: "no-store",
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch drama");
+
+    const data = await res.json();
+
+    return data;
+  };
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchValue.length > 2) {
+        fetchData(searchValue)
+          .then((res: any) => setResult(res.drama))
+          .catch((err) => console.error("Fetch error:", err));
       }
-    />
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchValue]);
+
+  return (
+    <div>
+      <Input
+        aria-label="search"
+        isClearable
+        id="search"
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Type to search..."
+        radius="lg"
+        size="md"
+        startContent={
+          <SearchIcon className="pointer-events-none flex-shrink-0" />
+        }
+        variant="faded"
+      />
+      {result.length > 0 && (
+        <Listbox aria-label="List Drama 2025" color="default" variant="faded">
+          {result.map((drama) => (
+            <ListboxItem
+              key={drama.slug}
+              onPress={(e) => router.push(`/drama/${drama.slug}`)}
+            >
+              {drama.title}
+            </ListboxItem>
+          ))}
+        </Listbox>
+      )}
+    </div>
   );
 };
 

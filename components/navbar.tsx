@@ -47,7 +47,7 @@ export default function Navbar() {
               </Button>
             </PopoverTrigger>
             <PopoverContent>
-              <div className="px-1 py-2">
+              <div className="px-1 pb-2">
                 <SearchInput />
               </div>
             </PopoverContent>

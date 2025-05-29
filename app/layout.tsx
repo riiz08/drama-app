@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
+        <meta content="ca-pub-4287822627580434" name="google-adsense-account" />
         <Script
           async
           id="gtag"
@@ -40,6 +41,11 @@ export default function RootLayout({
 
   gtag('config', 'G-MG1B3ZG1YZ')`}
         </Script>
+        <Script
+          async
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
+        />
       </head>
       <body
         className={clsx(

@@ -2,11 +2,14 @@
 
 import { prisma } from "@/libs/db";
 
-export const getDramaBySlug = async (slug: string) => {
+export const getDramaByTitle = async (title: string) => {
   try {
     const drama = await prisma.drama.findFirst({
       where: {
-        slug,
+        title: {
+          equals: title,
+          mode: "insensitive",
+        },
       },
       include: {
         episodes: {
