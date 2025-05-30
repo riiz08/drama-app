@@ -12,6 +12,8 @@ import { getSeoMetadata } from "@/libs/seo";
 import { getLatestEpisodes } from "./actions/episode/getLatestEpisodes";
 import { Pagination } from "@heroui/pagination";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = getSeoMetadata({
   title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
   description:
