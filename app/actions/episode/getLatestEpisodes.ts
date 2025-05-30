@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/libs/db";
+import { revalidatePath } from "next/cache";
 
 export async function getLatestEpisodes(page = 1, limit = 8) {
   try {
