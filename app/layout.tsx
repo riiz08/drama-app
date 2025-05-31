@@ -28,6 +28,11 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
+          crossOrigin="anonymous"
+        ></script>
         <Script
           async
           id="gtag"
@@ -40,17 +45,6 @@ export default function RootLayout({
 
   gtag('config', 'G-MG1B3ZG1YZ')`}
         </Script>
-        {/* <Script
-          async
-          crossOrigin="anonymous"
-          id="adsGoogle"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
-        /> */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
-          crossOrigin="anonymous"
-        ></script>
       </head>
       <body
         className={clsx(
