@@ -13,7 +13,6 @@ import PopularDrama from "@/components/popular-drama";
 import { getSeoMetadata } from "@/libs/seo";
 import { Link } from "@heroui/link";
 import VideoPlayer from "@/components/video-player";
-import Script from "next/script";
 
 interface EpisodeDetail {
   slug: string;
@@ -79,12 +78,6 @@ export default async function Page({
   return (
     <div className="flex justify-center md:justify-between items-start gap-4 flex-col md:flex-row">
       <section className="md:w-4/5">
-        <Script
-          async
-          data-cfasync="false"
-          data-zone="149566"
-          src="https://fpyf8.com/88/tag.min.js"
-        />
         <div className="">
           <MyBreadcrumbs
             dramaSlug={episode.drama.slug}
