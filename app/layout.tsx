@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
+import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata: Metadata = {
   icons: {
@@ -28,11 +29,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
-          crossOrigin="anonymous"
-        ></script>
+        <GoogleAdsense />
         <Script
           async
           id="gtag"
