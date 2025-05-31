@@ -65,7 +65,7 @@ export default function RootLayout({
             <main className="container mx-auto max-w-7xl bg-background pt-4 px-6 flex-grow">
               {children}
             </main>
-            <footer className="text-sm p-4 text-center bg-content1 my-4">
+            <footer className="text-sm p-4 text-center bg-content1">
               <aside>
                 <p>
                   Copyright © {new Date().getFullYear()} - All right reserved

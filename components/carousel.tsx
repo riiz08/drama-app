@@ -62,9 +62,10 @@ export default function CarouselSlider() {
                   as={NextImage}
                   className="w-full h-[300px] sm:h-[400px] object-cover"
                   fill
-                  loading="lazy"
+                  priority
                   isBlurred
                   removeWrapper={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   src={popular.thumbnail}
                 />
                 <div className="absolute bottom-0 z-[999] left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">

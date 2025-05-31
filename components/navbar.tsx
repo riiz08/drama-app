@@ -21,6 +21,7 @@ export default function Navbar() {
             height={40}
             src={"/logo/logo.png"}
             width={40}
+            style={{ width: "auto", height: "auto" }}
           />
           <span className="font-bold text-inherit">MangEakkk</span>
         </Link>
