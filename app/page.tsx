@@ -55,7 +55,7 @@ export default async function Home({
           <Heading href="/latest-update" title="Rilis terbaru" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
             {episodes.map((episode, i) => (
-              <Link key={i} href={`/${episode.slug}`}>
+              <Link key={i} href={`/${episode.slug}`} target="_parent">
                 <DramaCard
                   episodeNum={episode.episodeNum}
                   image={episode.drama.thumbnail}

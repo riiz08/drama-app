@@ -3,10 +3,8 @@
 import { Button } from "@heroui/button";
 import { redirect } from "next/navigation";
 import React from "react";
-
 import { CheveronDown, ChevronLeft } from "./icons";
 import { ChevronRight } from "./heading";
-
 import { Episode } from "@/app/generated/prisma";
 
 interface NextPrevProps {

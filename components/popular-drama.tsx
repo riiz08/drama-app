@@ -16,7 +16,7 @@ const PopularDrama: React.FC<PopularProps> = ({ drama }) => {
       <Heading href="/popular" title="Drama Populer" />
       <div className="py-2 grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
         {drama.map((popular, i) => (
-          <Link key={i} href={`/drama/${popular.slug}`}>
+          <Link key={i} href={`/drama/${popular.slug}`} target="_parent">
             <DramaCard
               image={popular.thumbnail}
               isPopular={true}
