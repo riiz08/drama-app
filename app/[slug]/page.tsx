@@ -79,12 +79,12 @@ export default async function Page({
   return (
     <div className="flex justify-center md:justify-between items-start gap-4 flex-col md:flex-row">
       <section className="md:w-4/5">
-        <Script
+        {/* <Script
           async
           data-cfasync="false"
           data-zone="149566"
           src="https://fpyf8.com/88/tag.min.js"
-        />
+        /> */}
         <div className="">
           <MyBreadcrumbs
             dramaSlug={episode.drama.slug}

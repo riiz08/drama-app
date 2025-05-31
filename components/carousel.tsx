@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import { Link } from "@heroui/link";
-
+import NextImage from "next/image";
 import { Drama } from "@/app/generated/prisma";
 import getAllPopularDrama from "@/app/actions/drama/getAllPopularDrama";
 import { Image } from "@heroui/image";
@@ -58,9 +58,12 @@ export default function CarouselSlider() {
             >
               <div className="relative overflow-hidden h-48 md:h-56 rounded-2xl shadow-lg">
                 <Image
-                  isBlurred
                   alt={popular.title}
+                  as={NextImage}
                   className="w-full h-[300px] sm:h-[400px] object-cover"
+                  fill
+                  loading="lazy"
+                  isBlurred
                   removeWrapper={true}
                   src={popular.thumbnail}
                 />

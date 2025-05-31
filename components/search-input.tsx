@@ -92,10 +92,9 @@ const SearchInput = () => {
   return (
     <div>
       <Input
-        aria-label="search"
         isClearable
+        aria-label="search"
         id="search"
-        onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Type to search..."
         radius="lg"
         size="md"
@@ -103,6 +102,7 @@ const SearchInput = () => {
           <SearchIcon className="pointer-events-none flex-shrink-0" />
         }
         variant="faded"
+        onChange={(e) => setSearchValue(e.target.value)}
       />
       {result.length > 0 && (
         <Listbox aria-label="List Drama 2025" color="default" variant="faded">

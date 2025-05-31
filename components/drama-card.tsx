@@ -2,6 +2,7 @@ import { Card } from "@heroui/card";
 import { Chip } from "@heroui/chip";
 import { Image } from "@heroui/image";
 import React from "react";
+import NextImage from "next/image";
 
 import { FireIcon } from "./icons";
 
@@ -23,12 +24,16 @@ const DramaCard: React.FC<DramaCardProps> = ({
       {/* Background image */}
       <Image
         removeWrapper
+        fill
+        as={NextImage}
         alt={
           episodeNum
             ? `Poster drama melayu ${title} episode ${episodeNum}`
             : `Poster drama melayu ${title}`
         }
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-60 h-60 md:h-80 object-cover z-0"
+        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         src={image}
       />
 

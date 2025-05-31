@@ -15,18 +15,15 @@ export default function Navbar() {
   return (
     <HeroUiNavbar shouldHideOnScroll maxWidth="xl">
       <NavbarBrand>
-        <Image
-          alt="MangEakkk Drama"
-          className="w-auto h-auto"
-          height={40}
-          src={"/logo/logo.png"}
-          width={40}
-        />
-        <p className="font-bold text-inherit">
-          <Link color="foreground" href="/">
-            MangEakkk
-          </Link>
-        </p>
+        <Link color="foreground" href="/">
+          <Image
+            alt="MangEakkk Drama"
+            height={40}
+            src={"/logo/logo.png"}
+            width={40}
+          />
+          <span className="font-bold text-inherit">MangEakkk</span>
+        </Link>
       </NavbarBrand>
 
       <NavbarContent justify="end">

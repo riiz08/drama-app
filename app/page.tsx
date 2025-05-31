@@ -1,8 +1,6 @@
 import { Link } from "@heroui/link";
 import { ScrollShadow } from "@heroui/scroll-shadow";
-
 import getAllPopularDrama from "./actions/drama/getAllPopularDrama";
-
 import Heading from "@/components/heading";
 import DramaCard from "@/components/drama-card";
 import CarouselSlider from "@/components/carousel";
@@ -11,8 +9,7 @@ import ListBoxUpdate from "@/components/list-box-update";
 import { getSeoMetadata } from "@/libs/seo";
 import { getLatestEpisodes } from "./actions/episode/getLatestEpisodes";
 import { Pagination } from "@heroui/pagination";
-
-export const dynamic = "force-dynamic";
+import CarouselClientWrapper from "@/components/carousel-client-wrapper";
 
 export const metadata = getSeoMetadata({
   title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
@@ -32,9 +29,9 @@ export default async function Home({
   const populars = await getAllPopularDrama();
 
   return (
-    <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">
+    <section className="flex justify-center md:justify-between w-fit items-start gap-2 flex-col md:flex-row">
       <div className="md:w-4/5">
-        <CarouselSlider />
+        <CarouselClientWrapper />
         <ScrollShadow
           hideScrollBar
           className="h-20 md:h-16 my-2 bg-content1 p-2 rounded-md"
