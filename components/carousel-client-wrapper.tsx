@@ -8,8 +8,8 @@ const CarouselSlider = dynamic(() => import("./carousel"), {
   loading: () => (
     <Spinner
       classNames={{ label: "text-foreground mt-4" }}
-      variant="wave"
       className="w-full h-48 sm:h-56"
+      variant="wave"
     />
   ),
 });

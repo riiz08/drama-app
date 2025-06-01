@@ -14,6 +14,8 @@ export interface CreateDramaInput {
   status: DramaStatus;
   releaseDate: string;
   isPopular: boolean;
+  totalEpisode: number;
+  airTime: string;
 }
 
 export interface CreateEpisodeInput {

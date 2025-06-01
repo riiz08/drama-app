@@ -19,6 +19,8 @@ export default function CreateDramaForm() {
     status: DramaStatus;
     releaseDate: string;
     isPopular: boolean;
+    totalEpisode: number;
+    airTime: string;
   }>({
     title: "",
     slug: "",
@@ -27,6 +29,8 @@ export default function CreateDramaForm() {
     status: "ONGOING",
     releaseDate: "",
     isPopular: false,
+    totalEpisode: 1,
+    airTime: "",
   });
 
   const [isPending, startTransition] = useTransition();
@@ -52,6 +56,7 @@ export default function CreateDramaForm() {
       ...prev,
       [name]:
         type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+      [name]: name === "totalEpisode" ? parseInt(value) : value,
     }));
 
     if (name === "title") {
@@ -70,6 +75,7 @@ export default function CreateDramaForm() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     startTransition(async () => {
       try {
         const result = await createDrama(form); // ini langsung server action
@@ -94,6 +100,8 @@ export default function CreateDramaForm() {
             status: "ONGOING",
             releaseDate: "",
             isPopular: false,
+            totalEpisode: 1,
+            airTime: "",
           });
         }
       } catch (error) {
@@ -145,6 +153,24 @@ export default function CreateDramaForm() {
         value={form.thumbnail}
         onChange={handleChange}
       />
+      <Input
+        isRequired
+        label="Total Episode"
+        labelPlacement="outside"
+        name="totalEpisode"
+        value={String(form.totalEpisode)}
+        onChange={handleChange}
+      />
+
+      <Input
+        isRequired
+        label="Air Time"
+        labelPlacement="outside"
+        name="airTime"
+        value={form.airTime}
+        onChange={handleChange}
+      />
+
       <Select
         label="Status"
         labelPlacement="outside"

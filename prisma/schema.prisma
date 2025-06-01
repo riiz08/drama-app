@@ -22,6 +22,8 @@ model Drama {
   thumbnail   String     // URL gambar poster
   status      Status
   releaseDate DateTime
+  totalEpisode Int
+  airTime     String
   episodes    Episode[]
   isPopular   Boolean @default(false)
   createdAt   DateTime   @default(now())

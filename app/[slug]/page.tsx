@@ -91,7 +91,7 @@ export default async function Page({
               <VideoPlayer src={episode.videoUrl} />
               <div className="my-4">
                 <h1 className="md:text-2xl text-md mb-2 font-bold">
-                  Tonton Drama Melayu {episode.drama.title} Episod{" "}
+                  Tonton Drama Melayu {episode.drama.title} Episod
                   {episode.episodeNum}
                 </h1>
                 <h2 className="text-tiny font-light">
@@ -120,12 +120,24 @@ export default async function Page({
                 ) : (
                   ""
                 )}
+                <p className="max-w-xl font-semibold text-sm my-1">
+                  Total Episode:
+                  <span className="text-tiny font-light ml-1">
+                    {episode.drama.totalEpisode}
+                  </span>
+                </p>
+                <p className="max-w-xl font-semibold text-sm my-1">
+                  Waktu Tayang:
+                  <span className="text-tiny font-light ml-1">
+                    {episode.drama.airTime}
+                  </span>
+                </p>
               </div>
             </CardBody>
           </Card>
         </div>
         <NextPrev episodes={dramaWithEpisode.drama.episodes} slug={slug} />
-        <Card>
+        <Card className="my-4">
           <CardBody>
             <p className="text-tiny font-light">
               Nikmati koleksi drama Melayu popular dan drama Malaysia full

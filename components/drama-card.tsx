@@ -23,8 +23,9 @@ const DramaCard: React.FC<DramaCardProps> = ({
     <Card className="relative w-60 h-60 md:h-80 rounded-2xl overflow-hidden shadow-md transition-transform hover:scale-[1.03]">
       {/* Background image */}
       <Image
-        removeWrapper
         fill
+        priority
+        removeWrapper
         as={NextImage}
         alt={
           episodeNum
@@ -32,7 +33,6 @@ const DramaCard: React.FC<DramaCardProps> = ({
             : `Poster drama melayu ${title}`
         }
         className="absolute inset-0 w-60 h-60 md:h-80 object-cover z-0"
-        priority
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         src={image}
       />
