@@ -27,7 +27,7 @@ const Page = async () => {
             </Link>
           ))}
         </div>
-        <PopularDrama drama={populars} />
+        <PopularDrama drama={populars} isLoading={false} />
       </div>
       <ListBoxUpdate episodes={episodes} />
     </section>

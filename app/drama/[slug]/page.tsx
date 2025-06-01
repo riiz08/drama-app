@@ -133,7 +133,7 @@ export default async function Page({
           </CardBody>
         </Card>
         <div className="my-4">
-          <PopularDrama drama={populars} />
+          <PopularDrama drama={populars} isLoading={false} />
         </div>
       </div>
       <ListBoxUpdate episodes={episodes} />

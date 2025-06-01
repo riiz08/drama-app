@@ -91,7 +91,7 @@ export default async function Page({
               <VideoPlayer src={episode.videoUrl} />
               <div className="my-4">
                 <h1 className="md:text-2xl text-md mb-2 font-bold">
-                  Tonton Drama Melayu {episode.drama.title} Episod
+                  Tonton Drama Melayu {episode.drama.title} Episod{" "}
                   {episode.episodeNum}
                 </h1>
                 <h2 className="text-tiny font-light">
@@ -157,7 +157,7 @@ export default async function Page({
           </CardBody>
         </Card>
         <div className="my-4">
-          <PopularDrama drama={populars} />
+          <PopularDrama drama={populars} isLoading={false} />
         </div>
       </section>
       <ListBoxUpdate episodes={episodes} />

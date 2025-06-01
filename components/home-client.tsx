@@ -10,8 +10,7 @@ import ListBoxUpdate from "@/components/list-box-update";
 import { Pagination } from "@heroui/pagination";
 import { Drama, Episode } from "@/app/generated/prisma";
 import CarouselSlider from "./carousel";
-import { Spinner } from "@heroui/spinner";
-import Navbar from "./navbar";
+import { Skeleton } from "@heroui/skeleton";
 
 interface jsonResp {
   episodes: Episode[];
@@ -31,7 +30,9 @@ export default function HomeClient() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`/api/episodes?page=${currentPage}&limit=8`);
+        const res = await fetch(
+          `/api/episodes/latest?page=${currentPage}&limit=8`
+        );
         const data = (await res.json()) as jsonResp;
         const popDrama = await fetch("/api/drama/popular");
         const popData = (await popDrama.json()) as Drama[];
@@ -39,7 +40,7 @@ export default function HomeClient() {
         setTotalPages(data.totalPages);
         setPopulars(popData);
       } catch (error) {
-        console.log(error);
+        throw error;
       } finally {
         setIsLoading(false);
       }
@@ -47,14 +48,6 @@ export default function HomeClient() {
 
     fetchData();
   }, [currentPage]);
-
-  // if (isLoading)
-  //   return (
-  //     <Spinner
-  //       className="fixed inset-0 z-[9999] flex items-center justify-center"
-  //       variant="wave"
-  //     />
-  //   );
 
   return (
     <>
@@ -87,10 +80,9 @@ export default function HomeClient() {
                 {Array(limit)
                   .fill(0)
                   .map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-60 h-60 md:h-80 bg-gray-300 animate-pulse rounded-2xl"
-                    />
+                    <Skeleton className="rounded-lg" key={i}>
+                      <div className="w-60 h-60 md:h-80" />
+                    </Skeleton>
                   ))}
               </div>
             ) : (
@@ -107,14 +99,14 @@ export default function HomeClient() {
                 ))}
               </div>
             )}
-            <div className="mx-auto mb-4">
+            <div className="mx-auto my-4">
               <Pagination
                 initialPage={currentPage}
                 total={totalPages}
                 onChange={(page) => setCurrentPage(page)}
               />
             </div>
-            <PopularDrama drama={populars} />
+            <PopularDrama drama={populars} isLoading={isLoading} />
           </div>
         </div>
         <ListBoxUpdate episodes={episodes} />
