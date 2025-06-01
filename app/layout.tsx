@@ -7,10 +7,11 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
 import GoogleAdsense from "@/components/google-adsense";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/logo/logo.png",
+    icon: "/favicon.ico",
   },
 };
 
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="ms">
       <head>
         <GoogleAdsense />
         <Script
@@ -56,14 +57,7 @@ export default function RootLayout({
             <main className="container mx-auto max-w-7xl bg-background pt-4 px-6 flex-grow">
               {children}
             </main>
-            <footer className="text-sm p-4 text-center bg-content1">
-              <aside>
-                <p>
-                  Copyright © {new Date().getFullYear()} - All right reserved
-                  by MangEakkk Dev
-                </p>
-              </aside>
-            </footer>
+            <Footer />
           </div>
         </Providers>
       </body>

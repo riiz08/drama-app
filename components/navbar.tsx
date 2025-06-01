@@ -1,31 +1,35 @@
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUiNavbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@heroui/navbar";
-import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { Button } from "@heroui/button";
-
 import SearchInput, { SearchIcon } from "./search-input";
+import { Image } from "@heroui/image";
+import NextImage from "next/image";
 
 export default function Navbar() {
   return (
-    <HeroUiNavbar shouldHideOnScroll maxWidth="xl">
-      <NavbarBrand>
-        <Link color="foreground" href="/">
-          <Image
-            alt="MangEakkk Drama"
-            height={40}
-            src={"/logo/logo.png"}
-            width={40}
-            style={{ width: "auto", height: "auto" }}
-          />
-          <span className="font-bold text-inherit">MangEakkk</span>
-        </Link>
-      </NavbarBrand>
+    <HeroUiNavbar shouldHideOnScroll maxWidth="2xl">
+      <NavbarContent justify="start">
+        <NavbarItem>
+          <Link color="foreground" href="/">
+            <Image
+              alt="MangEakkk Drama"
+              as={NextImage}
+              height={40}
+              src={"/logo/logo.png"}
+              width={40}
+              style={{ width: "auto", height: "auto" }}
+            />
+            <span className="font-semibold text-inherit text-sm md:text-medium">
+              MangEakkk
+            </span>
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
 
       <NavbarContent justify="end">
         <NavbarItem>

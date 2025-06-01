@@ -68,13 +68,13 @@ export default function CarouselSlider() {
               >
                 <div className="relative overflow-hidden h-48 md:h-56 rounded-2xl shadow-lg">
                   <Image
+                    alt={popular.title}
+                    as={NextImage}
+                    className="w-full h-[300px] sm:h-[400px] object-cover"
                     fill
                     isBlurred
                     priority
                     removeWrapper={true}
-                    alt={popular.title}
-                    as={NextImage}
-                    className="w-full h-[300px] sm:h-[400px] object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     src={popular.thumbnail}
                   />

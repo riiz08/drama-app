@@ -6,6 +6,7 @@ import { Divider } from "@heroui/divider";
 import { PlayIcon } from "./icons";
 
 import { Drama } from "@/app/generated/prisma";
+import { Skeleton } from "@heroui/skeleton";
 
 interface LatestEpisode {
   episodeNum: number;
@@ -31,24 +32,42 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
       </div>
       <Divider className="my-2" />
       <div>
-        {episodes.map((list) => (
-          <Link
-            key={list.id}
-            className="w-full hover:bg-content2 text-xs"
-            color="foreground"
-            href={`/${list.slug}`}
-            target="_parent"
-          >
-            <div className="flex items-center justify-between w-full my-1">
-              <div className="flex">
-                <PlayIcon /> <span className="ml-1">{list.drama.title}</span>
+        {episodes.length != 0 ? (
+          episodes.map((list) => (
+            <Link
+              key={list.id}
+              className="w-full hover:bg-content2 text-xs"
+              color="foreground"
+              href={`/${list.slug}`}
+              target="_parent"
+            >
+              <div className="flex items-center justify-between w-full my-1">
+                <div className="flex">
+                  <PlayIcon /> <span className="ml-1">{list.drama.title}</span>
+                </div>
+                <Chip color="primary" radius="sm" size="sm" variant="shadow">
+                  Episode {list.episodeNum}
+                </Chip>
               </div>
-              <Chip color="primary" radius="sm" size="sm" variant="shadow">
-                Episode {list.episodeNum}
-              </Chip>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))
+        ) : (
+          <div className="space-y-2">
+            {Array(8)
+              .fill(0)
+              .map((_, i) => (
+                <Skeleton key={i}>
+                  <div className="flex items-center justify-between w-full my-1">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gray-300 rounded-full" />
+                      <div className="h-4 w-24 bg-gray-300 rounded" />
+                    </div>
+                    <div className="h-4 w-16 bg-gray-300 rounded-lg" />
+                  </div>
+                </Skeleton>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

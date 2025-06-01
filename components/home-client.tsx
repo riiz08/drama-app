@@ -74,7 +74,7 @@ export default function HomeClient() {
             </p>
           </ScrollShadow>
           <div>
-            <Heading href="/latest-update" title="Rilis terbaru" />
+            <Heading href="/latest-update" title="Drama Terbaru" />
             {isLoading ? (
               <div className="grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
                 {Array(limit)
