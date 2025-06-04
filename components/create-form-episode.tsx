@@ -49,7 +49,7 @@ export default function CreateEpisodeForm() {
 
       setForm((prev) => ({
         ...prev,
-        videoUrl: `https://sadjajsd.b-cdn.net/${videoSlug}/${prev.episodeNum}/index.m3u8`,
+        videoUrl: `https://cdn.mangeakkk.my.id/${videoSlug}/${prev.episodeNum}/index.m3u8`,
       }));
     }
   }, [form.slug, form.episodeNum]);
