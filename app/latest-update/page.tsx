@@ -23,7 +23,7 @@ const Page = async () => {
         <Heading title="Latest Update" />
         <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodes.map((drama) => (
-            <Link key={drama.id} href={`/${drama.slug}`}>
+            <Link key={drama.id} href={`/${drama.slug}`} target="_parent">
               <DramaCard
                 image={drama.drama.thumbnail}
                 isPopular={false}

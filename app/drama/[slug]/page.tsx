@@ -24,6 +24,8 @@ interface DramaBySlug {
     releaseDate: Date;
     isPopular: boolean;
     episodes: Episode[];
+    totalEpisode: number;
+    airTime: string;
   };
 }
 
@@ -98,6 +100,18 @@ export default async function Page({
                   })}
                 </time>
               </p>
+              <p className="max-w-xl font-semibold text-sm my-1">
+                Total Episode:
+                <span className="text-tiny font-light ml-1">
+                  {data.drama.totalEpisode}
+                </span>
+              </p>
+              <p className="max-w-xl font-semibold text-sm my-1">
+                Waktu Tayang:
+                <span className="text-tiny font-light ml-1">
+                  {data.drama.airTime}
+                </span>
+              </p>
             </div>
 
             <p className="text-tiny font-light mb-3">
@@ -125,6 +139,7 @@ export default async function Page({
                   color="success"
                   href={`/${episode.slug}`}
                   variant="flat"
+                  target="_parent"
                 >
                   {episode.episodeNum}
                 </Button>

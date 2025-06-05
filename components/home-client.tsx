@@ -88,7 +88,11 @@ export default function HomeClient() {
             ) : (
               <div className="grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
                 {episodes.map((episode) => (
-                  <Link key={episode.slug} href={`/${episode.slug}`}>
+                  <Link
+                    key={episode.slug}
+                    href={`/${episode.slug}`}
+                    target="_parent"
+                  >
                     <DramaCard
                       episodeNum={episode.episodeNum}
                       image={episode.drama.thumbnail}
