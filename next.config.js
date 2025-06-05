@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "sadjajsd.b-cdn.net",
+        hostname: "cdn.mangeakkk.my.id",
       },
     ],
   },
