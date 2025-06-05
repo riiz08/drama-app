@@ -6,8 +6,9 @@ import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
-import GoogleAdsense from "@/components/google-adsense";
 import Footer from "@/components/footer";
+import AdsenseSlot from "@/components/adsense-slot";
+import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata: Metadata = {
   icons: {
@@ -53,10 +54,12 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
+            <AdsenseSlot slot="5978949902" />
             <ToastProvider />
             <main className="container mx-auto max-w-7xl bg-background pt-4 px-6 flex-grow">
               {children}
             </main>
+            <AdsenseSlot slot="3927501637" />
             <Footer />
           </div>
         </Providers>

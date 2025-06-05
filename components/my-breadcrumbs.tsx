@@ -36,7 +36,7 @@ export default function MyBreadcrumbs({
       <BreadcrumbItem key="/drama" startContent={<DIcon />}>
         Drama
       </BreadcrumbItem>
-      <BreadcrumbItem key={`/${dramaSlug}`} startContent={<DramaIcon />}>
+      <BreadcrumbItem key={`/drama/${dramaSlug}`} startContent={<DramaIcon />}>
         {dramaTitle}
       </BreadcrumbItem>
       {episodeNum ? (

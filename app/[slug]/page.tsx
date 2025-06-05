@@ -13,6 +13,7 @@ import PopularDrama from "@/components/popular-drama";
 import { getSeoMetadata } from "@/libs/seo";
 import { Link } from "@heroui/link";
 import VideoPlayer from "@/components/video-player";
+import AdsenseSlot from "@/components/adsense-slot";
 
 interface EpisodeDetail {
   slug: string;
@@ -137,6 +138,7 @@ export default async function Page({
           </Card>
         </div>
         <NextPrev episodes={dramaWithEpisode.drama.episodes} slug={slug} />
+        <AdsenseSlot slot="4939773358" />
         <Card className="my-4">
           <CardBody>
             <p className="text-tiny font-light">
@@ -156,6 +158,7 @@ export default async function Page({
             </p>
           </CardBody>
         </Card>
+        <AdsenseSlot slot="5978949902" />
         <div className="my-4">
           <PopularDrama drama={populars} isLoading={false} />
         </div>

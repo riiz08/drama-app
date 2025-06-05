@@ -11,6 +11,7 @@ import { Episode } from "@/app/generated/prisma";
 import { getDramaBySlug } from "@/app/actions/drama/getDramaBySlug";
 import getAllPopularDrama from "@/app/actions/drama/getAllPopularDrama";
 import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
+import AdsenseSlot from "@/components/adsense-slot";
 
 interface DramaBySlug {
   success: boolean;
@@ -148,6 +149,7 @@ export default async function Page({
           </CardBody>
         </Card>
         <div className="my-4">
+          <AdsenseSlot slot="5978949902" />
           <PopularDrama drama={populars} isLoading={false} />
         </div>
       </div>
