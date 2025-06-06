@@ -9,6 +9,7 @@ import Script from "next/script";
 import Footer from "@/components/footer";
 import AdsenseSlot from "@/components/adsense-slot";
 import GoogleAdsense from "@/components/google-adsense";
+import { ThemeSwitch } from "@/components/theme-switch";
 
 export const metadata: Metadata = {
   icons: {
@@ -52,16 +53,21 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <ToastProvider />
-            <main className="container mx-auto max-w-7xl bg-background pt-4 px-6 flex-grow">
+          <Navbar />
+          <ToastProvider />
+          <main className="mx-auto bg-background pt-4 px-4 flex-grow">
+            <div className="mx-auto">
               <AdsenseSlot slot="5978949902" />
-              {children}
+            </div>
+            {children}
+            <div className="mx-auto">
               <AdsenseSlot slot="3927501637" />
-            </main>
-            <Footer />
+            </div>
+          </main>
+          <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
+            <ThemeSwitch />
           </div>
+          <Footer />
         </Providers>
       </body>
     </html>

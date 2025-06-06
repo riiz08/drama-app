@@ -87,8 +87,8 @@ export default async function Page({
             episodeSlug={episode.slug}
           />
 
-          <Card className="mt-4">
-            <CardBody className="px-6 py-4">
+          <Card className="mt-4 mx-auto">
+            <CardBody className="px-4 py-4">
               <VideoPlayer src={episode.videoUrl} />
               <div className="my-4">
                 <h1 className="md:text-2xl text-md mb-2 font-bold">
