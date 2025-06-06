@@ -54,12 +54,12 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <AdsenseSlot slot="5978949902" />
             <ToastProvider />
             <main className="container mx-auto max-w-7xl bg-background pt-4 px-6 flex-grow">
+              <AdsenseSlot slot="5978949902" />
               {children}
+              <AdsenseSlot slot="3927501637" />
             </main>
-            <AdsenseSlot slot="3927501637" />
             <Footer />
           </div>
         </Providers>

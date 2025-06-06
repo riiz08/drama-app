@@ -44,7 +44,7 @@ export default function CarouselSlider() {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          className="w-full px-6"
+          className="w-full px-6 my-4"
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
