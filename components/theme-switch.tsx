@@ -44,7 +44,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         className: clsx(
           "px-px transition-opacity hover:opacity-80 cursor-pointer",
           className,
-          classNames?.base,
+          classNames?.base
         ),
       })}
     >
@@ -57,7 +57,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           class: clsx(
             [
               "w-auto h-auto",
-              "bg-transparent",
+              "bg-content2",
               "rounded-lg",
               "flex items-center justify-center",
               "group-data-[selected=true]:bg-transparent",
@@ -65,8 +65,10 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
               "pt-px",
               "px-0",
               "mx-0",
+              "p-4",
+              "rounded-full",
             ],
-            classNames?.wrapper,
+            classNames?.wrapper
           ),
         })}
       >

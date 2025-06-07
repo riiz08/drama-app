@@ -51,8 +51,8 @@ export default function HomeClient() {
 
   return (
     <>
-      <section className="flex justify-center md:justify-between w-fit items-start gap-2 flex-col md:flex-row">
-        <div className="md:w-4/5">
+      <section>
+        <div>
           <CarouselSlider />
           <ScrollShadow
             hideScrollBar
@@ -86,7 +86,7 @@ export default function HomeClient() {
                   ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
+              <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
                 {episodes.map((episode) => (
                   <Link
                     key={episode.slug}

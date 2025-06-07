@@ -64,94 +64,91 @@ export default async function Page({
   const { episodes } = await getLatestEpisodes();
 
   return (
-    <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">
-      <div className="md:w-4/5">
-        <MyBreadcrumbs
-          dramaSlug={data.drama.slug}
-          dramaTitle={data.drama.title}
-        />
-        <Card className="w-full my-4">
-          <CardBody className="px-6">
-            <Image
-              alt={data.drama.title}
-              className="md:w-1/2 mx-auto my-4"
-              src={data.drama.thumbnail}
-            />
-            <div className="my-4">
-              <h1 className="md:text-2xl text-md mb-2 font-bold">
-                Drama Melayu {data.drama.title} - Tonton Full Episode Gratis
-              </h1>
-              <h2 className="text-tiny font-light">{data.drama.description}</h2>
-              <p className="max-w-xl font-semibold text-sm my-1">
-                Status:
-                <span className="text-tiny font-light ml-1">
-                  {data.drama.status}
-                </span>
-              </p>
-              <p className="max-w-xl font-semibold text-sm my-1">
-                Release Date:
-                <time
-                  className="text-tiny font-light ml-1"
-                  dateTime={data.drama.releaseDate.toISOString()}
-                >
-                  {data.drama.releaseDate.toLocaleDateString("ms-MY", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </time>
-              </p>
-              <p className="max-w-xl font-semibold text-sm my-1">
-                Total Episode:
-                <span className="text-tiny font-light ml-1">
-                  {data.drama.totalEpisode}
-                </span>
-              </p>
-              <p className="max-w-xl font-semibold text-sm my-1">
-                Waktu Tayang:
-                <span className="text-tiny font-light ml-1">
-                  {data.drama.airTime}
-                </span>
-              </p>
-            </div>
-
-            <p className="text-tiny font-light mb-3">
-              Nikmati koleksi drama Melayu popular dan drama Malaysia full
-              episod hanya di MangEakk Drama. Di halaman ini, anda boleh tonton
-              drama terkini dari pelbagai genre — dari cinta, aksi, hingga
-              keluarga — semuanya dalam kualiti HD dan subtitle Melayu atau
-              Indonesia. Sesuai untuk penonton dari Malaysia, Brunei, Singapura,
-              dan Indonesia yang ingin mengikuti drama terbaru 2025 secara mudah
-              dan percuma.
-              <span className="font-bold mr-1">
-                Tonton Drama {data.drama.title} hanya di
+    <section>
+      <MyBreadcrumbs
+        dramaSlug={data.drama.slug}
+        dramaTitle={data.drama.title}
+      />
+      <Card className="w-full my-4">
+        <CardBody className="px-6">
+          <Image
+            alt={data.drama.title}
+            className="md:w-1/2 mx-auto my-4"
+            src={data.drama.thumbnail}
+          />
+          <div className="my-4">
+            <h1 className="md:text-2xl text-md mb-2 font-bold">
+              Drama Melayu {data.drama.title} - Tonton Full Episode Gratis
+            </h1>
+            <h2 className="text-tiny font-light">{data.drama.description}</h2>
+            <p className="max-w-xl font-semibold text-sm my-1">
+              Status:
+              <span className="text-tiny font-light ml-1">
+                {data.drama.status}
               </span>
-              <Link className="text-tiny font-bold" color="primary" href="/">
-                MangEakkk Drama
-              </Link>
             </p>
+            <p className="max-w-xl font-semibold text-sm my-1">
+              Release Date:
+              <time
+                className="text-tiny font-light ml-1"
+                dateTime={data.drama.releaseDate.toISOString()}
+              >
+                {data.drama.releaseDate.toLocaleDateString("ms-MY", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
+            </p>
+            <p className="max-w-xl font-semibold text-sm my-1">
+              Total Episode:
+              <span className="text-tiny font-light ml-1">
+                {data.drama.totalEpisode}
+              </span>
+            </p>
+            <p className="max-w-xl font-semibold text-sm my-1">
+              Waktu Tayang:
+              <span className="text-tiny font-light ml-1">
+                {data.drama.airTime}
+              </span>
+            </p>
+          </div>
 
-            <div className="flex flex-wrap justify-start items-center gap-2 py-4 px-4 rounded-md bg-content2">
-              {data.drama.episodes.map((episode) => (
-                <Button
-                  key={episode.id}
-                  isIconOnly
-                  as={Link}
-                  color="success"
-                  href={`/${episode.slug}`}
-                  variant="flat"
-                  target="_parent"
-                >
-                  {episode.episodeNum}
-                </Button>
-              ))}
-            </div>
-          </CardBody>
-        </Card>
-        <div className="my-4">
-          <AdsenseSlot slot="5978949902" />
-          <PopularDrama drama={populars} isLoading={false} />
-        </div>
+          <p className="text-tiny font-light mb-3">
+            Nikmati koleksi drama Melayu popular dan drama Malaysia full episod
+            hanya di MangEakk Drama. Di halaman ini, anda boleh tonton drama
+            terkini dari pelbagai genre — dari cinta, aksi, hingga keluarga —
+            semuanya dalam kualiti HD dan subtitle Melayu atau Indonesia. Sesuai
+            untuk penonton dari Malaysia, Brunei, Singapura, dan Indonesia yang
+            ingin mengikuti drama terbaru 2025 secara mudah dan percuma.
+            <span className="font-bold mr-1">
+              Tonton Drama {data.drama.title} hanya di
+            </span>
+            <Link className="text-tiny font-bold" color="primary" href="/">
+              MangEakkk Drama
+            </Link>
+          </p>
+
+          <div className="flex flex-wrap justify-start items-center gap-2 py-4 px-4 rounded-md bg-content2">
+            {data.drama.episodes.map((episode) => (
+              <Button
+                key={episode.id}
+                isIconOnly
+                as={Link}
+                color="success"
+                href={`/${episode.slug}`}
+                variant="flat"
+                target="_parent"
+              >
+                {episode.episodeNum}
+              </Button>
+            ))}
+          </div>
+        </CardBody>
+      </Card>
+      <div className="my-4">
+        <AdsenseSlot slot="5978949902" />
+        <PopularDrama drama={populars} isLoading={false} />
       </div>
       <ListBoxUpdate episodes={episodes} />
     </section>

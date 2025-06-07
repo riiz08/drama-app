@@ -1,11 +1,10 @@
 import Heading from "@/components/heading";
 import ListBoxUpdate from "@/components/list-box-update";
-import { Link } from "@heroui/link";
 import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
-import DramaCard from "@/components/drama-card";
 import PopularDrama from "@/components/popular-drama";
 import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import { getSeoMetadata } from "@/libs/seo";
+import LatestUpdate from "@/components/latest-update";
 
 export const metadata = getSeoMetadata({
   title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
@@ -18,22 +17,10 @@ const Page = async () => {
   const populars = await getAllPopularDrama();
 
   return (
-    <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row">
-      <div className="md:w-4/5">
-        <Heading title="Latest Update" />
-        <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
-          {episodes.map((drama) => (
-            <Link key={drama.id} href={`/${drama.slug}`} target="_parent">
-              <DramaCard
-                image={drama.drama.thumbnail}
-                isPopular={false}
-                title={drama.drama.title}
-              />
-            </Link>
-          ))}
-        </div>
-        <PopularDrama drama={populars} isLoading={false} />
-      </div>
+    <section>
+      <Heading title="Drama terbaru" />
+      <LatestUpdate />
+      <PopularDrama drama={populars} isLoading={false} />
       <ListBoxUpdate episodes={episodes} />
     </section>
   );
