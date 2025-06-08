@@ -14,7 +14,7 @@ const Page = async () => {
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
-      <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row col-span-2">
+      <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row md:col-span-2">
         <div>
           <Heading title="Drama" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">

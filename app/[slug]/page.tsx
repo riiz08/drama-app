@@ -78,7 +78,7 @@ export default async function Page({
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
-      <section className="col-span-2">
+      <section className="md:col-span-2">
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}
           dramaTitle={episode.drama.title}
