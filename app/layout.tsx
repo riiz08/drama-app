@@ -56,13 +56,9 @@ export default function RootLayout({
           <Navbar />
           <ToastProvider />
           <main className="mx-auto bg-background pt-4 px-4 flex-grow">
-            <div className="mx-auto">
-              <AdsenseSlot slot="5978949902" />
-            </div>
+            <AdsenseSlot slot="5978949902" />
             {children}
-            <div className="mx-auto">
-              <AdsenseSlot slot="3927501637" />
-            </div>
+            <AdsenseSlot slot="3927501637" />
           </main>
           <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
             <ThemeSwitch />

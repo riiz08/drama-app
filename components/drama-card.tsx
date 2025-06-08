@@ -38,7 +38,7 @@ const DramaCard: React.FC<DramaCardProps> = ({
       />
 
       {/* Gradient bottom overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t dark:from-black/80 dark:via-black/40 to-transparent from-white/80 via-white/40 z-10" />
 
       {/* Text content */}
       <div className="absolute bottom-3 left-3 z-20">

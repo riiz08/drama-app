@@ -135,7 +135,7 @@ export default async function Page({
         </CardBody>
       </Card>
       <NextPrev episodes={dramaWithEpisode.drama.episodes} slug={slug} />
-      <AdsenseSlot slot="4939773358" />
+      <AdsenseSlot slot="9472284426" />
       <Card className="my-4">
         <CardBody>
           <p className="text-tiny font-light">
