@@ -6,11 +6,11 @@ import { ScrollShadow } from "@heroui/scroll-shadow";
 import Heading from "@/components/heading";
 import DramaCard from "@/components/drama-card";
 import PopularDrama from "@/components/popular-drama";
-import ListBoxUpdate from "@/components/list-box-update";
 import { Pagination } from "@heroui/pagination";
 import { Drama, Episode } from "@/app/generated/prisma";
 import CarouselSlider from "./carousel";
 import { Skeleton } from "@heroui/skeleton";
+import BoxUpdateFetch from "./box-update-fetch";
 
 interface jsonResp {
   episodes: Episode[];
@@ -25,13 +25,13 @@ export default function HomeClient() {
   const [populars, setPopulars] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 8;
+  const [limit, setLimit] = useState(8);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const res = await fetch(
-          `/api/episodes/latest?page=${currentPage}&limit=8`
+          `/api/episodes/latest?page=${currentPage}&limit=${limit}`
         );
         const data = (await res.json()) as jsonResp;
         const popDrama = await fetch("/api/drama/popular");
@@ -50,8 +50,8 @@ export default function HomeClient() {
   }, [currentPage]);
 
   return (
-    <>
-      <section>
+    <div className="grid md:grid-cols-3 gap-2">
+      <section className="md:col-span-2">
         <div>
           <CarouselSlider />
           <ScrollShadow
@@ -113,8 +113,8 @@ export default function HomeClient() {
             <PopularDrama drama={populars} isLoading={isLoading} />
           </div>
         </div>
-        <ListBoxUpdate episodes={episodes} />
       </section>
-    </>
+      <BoxUpdateFetch />
+    </div>
   );
 }

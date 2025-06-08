@@ -7,6 +7,7 @@ import { PlayIcon } from "./icons";
 
 import { Drama } from "@/app/generated/prisma";
 import { Skeleton } from "@heroui/skeleton";
+import { Image } from "@heroui/image";
 
 interface LatestEpisode {
   episodeNum: number;
@@ -41,13 +42,21 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
               href={`/${list.slug}`}
               target="_blank"
             >
-              <div className="flex items-center justify-between w-full my-1">
-                <div className="flex">
-                  <PlayIcon /> <span className="ml-1">{list.drama.title}</span>
+              <div className="w-full my-1 flex justify-start items-center gap-2">
+                <Image
+                  src={list.drama.thumbnail}
+                  alt={list.drama.title}
+                  className="w-11 h-9 md:h-12 rounded-sm"
+                />
+                <div>
+                  <h3 className="font-semibold text-xs md:text-sm">
+                    {list.drama.title}
+                  </h3>
+                  <p className="text-tiny line-clamp-2 max-w-xs">
+                    {list.drama.description}
+                  </p>
                 </div>
-                <Chip color="primary" radius="sm" size="sm" variant="shadow">
-                  Episode {list.episodeNum}
-                </Chip>
+                <Chip size="sm">Episod {list.episodeNum}</Chip>
               </div>
             </Link>
           ))
