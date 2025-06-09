@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@heroui/button";
-import { redirect } from "next/navigation";
 import React from "react";
-import { CheveronDown, ChevronLeft } from "./icons";
+import { ChevronLeft } from "./icons";
 import { ChevronRight } from "./heading";
 import { Episode } from "@/app/generated/prisma";
+import { useRouter } from "next/navigation";
 
 interface NextPrevProps {
   episodes: Episode[];
@@ -13,10 +13,14 @@ interface NextPrevProps {
 }
 
 const NextPrev: React.FC<NextPrevProps> = ({ episodes, slug }) => {
+  const router = useRouter();
+
   const sortedEpisodes = [...episodes].sort(
     (a, b) => a.episodeNum - b.episodeNum
   );
+
   const currentIndex = sortedEpisodes.findIndex((ep) => ep.slug === slug);
+
   const prevEpisode =
     currentIndex > 0 ? sortedEpisodes[currentIndex - 1] : null;
   const nextEpisode =
@@ -24,10 +28,8 @@ const NextPrev: React.FC<NextPrevProps> = ({ episodes, slug }) => {
       ? sortedEpisodes[currentIndex + 1]
       : null;
 
-  const goToEpisode = (slug: string, slugEp: string) => {
-    const url = `/${slug}`;
-
-    redirect(url);
+  const goToEpisode = (slugEp: string) => {
+    router.push(`/${slugEp}`);
   };
 
   return (
@@ -37,19 +39,20 @@ const NextPrev: React.FC<NextPrevProps> = ({ episodes, slug }) => {
         color="primary"
         isDisabled={!prevEpisode}
         variant="shadow"
-        onPress={() => prevEpisode && goToEpisode(slug, prevEpisode.slug)}
+        onPress={() => prevEpisode && goToEpisode(prevEpisode.slug)}
       >
         <ChevronLeft />
       </Button>
       <Button isDisabled>
-        <CheveronDown />
+        {/* Kalau ini tombol tengah mungkin buat show menu episode */}
+        {/* Placeholder icon */}
       </Button>
       <Button
         fullWidth
         color="primary"
         isDisabled={!nextEpisode}
         variant="shadow"
-        onPress={() => nextEpisode && goToEpisode(slug, nextEpisode.slug)}
+        onPress={() => nextEpisode && goToEpisode(nextEpisode.slug)}
       >
         <ChevronRight />
       </Button>

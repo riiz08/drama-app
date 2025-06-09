@@ -11,7 +11,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <HeroUiNavbar shouldHideOnScroll maxWidth="2xl">
+    <HeroUiNavbar shouldHideOnScroll maxWidth="full">
       <NavbarContent justify="start">
         <NavbarItem>
           <Link color="foreground" href="/">
@@ -21,6 +21,7 @@ export default function Navbar() {
               src={"/logo/logo.png"}
               width={40}
               style={{ height: "auto", width: "auto" }}
+              priority
             />
             <span className="font-semibold text-inherit text-sm md:text-medium">
               MangEakkk

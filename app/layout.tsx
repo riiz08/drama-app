@@ -45,6 +45,10 @@ export default function RootLayout({
 
   gtag('config', 'G-MG1B3ZG1YZ')`}
         </Script>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
       </head>
       <body
         className={clsx(
@@ -55,7 +59,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
           <ToastProvider />
-          <main className="mx-auto bg-background pt-4 px-4 flex-grow">
+          <main className="mx-auto bg-background flex-grow">
             <AdsenseSlot slot="5978949902" />
             {children}
             <AdsenseSlot slot="3927501637" />
