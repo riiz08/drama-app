@@ -62,7 +62,6 @@ export default function RootLayout({
           <main className="mx-auto bg-background flex-grow">
             <AdsenseSlot slot="5978949902" />
             {children}
-            <AdsenseSlot slot="3927501637" />
           </main>
           <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
             <ThemeSwitch />

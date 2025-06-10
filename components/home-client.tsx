@@ -11,6 +11,7 @@ import { Drama, Episode } from "@/app/generated/prisma";
 import CarouselSlider from "./carousel";
 import { Skeleton } from "@heroui/skeleton";
 import BoxUpdateFetch from "./box-update-fetch";
+import AdsenseSlot from "./adsense-slot";
 
 interface jsonResp {
   episodes: Episode[];
@@ -110,6 +111,7 @@ export default function HomeClient() {
                 onChange={(page) => setCurrentPage(page)}
               />
             </div>
+            <AdsenseSlot slot="3927501637" />
             <PopularDrama drama={populars} isLoading={isLoading} />
           </div>
         </div>

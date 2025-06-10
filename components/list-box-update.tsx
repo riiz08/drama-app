@@ -42,19 +42,16 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
               href={`/${list.slug}`}
               target="_blank"
             >
-              <div className="w-full my-1 flex justify-start items-center gap-2">
-                <Image
-                  src={list.drama.thumbnail}
-                  alt={list.drama.title}
-                  className="w-11 h-9 md:h-12 rounded-sm"
-                />
-                <div>
+              <div className="w-full my-1 flex justify-between items-center gap-2">
+                <div className="flex justify-center items-center gap-2">
+                  <Image
+                    src={list.drama.thumbnail}
+                    alt={list.drama.title}
+                    className="w-11 h-9 md:h-12 rounded-sm"
+                  />
                   <h3 className="font-semibold text-xs md:text-sm">
                     {list.drama.title}
                   </h3>
-                  <p className="text-tiny line-clamp-2 max-w-xs">
-                    {list.drama.description}
-                  </p>
                 </div>
                 <Chip size="sm">Episod {list.episodeNum}</Chip>
               </div>

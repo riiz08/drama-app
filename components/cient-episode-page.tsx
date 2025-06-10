@@ -55,25 +55,32 @@ export default function ClientEpisodePage({ slug }: { slug: string }) {
   const [episode, setEpisode] = useState<any>(null);
   const [drama, setDrama] = useState<any>(null);
   const [populars, setPopulars] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const resEp = await fetch(`/api/episodes/${slug}`);
-      const episodeData = (await resEp.json()) as JsonEpisode;
-      setEpisode(episodeData.episode);
-      const resDrama = await fetch(
-        `/api/drama/${episodeData.episode.drama.slug}`
-      );
-      const dramaData = (await resDrama.json()) as JsonDrama;
-      setDrama(dramaData.drama);
-      const resPop = await fetch("/api/drama/popular");
-      const popularData = (await resPop.json()) as Drama[];
-      setPopulars(popularData);
+      try {
+        const resEp = await fetch(`/api/episodes/${slug}`);
+        const episodeData = (await resEp.json()) as JsonEpisode;
+        setEpisode(episodeData.episode);
+        const resDrama = await fetch(
+          `/api/drama/${episodeData.episode.drama.slug}`
+        );
+        const dramaData = (await resDrama.json()) as JsonDrama;
+        setDrama(dramaData.drama);
+        const resPop = await fetch("/api/drama/popular");
+        const popularData = (await resPop.json()) as Drama[];
+        setPopulars(popularData);
+      } catch (error) {
+        throw error;
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
   }, [slug]);
 
-  if (!episode || !drama)
+  if (loading)
     return <Spinner className="min-h-screen w-full" variant="dots" />;
 
   return (
