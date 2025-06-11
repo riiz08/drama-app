@@ -53,7 +53,9 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
                     {list.drama.title}
                   </h3>
                 </div>
-                <Chip size="sm">Episod {list.episodeNum}</Chip>
+                <Chip size="sm" variant="shadow" color="primary">
+                  Episod {list.episodeNum}
+                </Chip>
               </div>
             </Link>
           ))

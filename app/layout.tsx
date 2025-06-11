@@ -49,6 +49,19 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
+        <Script id="histats-script" strategy="afterInteractive">
+          {`
+            var _Hasync= _Hasync|| [];
+            _Hasync.push(['Histats.start', '1,4956141,4,511,95,18,00000000']);
+            _Hasync.push(['Histats.fasi', '1']);
+            _Hasync.push(['Histats.track_hits', '']);
+            (function() {
+              var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+              hs.src = ('//s10.histats.com/js15_as.js');
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+            })();
+          `}
+        </Script>
       </head>
       <body
         className={clsx(
@@ -63,6 +76,21 @@ export default function RootLayout({
             <AdsenseSlot slot="5978949902" />
             {children}
           </main>
+          <div
+            id="histats_counter"
+            className="mt-2 absolute left-1/2 transform -translate-x-1/2"
+          ></div>
+
+          {/* Fallback untuk non-JS browser */}
+          <noscript>
+            <a href="/" target="_blank">
+              <img
+                src="//sstatic1.histats.com/0.gif?4956141&101"
+                alt="histats"
+                style={{ border: 0 }}
+              />
+            </a>
+          </noscript>
           <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
             <ThemeSwitch />
           </div>
