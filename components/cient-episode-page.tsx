@@ -11,6 +11,8 @@ import BoxUpdateFetch from "@/components/box-update-fetch";
 import { Drama, Episode } from "@/app/generated/prisma";
 import { Spinner } from "@heroui/spinner";
 import VideoJSPlayer from "./video-js-player";
+import { Divider } from "@heroui/divider";
+import EpisodeBox from "./episode-box";
 
 interface EpisodeDetail {
   slug: string;
@@ -146,6 +148,8 @@ export default function ClientEpisodePage({ slug }: { slug: string }) {
 
         <NextPrev episodes={drama.episodes} slug={slug} />
         <AdsenseSlot slot="3927501637" />
+
+        <EpisodeBox episodes={drama.episodes} drama={drama} />
 
         <Card className="my-4">
           <CardBody>

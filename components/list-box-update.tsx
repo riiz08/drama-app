@@ -29,7 +29,9 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
   return (
     <div className="bg-content1 w-full px-4 py-2 my-4">
       <div className="space-y-1">
-        <h3 className="text-sm md:text-medium font-medium">Drama Ongoing</h3>
+        <h3 className="text-sm md:text-medium font-medium">
+          Drama terbaru 2025
+        </h3>
       </div>
       <Divider className="my-2" />
       <div>
@@ -47,7 +49,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
                   <Image
                     src={list.drama.thumbnail}
                     alt={list.drama.title}
-                    className="w-11 h-9 md:h-12 rounded-sm"
+                    className="w-12 h-12 rounded-sm"
                   />
                   <h3 className="font-semibold text-xs md:text-sm">
                     {list.drama.title}

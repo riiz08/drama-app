@@ -1,7 +1,7 @@
 export function getSeoMetadata({
   title,
   description,
-  url = "https://mangeakkk.my.id",
+  url,
   keywords = "drama Melayu, tonton drama online, drama Malaysia, MangEakkk Drama, streaming drama Melayu",
 }: {
   title: string;
@@ -9,11 +9,17 @@ export function getSeoMetadata({
   url?: string;
   keywords?: string;
 }) {
+  const resolvedUrl =
+    url ||
+    (typeof window !== "undefined"
+      ? window.location.href
+      : "https://mangeakkk.my.id");
+
   return {
     title,
     description,
     keywords,
-    metadataBase: new URL(url),
+    metadataBase: new URL(resolvedUrl),
     openGraph: {
       title,
       description,
@@ -22,10 +28,7 @@ export function getSeoMetadata({
       type: "website",
     },
     alternates: {
-      canonical: url,
-    },
-    other: {
-      monetag: "537203fc5a517341cec2a061ef16c4e6",
+      canonical: resolvedUrl,
     },
   };
 }

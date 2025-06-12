@@ -26,7 +26,6 @@ export default function AdsenseSlot({
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-      console.log(`Ads with slot ${slot} is running`);
     } catch (e) {
       console.error("[AdSense] Error pushing ad:", e);
     }
