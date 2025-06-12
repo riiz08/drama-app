@@ -32,8 +32,6 @@ const EpisodeBox = ({ episodes, drama }: Props) => {
         selectedKeys={currentSlug ? [currentSlug] : []}
         defaultSelectedKeys={"all"}
         color="primary"
-        autoFocus
-        shouldFocusWrap
       >
         {episodes.map((ep) => (
           <ListboxItem

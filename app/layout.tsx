@@ -79,9 +79,10 @@ export default function RootLayout({
           <div
             id="histats_counter"
             className="mt-2 absolute left-1/2 transform -translate-x-1/2"
-          ></div>
+          />
 
           {/* Fallback untuk non-JS browser */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <noscript>
             <a href="/" target="_blank">
               <img
