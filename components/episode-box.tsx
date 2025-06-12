@@ -1,14 +1,32 @@
+"use client";
+
 import React from "react";
 import { Drama, Episode } from "@/app/generated/prisma";
 import { Divider } from "@heroui/divider";
-import { Listbox, ListboxItem } from "@heroui/listbox";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Heading from "./heading";
+import { Link } from "@heroui/link";
+
+interface DramaDetail {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  thumbnail: string;
+  status: string;
+  releaseDate: Date;
+  totalEpisode: number;
+  airTime: string;
+  isPopular: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  episodes: Episode[];
+}
 
 type Props = {
   episodes: Episode[];
-  drama: Drama;
+  drama: DramaDetail;
 };
 
 const EpisodeBox = ({ episodes, drama }: Props) => {
@@ -24,40 +42,29 @@ const EpisodeBox = ({ episodes, drama }: Props) => {
     <div className="w-full bg-content1 mt-4 px-2">
       <Heading title="Daftar episode lainnya" />
       <Divider className="mb-2" />
-      <Listbox
-        aria-label="Pilih Episod"
-        onAction={(key) => handleSelect(key)}
-        className="max-h-32 overflow-y-scroll"
-        selectionMode="single"
-        selectedKeys={currentSlug ? [currentSlug] : []}
-        defaultSelectedKeys={"all"}
-        color="primary"
-      >
+      <ul className="space-y-2 max-h-44 overflow-y-scroll">
         {episodes.map((ep) => (
-          <ListboxItem
-            key={ep.slug}
-            textValue={`${drama.title} full episod ${ep.episodeNum}`}
-            className="text-content1-foreground"
-            startContent={
+          <li key={ep.slug}>
+            <Link
+              href={`/${ep.slug}`}
+              className="flex items-center gap-2 p-2 rounded-md hover:bg-content2 transition"
+            >
               <Image
                 src={drama.thumbnail}
                 alt={`Tonton drama ${drama.title} full episod`}
                 height={50}
                 width={50}
-                style={{ width: "auto", height: "auto" }}
-                priority
                 className="rounded-md"
               />
-            }
-          >
-            <div>
-              <h4>
-                {drama.title} full episod {ep.episodeNum}
-              </h4>
-            </div>
-          </ListboxItem>
+              <div>
+                <h4 className="text-sm font-semibold text-foreground">
+                  {drama.title} full episod {ep.episodeNum}
+                </h4>
+              </div>
+            </Link>
+          </li>
         ))}
-      </Listbox>
+      </ul>
     </div>
   );
 };

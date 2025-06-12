@@ -42,7 +42,6 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
               className="w-full hover:bg-content2 text-xs"
               color="foreground"
               href={`/${list.slug}`}
-              target="_blank"
             >
               <div className="w-full my-1 flex justify-between items-center gap-2">
                 <div className="flex justify-center items-center gap-2">

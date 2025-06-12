@@ -2,44 +2,48 @@
 
 import { useEffect, useRef } from "react";
 
-interface AdsenseSlotProps {
+interface Props {
   slot: string;
-  style?: React.CSSProperties;
   format?: string;
   responsive?: boolean;
+  className?: string;
 }
 
 declare global {
   interface Window {
-    adsbygoogle: unknown[];
+    adsbygoogle: any[];
   }
 }
 
 export default function AdsenseSlot({
   slot,
-  style = { display: "block" },
   format = "auto",
   responsive = true,
-}: AdsenseSlotProps) {
-  const adRef = useRef<HTMLModElement>(null);
+  className = "",
+}: Props) {
+  const insRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      // Trigger AdSense to render this slot
+      if (insRef.current && insRef.current.querySelector("ins.adsbygoogle")) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
     } catch (e) {
-      console.error("[AdSense] Error pushing ad:", e);
+      console.warn(`[AdSense Slot ${slot}] Failed to push ad:`, e);
     }
   }, []);
 
   return (
-    <ins
-      className="adsbygoogle"
-      style={style}
-      data-ad-client="ca-pub-4287822627580434"
-      data-ad-slot={slot}
-      data-ad-format={format}
-      data-full-width-responsive={responsive ? "true" : "false"}
-      ref={adRef}
-    />
+    <div ref={insRef} className={className}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}
+        data-ad-slot={slot}
+        data-ad-format={format}
+        data-full-width-responsive={responsive ? "true" : "false"}
+      ></ins>
+    </div>
   );
 }
