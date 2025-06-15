@@ -46,9 +46,7 @@ export async function generateMetadata({
 
   return getSeoMetadata({
     title: `${data.drama.title} - Tonton Drama Melayu Full Episode Gratis`,
-    description:
-      data.drama?.description ??
-      `Tonton drama Melayu terbar ${data.drama.title}  full episode HD. Streaming gratis di MangEakkk.`,
+    description: `Tonton drama Melayu terbaru ${data.drama.title}  full episode HD. Streaming gratis di MangEakkk.`,
     url: `https://mangeakkk.my.id/drama/${slug}`,
   });
 }
