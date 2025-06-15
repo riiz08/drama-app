@@ -2,12 +2,10 @@ import { Link } from "@heroui/link";
 import { Chip } from "@heroui/chip";
 import React from "react";
 import { Divider } from "@heroui/divider";
-
 import { PlayIcon } from "./icons";
-
 import { Drama } from "@/app/generated/prisma";
 import { Skeleton } from "@heroui/skeleton";
-import { Image } from "@heroui/image";
+import Heading from "./heading";
 
 interface LatestEpisode {
   episodeNum: number;
@@ -29,9 +27,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
   return (
     <div className="bg-content1 w-full px-4 py-2 my-4">
       <div className="space-y-1">
-        <h3 className="text-sm md:text-medium font-medium">
-          Drama terbaru 2025
-        </h3>
+        <Heading title="Drama terbaru 2025" href="/latest-update" />
       </div>
       <Divider className="my-2" />
       <div>
@@ -44,15 +40,11 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
               href={`/${list.slug}`}
             >
               <div className="w-full my-1 flex justify-between items-center gap-2">
-                <div className="flex justify-center items-center gap-2">
-                  <Image
-                    src={list.drama.thumbnail}
-                    alt={list.drama.title}
-                    className="w-12 h-12 rounded-sm"
-                  />
-                  <h3 className="font-semibold text-xs md:text-sm">
+                <div className="flex justify-center items-center gap-2 px-1 rounded-md">
+                  <PlayIcon />
+                  <h2 className="font-semibold text-xs md:text-sm">
                     {list.drama.title}
-                  </h3>
+                  </h2>
                 </div>
                 <Chip size="sm" variant="shadow" color="primary">
                   Episod {list.episodeNum}

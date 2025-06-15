@@ -28,7 +28,7 @@ export const ChevronRight = () => {
 const Heading: React.FC<HeadingProps> = ({ title, href }) => {
   return (
     <div className="flex justify-between items-center bg-content1 rounded-md px-2 py-1 mb-2">
-      <h2 className="font-semibold text-sm md:text-lg text-center">{title}</h2>
+      <h1 className="font-semibold text-sm md:text-lg text-center">{title}</h1>
       {href ? (
         <Link
           showAnchorIcon

@@ -60,20 +60,20 @@ export default async function Home({
           hideScrollBar
           className="h-20 md:h-16 my-2 bg-content1 p-2 rounded-md"
         >
-          <p className="text-tiny">
+          <span className="text-tiny">
             <Link
               className="font-semibold text-tiny mr-1"
               color="foreground"
               href="/"
             >
-              MangEakk Drama
+              <h1>MangEakk Drama</h1>
             </Link>
             ialah laman streaming percuma untuk tonton drama Melayu terkini dan
             drama Malaysia full episod. Nikmati tayangan berkualiti dengan
             subtitle Melayu dan Indonesia, sesuai untuk penonton dari Malaysia,
             Brunei, Singapura, dan Indonesia. Laman ini sentiasa dikemas kini
             dengan drama terbaru 2025 setiap minggu.
-          </p>
+          </span>
         </ScrollShadow>
 
         <Heading href="/latest-update" title="Drama Terbaru" />

@@ -42,9 +42,9 @@ const DramaCard: React.FC<DramaCardProps> = ({
 
       {/* Text content */}
       <div className="absolute bottom-3 left-3 z-20">
-        <h3 className="font-bold text-sm md:text-base leading-snug drop-shadow-md line-clamp-2">
+        <h2 className="font-bold text-sm md:text-base leading-snug drop-shadow-md line-clamp-2">
           {title}
-        </h3>
+        </h2>
       </div>
       {!isPopular ? (
         <Chip

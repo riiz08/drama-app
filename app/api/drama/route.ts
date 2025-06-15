@@ -29,3 +29,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error });
   }
 }
+
+export async function GET(req: Request) {
+  const drama = await prisma.drama.findMany({
+    orderBy: {
+      title: "asc",
+    },
+    include: { episodes: true },
+  });
+
+  if (!drama)
+    return NextResponse.json({ success: false, message: "Drama not found" });
+
+  return NextResponse.json({ success: true, drama });
+}

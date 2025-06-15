@@ -10,8 +10,9 @@ import { getSeoMetadata } from "@/libs/seo";
 
 export async function generateMetadata() {
   return getSeoMetadata({
-    title: "Drama Terbaru 2025",
-    description: "Drama terbaru 2025, streaming HD tanpa iklan",
+    title: "Daftar Drama Melayu Terbaru 2025 | Episode Lengkap HD",
+    description:
+      "Temukan koleksi lengkap drama Melayu terbaru 2025. Streaming gratis semua episode dalam kualitas HD tanpa iklan!",
     url: "https://mangeakkk.my.id/drama",
   });
 }
