@@ -80,9 +80,9 @@ export default function CarouselSlider() {
                   src={popular.thumbnail}
                 />
                 <div className="absolute bottom-0 z-[999] left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <h3 className="text-white font-bold text-xl">
+                  <h1 className="text-white font-bold text-xl">
                     {popular.title}
-                  </h3>
+                  </h1>
                   <p className="text-white text-sm line-clamp-2">
                     {popular.description}
                   </p>

@@ -6,6 +6,15 @@ import DramaCard from "@/components/drama-card";
 import PopularDrama from "@/components/popular-drama";
 import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
+import { getSeoMetadata } from "@/libs/seo";
+
+export async function generateMetadata() {
+  return getSeoMetadata({
+    title: "Drama Terbaru 2025",
+    description: "Drama terbaru 2025, streaming HD tanpa iklan",
+    url: "https://mangeakkk.my.id/drama",
+  });
+}
 
 const Page = async () => {
   const { episodes } = await getLatestEpisodes();

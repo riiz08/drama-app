@@ -49,7 +49,7 @@ export async function generateMetadata({
     description:
       data.drama?.description ??
       `Tonton drama Melayu terbar ${data.drama.title}  full episode HD. Streaming gratis di MangEakkk.`,
-    url: `https://mangeakkk.my.id/${slug}`,
+    url: `https://mangeakkk.my.id/drama/${slug}`,
   });
 }
 
