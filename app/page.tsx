@@ -14,6 +14,7 @@ export const metadata = getSeoMetadata({
   title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
   description:
     "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
+  url: "https://mangeakkk.my.id",
 });
 
 interface EpisodeDetail {
@@ -66,7 +67,7 @@ export default async function Home({
               color="foreground"
               href="/"
             >
-              <h1>MangEakk Drama</h1>
+              <h2>MangEakk Drama</h2>
             </Link>
             ialah laman streaming percuma untuk tonton drama Melayu terkini dan
             drama Malaysia full episod. Nikmati tayangan berkualiti dengan

@@ -57,9 +57,9 @@ const EpisodeBox = ({ episodes, drama }: Props) => {
                 className="rounded-md"
               />
               <div>
-                <h4 className="text-sm font-semibold text-foreground">
+                <h3 className="text-sm font-semibold text-foreground">
                   {drama.title} full episod {ep.episodeNum}
-                </h4>
+                </h3>
               </div>
             </Link>
           </li>

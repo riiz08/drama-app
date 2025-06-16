@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { getEpisodeBySlug } from "@/app/actions/episode/getEpisodes";
 import { Drama, Episode } from "@/app/generated/prisma";
 import { getSeoMetadata } from "@/libs/seo";
-import ClientEpisodePage from "@/components/cient-episode-page";
 import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { Card, CardBody } from "@heroui/card";
 import VideoJSPlayer from "@/components/video-js-player";
@@ -55,9 +54,12 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `${episode.drama.title} Episod ${episode.episodeNum} | Tonton Drama Melayu Subtitle Gratis`,
+    title: `Tonton ${episode.drama.title} Full Episod ${episode.episodeNum} - Streaming HD | MangEakkk`,
     description: `Streaming ${episode.drama.title} Episod ${episode.episodeNum} drama Melayu terbaru 2025. Tonton full episode dengan subtitle Melayu/Indonesia gratis dan kualitas HD di MangEakkk`,
     url: `https://mangeakkk.my.id/${slug}`,
+    keywords: `${episode.drama.title} episode ${episode.episodeNum}, tonton drama melayu, streaming ${episode.drama.title} full episod ${episode.episodeNum}, streaming episod penuh`,
+    image: `${episode.drama.thumbnail}`,
+    type: "video.episode",
   });
 }
 
@@ -129,15 +131,14 @@ export default async function Page({
           episodeSlug={episode.slug}
         />
         <h1 className="text-xl mt-2 md:text-3xl font-bold ml-4">
-          {episode.drama.title} Full Episode {episode.episodeNum}
+          {episode.drama.title} Episod {episode.episodeNum} Tonton Drama Video
         </h1>
         <Card className="mt-2 mx-auto">
           <CardBody className="px-4 py-4">
             <VideoJSPlayer src={episode.videoUrl} />
             <div className="my-4">
               <h2 className="md:text-2xl text-md mb-2 font-bold">
-                Tonton Drama Melayu {episode.drama.title} Episod{" "}
-                {episode.episodeNum}
+                {episode.drama.title}
               </h2>
               <h3 className="text-tiny font-light">
                 {episode.drama.description}

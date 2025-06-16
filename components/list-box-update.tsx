@@ -42,9 +42,9 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
               <div className="w-full my-1 flex justify-between items-center gap-2">
                 <div className="flex justify-center items-center gap-2 px-1 rounded-md">
                   <PlayIcon />
-                  <h2 className="font-semibold text-xs md:text-sm">
+                  <h3 className="font-semibold text-xs md:text-sm">
                     {list.drama.title}
-                  </h2>
+                  </h3>
                 </div>
                 <Chip size="sm" variant="shadow" color="primary">
                   Episod {list.episodeNum}
