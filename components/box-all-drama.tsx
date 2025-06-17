@@ -11,7 +11,7 @@ const BoxAllDrama: React.FC<Props> = ({ dramas }) => {
   return (
     <div className="bg-content1 w-full px-4 py-2 my-4">
       <div className="space-y-1">
-        <Heading title="Drama" href="/drama" />
+        <Heading h1={false} title="Drama" href="/drama" />
       </div>
       <Divider className="my-2" />
       <div className="grid grid-cols-1 gap-2 ">

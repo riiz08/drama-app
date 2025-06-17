@@ -10,10 +10,13 @@ import { getSeoMetadata } from "@/libs/seo";
 
 export async function generateMetadata() {
   return getSeoMetadata({
-    title: "Daftar Drama Melayu Terbaru 2025 | Episode Lengkap HD",
+    title:
+      "Koleksi Drama Melayu Terbaru 2025 | Tonton Full Episod HD di Mangeakkk",
     description:
-      "Temukan koleksi lengkap drama Melayu terbaru 2025. Streaming gratis semua episode dalam kualitas HD tanpa iklan!",
+      "Nikmati koleksi drama Melayu & Malaysia terbaru tahun 2025. Tonton semua episod penuh secara percuma dan tanpa iklan dalam kualiti HD hanya di Mangeakkk.",
     url: "https://mangeakkk.my.id/drama",
+    keywords:
+      "daftar drama melayu, koleksi drama malaysia, full episod, episod lengkap, tonton drama HD, mangeakkk",
   });
 }
 
@@ -26,7 +29,7 @@ const Page = async () => {
     <div className="grid md:grid-cols-3 gap-2">
       <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row md:col-span-2">
         <div>
-          <Heading title="Drama" />
+          <Heading h1 title="Drama Terkini" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
             {dramas.map((drama) => (
               <Link

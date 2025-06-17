@@ -45,10 +45,10 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `${data.drama.title} Full Episod - Tonton Semua Episod | MangEakkk`,
-    description: `Tonton drama Melayu terbaru ${data.drama.title}  full episode HD. Streaming gratis di MangEakkk.`,
+    title: `${data.drama.title} (Episod Penuh 2025) | Tonton HD Tanpa Iklan di Mangeakkk`,
+    description: `Tonton drama Melayu ${data.drama.title} episod penuh dalam kualiti HD. Streaming percuma tanpa iklan hanya di Mangeakkk. Dapatkan episod terbaru dan sinopsis di sini.`,
     url: `https://mangeakkk.my.id/drama/${slug}`,
-    keywords: `${data.drama.title}, tonton ${data.drama.title}, drama melayu, drama malaysia`,
+    keywords: `${data.drama.title}, tonton ${data.drama.title}, drama melayu terbaru, episod penuh, streaming drama HD, mangeakkk`,
     image: `${data.drama.thumbnail}`,
     type: `article`,
   });

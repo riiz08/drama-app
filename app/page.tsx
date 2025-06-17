@@ -11,10 +11,12 @@ import PaginationClient from "@/components/pagination-client";
 import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
 
 export const metadata = getSeoMetadata({
-  title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
+  title: "Tonton Drama Melayu Terbaru 2025 | Episod Penuh & HD di Mangeakkk",
   description:
-    "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
+    "Tonton drama Melayu dan Malaysia terbaru tahun 2025 secara percuma. Streaming HD tanpa iklan, koleksi episod penuh setiap hari hanya di Mangeakkk.",
   url: "https://mangeakkk.my.id",
+  keywords:
+    "drama melayu, drama malaysia, episod penuh, tonton drama online, streaming HD, mangeakkk, drama terbaru 2025",
 });
 
 interface EpisodeDetail {
@@ -77,7 +79,7 @@ export default async function Home({
           </span>
         </ScrollShadow>
 
-        <Heading href="/latest-update" title="Drama Terbaru" />
+        <Heading href="/latest-update" h1={true} title="Drama Terbaru" />
         <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodeData.episodes.map((episode) => (
             <Link key={episode.slug} href={`/${episode.slug}`}>

@@ -27,7 +27,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
   return (
     <div className="bg-content1 w-full px-4 py-2 my-4">
       <div className="space-y-1">
-        <Heading title="Drama terbaru 2025" href="/latest-update" />
+        <Heading h1={false} title="Drama terbaru 2025" href="/latest-update" />
       </div>
       <Divider className="my-2" />
       <div>

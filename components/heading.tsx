@@ -4,6 +4,7 @@ import React from "react";
 interface HeadingProps {
   title: string;
   href?: string;
+  h1: boolean;
 }
 
 export const ChevronRight = () => {
@@ -25,10 +26,18 @@ export const ChevronRight = () => {
     </svg>
   );
 };
-const Heading: React.FC<HeadingProps> = ({ title, href }) => {
+const Heading: React.FC<HeadingProps> = ({ title, href, h1 }) => {
   return (
     <div className="flex justify-between items-center bg-content1 rounded-md px-2 py-1 mb-2">
-      <h2 className="font-semibold text-sm md:text-lg text-center">{title}</h2>
+      {h1 ? (
+        <h1 className="font-semibold text-sm md:text-lg text-center">
+          {title}
+        </h1>
+      ) : (
+        <h2 className="font-semibold text-sm md:text-lg text-center">
+          {title}
+        </h2>
+      )}
       {href ? (
         <Link
           showAnchorIcon

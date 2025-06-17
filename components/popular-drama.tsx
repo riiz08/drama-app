@@ -15,7 +15,7 @@ interface PopularProps {
 const PopularDrama: React.FC<PopularProps> = ({ drama, isLoading }) => {
   return (
     <>
-      <Heading href="/popular" title="Drama Populer" />
+      <Heading h1={false} href="/popular" title="Drama Populer" />
       {isLoading ? (
         <div className="py-2 grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {Array(5)

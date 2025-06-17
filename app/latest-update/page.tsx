@@ -7,10 +7,13 @@ import { getSeoMetadata } from "@/libs/seo";
 import LatestUpdate from "@/components/latest-update";
 
 export const metadata = getSeoMetadata({
-  title: "Nonton Drama Melayu Terbaru 2025 | Streaming Gratis di MangEakk",
+  title:
+    "Update Drama Melayu Terbaru Hari Ini | Episode Baru 2025 di Mangeakkk",
   description:
-    "Streaming drama Melayu terbaru dari Malaysia, Brunei, dan Indonesia. Nikmati tayangan kualitas HD dengan subtitle, tanpa iklan!",
+    "Lihat senarai drama Melayu dan Malaysia yang baru dikemaskini setiap hari. Episod baru ditambah secara pantas, tonton dalam kualiti HD tanpa iklan hanya di Mangeakkk.",
   url: "https://mangeakkk.my.id/latest-update",
+  keywords:
+    "drama melayu update, episod baru hari ini, drama terbaru 2025, rilisan terbaru, mangeakkk, tonton drama HD",
 });
 
 const Page = async () => {
@@ -19,7 +22,7 @@ const Page = async () => {
 
   return (
     <section>
-      <Heading title="Drama terbaru" />
+      <Heading h1 title="Rilisan terbaru" />
       <LatestUpdate />
       <PopularDrama drama={populars} isLoading={false} />
       <ListBoxUpdate episodes={episodes} />
