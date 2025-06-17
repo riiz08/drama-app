@@ -40,7 +40,7 @@ const EpisodeBox = ({ episodes, drama }: Props) => {
 
   return (
     <div className="w-full bg-content1 mt-4 px-2">
-      <Heading title="Daftar episode lainnya" />
+      <Heading h1={false} title="Daftar episode lainnya" />
       <Divider className="mb-2" />
       <ul className="space-y-2 max-h-44 overflow-y-scroll">
         {episodes.map((ep) => (
