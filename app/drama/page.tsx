@@ -7,6 +7,7 @@ import PopularDrama from "@/components/popular-drama";
 import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import { getSeoMetadata } from "@/libs/seo";
+import AdsenseSlot from "@/components/adsense-slot";
 
 export async function generateMetadata() {
   return getSeoMetadata({
@@ -28,6 +29,7 @@ const Page = async () => {
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row md:col-span-2">
+        <AdsenseSlot slot="5978949902" />
         <div>
           <Heading h1 title="Drama Terkini" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">

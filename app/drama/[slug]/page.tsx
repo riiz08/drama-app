@@ -6,10 +6,7 @@ import { Metadata } from "next";
 import PopularDrama from "@/components/popular-drama";
 import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { getSeoMetadata } from "@/libs/seo";
-import { Episode } from "@/app/generated/prisma";
-import { getDramaBySlug } from "@/app/actions/drama/getDramaBySlug";
-import getAllPopularDrama from "@/app/actions/drama/getAllPopularDrama";
-import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
+import { Drama, Episode } from "@/app/generated/prisma";
 import AdsenseSlot from "@/components/adsense-slot";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 
@@ -36,7 +33,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const data = (await getDramaBySlug(slug)) as DramaBySlug;
+  const resDrama = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`
+  );
+  const data = (await resDrama.json()) as DramaBySlug;
 
   if (!data) {
     return {
@@ -45,14 +45,15 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `${data.drama.title} (Episod Penuh 2025) | Tonton HD Tanpa Iklan di Mangeakkk`,
-    description: `Tonton drama Melayu ${data.drama.title} episod penuh dalam kualiti HD. Streaming percuma tanpa iklan hanya di Mangeakkk. Dapatkan episod terbaru dan sinopsis di sini.`,
+    title: `${data.drama.title} Episod Penuh 2025 - Tonton Percuma HD`,
+    description: `Jangan ketinggalan! Tonton episod penuh ${data.drama.title} 2025 dalam HD tanpa iklan — hanya di Mangeakkk.`,
     url: `https://mangeakkk.my.id/drama/${slug}`,
     keywords: `${data.drama.title}, tonton ${data.drama.title}, drama melayu terbaru, episod penuh, streaming drama HD, mangeakkk`,
     image: `${data.drama.thumbnail}`,
     type: `article`,
   });
 }
+export const revalidate = 300;
 
 export default async function Page({
   params,
@@ -60,13 +61,19 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const data = (await getDramaBySlug(slug)) as DramaBySlug;
-  const populars = await getAllPopularDrama();
-  const { episodes } = await getLatestEpisodes();
+  const resDrama = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`
+  );
+  const data = (await resDrama.json()) as DramaBySlug;
+  const resPop = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
+  );
+  const populars = (await resPop.json()) as Drama[];
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}
           dramaTitle={data.drama.title}
@@ -93,13 +100,16 @@ export default async function Page({
                 Release Date:
                 <time
                   className="text-tiny font-light ml-1"
-                  dateTime={data.drama.releaseDate.toISOString()}
+                  dateTime={new Date(data.drama.releaseDate).toISOString()}
                 >
-                  {data.drama.releaseDate.toLocaleDateString("ms-MY", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  {new Date(data.drama.releaseDate).toLocaleDateString(
+                    "ms-MY",
+                    {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    }
+                  )}
                 </time>
               </p>
               <p className="max-w-xl font-semibold text-sm my-1">

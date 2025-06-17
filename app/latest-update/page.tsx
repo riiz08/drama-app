@@ -5,15 +5,15 @@ import PopularDrama from "@/components/popular-drama";
 import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import { getSeoMetadata } from "@/libs/seo";
 import LatestUpdate from "@/components/latest-update";
+import AdsenseSlot from "@/components/adsense-slot";
 
 export const metadata = getSeoMetadata({
-  title:
-    "Update Drama Melayu Terbaru Hari Ini | Episode Baru 2025 di Mangeakkk",
+  title: "Drama Melayu Terbaru Hari Ini | Mangeakkk",
   description:
-    "Lihat senarai drama Melayu dan Malaysia yang baru dikemaskini setiap hari. Episod baru ditambah secara pantas, tonton dalam kualiti HD tanpa iklan hanya di Mangeakkk.",
+    "Senarai drama Melayu paling baru dikemaskini harian. Episod HD, percuma & tanpa iklan hanya di Mangeakkk",
   url: "https://mangeakkk.my.id/latest-update",
   keywords:
-    "drama melayu update, episod baru hari ini, drama terbaru 2025, rilisan terbaru, mangeakkk, tonton drama HD",
+    "drama melayu terbaru, episod baru hari ini, update drama 2025, rilisan drama melayu, mangeakkk, streaming HD percuma",
 });
 
 const Page = async () => {
@@ -22,6 +22,7 @@ const Page = async () => {
 
   return (
     <section>
+      <AdsenseSlot slot="5978949902" />
       <Heading h1 title="Rilisan terbaru" />
       <LatestUpdate />
       <PopularDrama drama={populars} isLoading={false} />

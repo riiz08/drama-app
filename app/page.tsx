@@ -8,15 +8,15 @@ import Heading from "@/components/heading";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import CarouselSlider from "@/components/carousel";
 import PaginationClient from "@/components/pagination-client";
-import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
+import AdsenseSlot from "@/components/adsense-slot";
 
 export const metadata = getSeoMetadata({
-  title: "Tonton Drama Melayu Terbaru 2025 | Episod Penuh & HD di Mangeakkk",
+  title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
   description:
-    "Tonton drama Melayu dan Malaysia terbaru tahun 2025 secara percuma. Streaming HD tanpa iklan, koleksi episod penuh setiap hari hanya di Mangeakkk.",
+    "Streaming drama Melayu 2025 secara percuma. Koleksi episod penuh HD tanpa iklan, dikemaskini setiap hari hanya di Mangeakkk.",
   url: "https://mangeakkk.my.id",
   keywords:
-    "drama melayu, drama malaysia, episod penuh, tonton drama online, streaming HD, mangeakkk, drama terbaru 2025",
+    "drama melayu 2025, tonton drama malaysia, episod penuh HD, drama terbaru, streaming percuma, mangeakkk",
 });
 
 interface EpisodeDetail {
@@ -34,6 +34,8 @@ interface jsonResp {
   currentPage: number;
 }
 
+export const revalidate = 180; // Re-generate halaman setiap 60 detik
+
 export default async function Home({
   searchParams,
 }: {
@@ -44,20 +46,19 @@ export default async function Home({
   const limit = 10;
 
   const episodeRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`
   );
   const episodeData: jsonResp = await episodeRes.json();
 
   const popRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
   );
   const populars: Drama[] = await popRes.json();
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
+        <AdsenseSlot slot="5978949902" />
         <CarouselSlider />
         <ScrollShadow
           hideScrollBar
@@ -100,7 +101,7 @@ export default async function Home({
           />
         </div>
 
-        <ClientAdsenseWrapper slot="3927501637" />
+        <AdsenseSlot slot="3927501637" />
         <PopularDrama drama={populars} isLoading={false} />
       </section>
 

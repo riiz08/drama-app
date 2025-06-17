@@ -7,7 +7,6 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
 import Footer from "@/components/footer";
-import AdsenseSlot from "@/components/adsense-slot";
 import GoogleAdsense from "@/components/google-adsense";
 import { ThemeSwitch } from "@/components/theme-switch";
 
@@ -64,10 +63,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
           <ToastProvider />
-          <main className="mx-auto bg-background flex-grow">
-            <AdsenseSlot slot="5978949902" />
-            {children}
-          </main>
+          <main className="mx-auto bg-background flex-grow">{children}</main>
           <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
             <ThemeSwitch />
           </div>

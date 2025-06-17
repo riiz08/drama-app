@@ -6,11 +6,11 @@ import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { Card, CardBody } from "@heroui/card";
 import VideoJSPlayer from "@/components/video-js-player";
 import NextPrev from "@/components/next-prev";
-import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
 import EpisodeBox from "@/components/episode-box";
 import Link from "next/link";
 import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
+import AdsenseSlot from "@/components/adsense-slot";
 
 interface EpisodeDetail {
   slug: string;
@@ -54,8 +54,8 @@ export async function generateMetadata({
   }
 
   return getSeoMetadata({
-    title: `Tonton ${episode.drama.title} Episod ${episode.episodeNum} (Penuh HD) | Streaming Percuma di Mangeakkk`,
-    description: `Saksikan episod ${episode.episodeNum} drama Melayu ${episode.drama.title} dalam kualiti HD. Tonton online secara percuma dengan subtitle Melayu & Indonesia. Tanpa iklan, hanya di Mangeakkk.`,
+    title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
+    description: `Saksikan episod ${episode.episodeNum} drama ${episode.drama.title} dalam HD. Tonton percuma dengan subtitle Melayu di Mangeakkk.`,
     url: `https://mangeakkk.my.id/${slug}`,
     keywords: `tonton ${episode.drama.title} episod ${episode.episodeNum}, episod penuh ${episode.drama.title}, streaming drama melayu HD, drama ${episode.drama.title} 2025, mangeakkk, subtitle melayu, percuma`,
     image: `${episode.drama.thumbnail}`,
@@ -124,6 +124,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}
           dramaTitle={episode.drama.title}
@@ -184,7 +185,7 @@ export default async function Page({
         </Card>
 
         <NextPrev episodes={drama.episodes} slug={slug} />
-        <ClientAdsenseWrapper slot="3927501637" />
+        <AdsenseSlot slot="3927501637" />
 
         <EpisodeBox episodes={drama.episodes} drama={drama} />
 
@@ -208,7 +209,7 @@ export default async function Page({
           </CardBody>
         </Card>
 
-        <ClientAdsenseWrapper slot="5978949902" />
+        <AdsenseSlot slot="5978949902" />
         <div className="my-4">
           <PopularDrama drama={popular} isLoading={false} />
         </div>
