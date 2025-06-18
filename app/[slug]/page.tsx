@@ -55,7 +55,7 @@ export async function generateMetadata({
 
   return getSeoMetadata({
     title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
-    description: `Saksikan episod ${episode.episodeNum} drama ${episode.drama.title} dalam HD. Tonton percuma dengan subtitle Melayu di Mangeakkk.`,
+    description: `Saksikan episod ${episode.episodeNum} drama ${episode.drama.title} dalam HD. Tonton percuma di Mangeakkk.`,
     url: `https://mangeakkk.my.id/${slug}`,
     keywords: `tonton ${episode.drama.title} episod ${episode.episodeNum}, episod penuh ${episode.drama.title}, streaming drama melayu HD, drama ${episode.drama.title} 2025, mangeakkk, subtitle melayu, percuma`,
     image: `${episode.drama.thumbnail}`,
