@@ -8,7 +8,7 @@ import Heading from "@/components/heading";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import CarouselSlider from "@/components/carousel";
 import PaginationClient from "@/components/pagination-client";
-import AdsenseSlot from "@/components/adsense-slot";
+import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -58,7 +58,7 @@ export default async function Home({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
-        <AdsenseSlot slot="5978949902" />
+        <ClientAdsenseWrapper slot="5978949902" />
         <CarouselSlider />
         <ScrollShadow
           hideScrollBar
@@ -101,7 +101,7 @@ export default async function Home({
           />
         </div>
 
-        <AdsenseSlot slot="3927501637" />
+        <ClientAdsenseWrapper slot="3927501637" />
         <PopularDrama drama={populars} isLoading={false} />
       </section>
 

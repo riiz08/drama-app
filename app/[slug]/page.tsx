@@ -10,7 +10,7 @@ import EpisodeBox from "@/components/episode-box";
 import Link from "next/link";
 import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
-import AdsenseSlot from "@/components/adsense-slot";
+import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
 
 interface EpisodeDetail {
   slug: string;
@@ -124,7 +124,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
-        <AdsenseSlot slot="5978949902" />
+        <ClientAdsenseWrapper slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}
           dramaTitle={episode.drama.title}
@@ -185,7 +185,7 @@ export default async function Page({
         </Card>
 
         <NextPrev episodes={drama.episodes} slug={slug} />
-        <AdsenseSlot slot="3927501637" />
+        <ClientAdsenseWrapper slot="3927501637" />
 
         <EpisodeBox episodes={drama.episodes} drama={drama} />
 
@@ -209,7 +209,7 @@ export default async function Page({
           </CardBody>
         </Card>
 
-        <AdsenseSlot slot="5978949902" />
+        <ClientAdsenseWrapper slot="5978949902" />
         <div className="my-4">
           <PopularDrama drama={popular} isLoading={false} />
         </div>
