@@ -8,7 +8,7 @@ import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { getSeoMetadata } from "@/libs/seo";
 import { Drama, Episode } from "@/app/generated/prisma";
 import BoxUpdateFetch from "@/components/box-update-fetch";
-import ClientAdsenseWrapper from "@/components/client-adsense-wrapper";
+import AdsenseSlot from "@/components/adsense-slot";
 
 interface DramaBySlug {
   success: boolean;
@@ -73,7 +73,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
-        <ClientAdsenseWrapper slot="5978949902" />
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}
           dramaTitle={data.drama.title}
@@ -160,7 +160,7 @@ export default async function Page({
           </CardBody>
         </Card>
         <div className="my-4">
-          <ClientAdsenseWrapper slot="5978949902" />
+          <AdsenseSlot slot="5978949902" />
           <PopularDrama drama={populars} isLoading={false} />
         </div>
       </section>
