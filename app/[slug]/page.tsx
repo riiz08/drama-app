@@ -11,6 +11,7 @@ import Link from "next/link";
 import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
+import GoogleAdsense from "@/components/google-adsense";
 
 interface EpisodeDetail {
   slug: string;
@@ -124,6 +125,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
+        <GoogleAdsense />
         <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}

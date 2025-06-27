@@ -9,6 +9,7 @@ import { getSeoMetadata } from "@/libs/seo";
 import { Drama, Episode } from "@/app/generated/prisma";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
+import GoogleAdsense from "@/components/google-adsense";
 
 interface DramaBySlug {
   success: boolean;
@@ -73,6 +74,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
+        <GoogleAdsense />
         <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}

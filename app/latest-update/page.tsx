@@ -6,6 +6,7 @@ import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import { getSeoMetadata } from "@/libs/seo";
 import LatestUpdate from "@/components/latest-update";
 import AdsenseSlot from "@/components/adsense-slot";
+import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru Hari Ini | Mangeakkk",
@@ -22,6 +23,7 @@ const Page = async () => {
 
   return (
     <section>
+      <GoogleAdsense />
       <AdsenseSlot slot="5978949902" />
       <Heading h1 title="Rilisan terbaru" />
       <LatestUpdate />

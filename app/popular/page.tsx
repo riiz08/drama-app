@@ -5,6 +5,7 @@ import DramaCard from "@/components/drama-card";
 import { getSeoMetadata } from "@/libs/seo";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
+import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terpopuler 2025 | Mangeakkk",
@@ -23,6 +24,7 @@ const Page = async () => {
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
+        <GoogleAdsense />
         <AdsenseSlot slot="5978949902" />
         <Heading h1 title="Drama Teropular" />
         <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
