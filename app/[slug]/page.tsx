@@ -114,11 +114,11 @@ export default async function Page({
   );
   const { episode } = (await resEp.json()) as JsonEpisode;
   const resDrama = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}//api/drama/${episode.drama.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`
   );
   const { drama } = (await resDrama.json()) as JsonDrama;
   const resPop = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}//api/drama/popular`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
   );
   const popular = (await resPop.json()) as Drama[];
   return (
