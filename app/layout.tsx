@@ -7,7 +7,6 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Script from "next/script";
 import Footer from "@/components/footer";
-import GoogleAdsense from "@/components/google-adsense";
 import { ThemeSwitch } from "@/components/theme-switch";
 
 export const metadata: Metadata = {
@@ -31,7 +30,6 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="ms">
       <head>
-        <GoogleAdsense />
         <Script
           async
           id="gtag"
@@ -60,6 +58,12 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
+          crossOrigin="anonymous"
+        />
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
           <ToastProvider />
