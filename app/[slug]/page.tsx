@@ -203,7 +203,11 @@ export default async function Page({
               dan percuma. Tonton Drama
               <span className="font-semibold mx-1">{episode.drama.title}</span>
               Hanya di
-              <Link className="text-tiny mx-1 font-semibold" href="/">
+              <Link
+                className="text-tiny mx-1 font-semibold"
+                href="/"
+                target="_parent"
+              >
                 MangEakkk
               </Link>
               Drama

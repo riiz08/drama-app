@@ -23,6 +23,7 @@ const BoxAllDrama: React.FC<Props> = ({ dramas }) => {
               href={`/drama/${drama.slug}`}
               className="w-full hover:bg-content2 text-xs"
               color="foreground"
+              target="_parent"
             >
               <div className="w-full my-1 flex justify-between items-center gap-2">
                 <h2 className="font-semibold text-xs md:text-sm">

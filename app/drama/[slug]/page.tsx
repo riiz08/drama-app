@@ -139,7 +139,12 @@ export default async function Page({
               <span className="font-bold mr-1">
                 Tonton Drama {data.drama.title} hanya di
               </span>
-              <Link className="text-tiny font-bold" color="primary" href="/">
+              <Link
+                className="text-tiny font-bold"
+                color="primary"
+                href="/"
+                target="_parent"
+              >
                 MangEakkk Drama
               </Link>
             </p>

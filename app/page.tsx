@@ -71,6 +71,7 @@ export default async function Home({
               className="font-semibold text-tiny mr-1"
               color="foreground"
               href="/"
+              target="_parent"
             >
               <h2>MangEakk Drama</h2>
             </Link>
@@ -85,7 +86,7 @@ export default async function Home({
         <Heading href="/latest-update" h1={true} title="Drama Terbaru" />
         <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodeData.episodes.map((episode) => (
-            <Link key={episode.slug} href={`/${episode.slug}`}>
+            <Link key={episode.slug} href={`/${episode.slug}`} target="_parent">
               <DramaCard
                 episodeNum={episode.episodeNum}
                 image={episode.drama.thumbnail}

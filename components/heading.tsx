@@ -45,6 +45,7 @@ const Heading: React.FC<HeadingProps> = ({ title, href, h1 }) => {
           className="text-xs font-semibold"
           color="foreground"
           href={href}
+          target="_parent"
         >
           View All
         </Link>
