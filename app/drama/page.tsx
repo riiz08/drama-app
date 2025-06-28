@@ -22,6 +22,8 @@ export async function generateMetadata() {
   });
 }
 
+export const revalidate = 180;
+
 const Page = async () => {
   const dramas = await getAllDramas();
   const populars = await getAllPopularDrama();
