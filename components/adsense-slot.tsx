@@ -17,34 +17,19 @@ declare global {
 
 export default function AdsenseSlot({
   slot,
-  style = { display: "block", minHeight: "100px" },
+  style = { display: "block" },
   format = "auto",
   responsive = true,
 }: AdsenseSlotProps) {
   const adRef = useRef<HTMLModElement>(null);
-  const pushedRef = useRef(false);
 
   useEffect(() => {
-    if (pushedRef.current) return;
-
-    const tryPush = () => {
-      if (
-        window.adsbygoogle &&
-        typeof window.adsbygoogle.push === "function" &&
-        adRef.current
-      ) {
-        try {
-          window.adsbygoogle.push({});
-          pushedRef.current = true; // 👈 jangan push dua kali
-        } catch (e) {
-          console.error("[AdSense] push error:", e);
-        }
-      } else {
-        setTimeout(tryPush, 300);
-      }
-    };
-
-    tryPush();
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      console.log(`Ads with slot ${slot} is running`);
+    } catch (e) {
+      console.error("[AdSense] Error pushing ad:", e);
+    }
   }, []);
 
   return (
@@ -56,7 +41,6 @@ export default function AdsenseSlot({
       data-ad-format={format}
       data-full-width-responsive={responsive ? "true" : "false"}
       ref={adRef}
-      key={slot}
     />
   );
 }

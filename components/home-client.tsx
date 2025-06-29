@@ -66,7 +66,6 @@ export default function HomeClient() {
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
         <AdsenseSlot slot="5978949902" />
-        <AdsenseDebugger />
         <CarouselSlider />
         <ScrollShadow
           hideScrollBar
