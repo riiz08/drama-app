@@ -11,6 +11,7 @@ import PaginationClient from "@/components/pagination-client";
 import AdsenseSlot from "@/components/adsense-slot";
 import GoogleAdsense from "@/components/google-adsense";
 import HomeClient from "@/components/home-client";
+import ClientWrapper from "@/components/client-wrapper";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -43,19 +44,9 @@ export default async function Home({
 }: {
   searchParams: Promise<{ page?: string }>;
 }) {
-  const { page } = await searchParams;
-  const currentPage = Number(page) || 1;
-  const limit = 10;
-
-  const episodeRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`
+  return (
+    <ClientWrapper>
+      <HomeClient />
+    </ClientWrapper>
   );
-  const episodeData: jsonResp = await episodeRes.json();
-
-  const popRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
-  );
-  const populars: Drama[] = await popRes.json();
-
-  return <HomeClient />;
 }
