@@ -65,7 +65,6 @@ export default function HomeClient() {
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
-        <AdsenseSlot slot="5978949902" />
         <CarouselSlider />
         <ScrollShadow
           hideScrollBar
@@ -87,7 +86,7 @@ export default function HomeClient() {
         <Heading href="/latest-update" h1={true} title="Drama Terbaru" />
         <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodeData.episodes.map((episode) => (
-            <Link key={episode.slug} href={`/${episode.slug}`}>
+            <Link key={episode.slug} href={`/${episode.slug}`} target="_parent">
               <DramaCard
                 episodeNum={episode.episodeNum}
                 image={episode.drama.thumbnail}

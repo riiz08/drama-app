@@ -9,6 +9,7 @@ import Script from "next/script";
 import Footer from "@/components/footer";
 import { ThemeSwitch } from "@/components/theme-switch";
 import GoogleAdsense from "@/components/google-adsense";
+import AdsenseSlot from "@/components/adsense-slot";
 
 export const metadata: Metadata = {
   icons: {
@@ -62,6 +63,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
+          <AdsenseSlot slot="5978949902" />
           <ToastProvider />
           <main className="mx-auto bg-background flex-grow">{children}</main>
           <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
