@@ -17,7 +17,7 @@ declare global {
 
 export default function AdsenseSlot({
   slot,
-  style = { display: "block" },
+  style = { display: "block", width: "100%", minHeight: "120px" },
   format = "auto",
   responsive = true,
 }: AdsenseSlotProps) {
