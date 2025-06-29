@@ -23,7 +23,6 @@ const Page = async () => {
 
   return (
     <section>
-      <GoogleAdsense />
       <AdsenseSlot slot="5978949902" />
       <Heading h1 title="Rilisan terbaru" />
       <LatestUpdate />

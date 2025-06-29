@@ -127,8 +127,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
-        <GoogleAdsense />
-        <AdsenseSlot slot="1814231774" />
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}
           dramaTitle={episode.drama.title}
@@ -141,8 +140,9 @@ export default async function Page({
         <Card className="mt-2 mx-auto">
           <CardBody className="px-4 py-4">
             <Image
+              alt={episode.drama.title}
               src={episode.drama.thumbnail}
-              style={{ height: "auto", width: "auto" }}
+              className="md:w-1/2 mx-auto my-4"
             />
             <div className="my-4">
               <h2 className="md:text-2xl text-md mb-2 font-bold">

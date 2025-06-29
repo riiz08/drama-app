@@ -75,7 +75,6 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
-        <GoogleAdsense />
         <AdsenseSlot slot="4939773358" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}

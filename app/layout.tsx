@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar";
 import Script from "next/script";
 import Footer from "@/components/footer";
 import { ThemeSwitch } from "@/components/theme-switch";
+import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata: Metadata = {
   icons: {
@@ -51,6 +52,7 @@ export default function RootLayout({
           data-key="OtQz1d0e2E+0YDRYqKFR/A"
           async
         />
+        <GoogleAdsense />
       </head>
       <body
         className={clsx(
