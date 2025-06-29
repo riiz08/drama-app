@@ -12,6 +12,7 @@ import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
 import GoogleAdsense from "@/components/google-adsense";
+import { Image } from "@heroui/image";
 
 interface EpisodeDetail {
   slug: string;
@@ -139,7 +140,10 @@ export default async function Page({
         </h1>
         <Card className="mt-2 mx-auto">
           <CardBody className="px-4 py-4">
-            <VideoJSPlayer src={episode.videoUrl} />
+            <Image
+              src={episode.drama.thumbnail}
+              style={{ height: "auto", width: "auto" }}
+            />
             <div className="my-4">
               <h2 className="md:text-2xl text-md mb-2 font-bold">
                 {episode.drama.title}
@@ -186,9 +190,15 @@ export default async function Page({
             </div>
           </CardBody>
         </Card>
-
-        <NextPrev episodes={drama.episodes} slug={slug} />
         <AdsenseSlot slot="3927501637" />
+        <Card>
+          <CardBody>
+            <VideoJSPlayer src={episode.videoUrl} />
+          </CardBody>
+        </Card>
+        <NextPrev episodes={drama.episodes} slug={slug} />
+
+        <AdsenseSlot slot="3453782357" />
 
         <EpisodeBox episodes={drama.episodes} drama={drama} />
 
