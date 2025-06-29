@@ -60,7 +60,7 @@ export default async function Home({
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
         <GoogleAdsense />
-        <AdsenseSlot slot="5978949902" />
+        <AdsenseSlot slot="3453782357" />
         <CarouselSlider />
         <ScrollShadow
           hideScrollBar
