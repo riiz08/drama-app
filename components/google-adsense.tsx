@@ -10,6 +10,11 @@ export default function GoogleAdsense() {
     script.async = true;
     script.crossOrigin = "anonymous";
 
+    script.onload = () => {
+      console.log("[AdSense] SDK loaded");
+      window.adsbygoogle = window.adsbygoogle || [];
+    };
+
     // Inject ke <head> bukan <body>
     document.head.appendChild(script);
 

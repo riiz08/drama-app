@@ -25,7 +25,9 @@ export default function AdsenseSlot({
 
   useEffect(() => {
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      setTimeout(() => {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }, 500);
     } catch (e) {
       console.error("[AdSense] Error pushing ad:", e);
     }
