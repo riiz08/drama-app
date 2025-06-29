@@ -128,7 +128,7 @@ export default async function Page({
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
         <GoogleAdsense />
-        <AdsenseSlot slot="3453782357" />
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={episode.drama.slug}
           dramaTitle={episode.drama.title}
@@ -226,7 +226,7 @@ export default async function Page({
           </CardBody>
         </Card>
 
-        <AdsenseSlot slot="5978949902" />
+        <AdsenseSlot slot="4939773358" />
         <div className="my-4">
           <PopularDrama drama={popular} isLoading={false} />
         </div>

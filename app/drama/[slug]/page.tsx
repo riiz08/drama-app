@@ -76,7 +76,7 @@ export default async function Page({
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
         <GoogleAdsense />
-        <AdsenseSlot slot="3453782357" />
+        <AdsenseSlot slot="4939773358" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}
           dramaTitle={data.drama.title}

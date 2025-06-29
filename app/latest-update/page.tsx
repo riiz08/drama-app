@@ -24,7 +24,7 @@ const Page = async () => {
   return (
     <section>
       <GoogleAdsense />
-      <AdsenseSlot slot="3453782357" />
+      <AdsenseSlot slot="5978949902" />
       <Heading h1 title="Rilisan terbaru" />
       <LatestUpdate />
       <PopularDrama drama={populars} isLoading={false} />
