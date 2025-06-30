@@ -17,7 +17,7 @@ declare global {
 
 export default function AdsenseSlot({
   slot,
-  style = { display: "block", width: "100%", minHeight: "120px" },
+  style = { display: "block" },
   format = "auto",
   responsive = true,
 }: AdsenseSlotProps) {
@@ -26,7 +26,6 @@ export default function AdsenseSlot({
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
-      console.log(`Ads with slot ${slot} is running`);
     } catch (e) {
       console.error("[AdSense] Error pushing ad:", e);
     }
@@ -36,7 +35,7 @@ export default function AdsenseSlot({
     <ins
       className="adsbygoogle"
       style={style}
-      data-ad-client="ca-pub-4287822627580434"
+      data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}
       data-ad-slot={slot}
       data-ad-format={format}
       data-full-width-responsive={responsive ? "true" : "false"}

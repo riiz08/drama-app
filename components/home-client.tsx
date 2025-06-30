@@ -85,7 +85,7 @@ export default function HomeClient() {
         <Heading href="/latest-update" h1={true} title="Drama Terbaru" />
         <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodeData.episodes.map((episode) => (
-            <Link key={episode.slug} href={`/${episode.slug}`} target="_parent">
+            <Link key={episode.slug} href={`/${episode.slug}`}>
               <DramaCard
                 episodeNum={episode.episodeNum}
                 image={episode.drama.thumbnail}

@@ -51,7 +51,7 @@ const BoxUpdateFetch = () => {
       const res = await fetch(`/api/episodes/latest?page=1&limit=${limit}`);
       const data = (await res.json()) as jsonResp;
       setEpisodes(data.episodes);
-      const resDrama = await fetch("/api/drama");
+      const resDrama = await fetch(`/api/drama`);
       const dataDrama = (await resDrama.json()) as JsonDrama;
       setDramas(dataDrama.drama);
     }
