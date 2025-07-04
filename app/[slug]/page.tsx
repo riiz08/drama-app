@@ -191,14 +191,14 @@ export default async function Page({
           </CardBody>
         </Card>
 
-        <AdsenseSlot slot="4939773358" />
+        <AdsenseSlot slot="3927501637" />
         <Card className="my-2 mx-auto">
           <CardBody>
             <VideoJSPlayer src={episode.videoUrl} />
           </CardBody>
         </Card>
         <NextPrev episodes={drama.episodes} slug={slug} />
-        <AdsenseSlot slot="3927501637" />
+        <AdsenseSlot slot="3453782357" />
 
         <EpisodeBox episodes={drama.episodes} drama={drama} />
 
@@ -222,7 +222,7 @@ export default async function Page({
           </CardBody>
         </Card>
 
-        <AdsenseSlot slot="3453782357" />
+        <AdsenseSlot slot="2317483012" />
         <div className="my-4">
           <PopularDrama drama={popular} isLoading={false} />
         </div>

@@ -101,7 +101,7 @@ export default async function Home({
           />
         </div>
 
-        <AdsenseSlot slot="3927501637" />
+        <AdsenseSlot slot="3453782357" />
         <PopularDrama drama={populars} isLoading={false} />
       </section>
 

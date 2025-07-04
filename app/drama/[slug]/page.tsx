@@ -75,6 +75,7 @@ export default async function Page({
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
+        <AdsenseSlot slot="5978949902" />
         <MyBreadcrumbs
           dramaSlug={data.drama.slug}
           dramaTitle={data.drama.title}
@@ -127,6 +128,8 @@ export default async function Page({
               </p>
             </div>
 
+            <AdsenseSlot slot="3453782357" />
+
             <p className="text-tiny font-light mb-3">
               Nikmati koleksi drama Melayu popular dan drama Malaysia full
               episod hanya di MangEakk Drama. Di halaman ini, anda boleh tonton
@@ -166,7 +169,7 @@ export default async function Page({
           </CardBody>
         </Card>
         <div className="my-4">
-          <AdsenseSlot slot="5978949902" />
+          <AdsenseSlot slot="2317483012" />
           <PopularDrama drama={populars} isLoading={false} />
         </div>
       </section>

@@ -32,6 +32,7 @@ const Page = async () => {
     <div className="grid md:grid-cols-3 gap-2">
       <section className="flex justify-center md:justify-between items-start gap-2 flex-col md:flex-row md:col-span-2">
         <div>
+          <AdsenseSlot slot="5978949902" />
           <Heading h1 title="Drama Terkini" />
           <div className="py-2 grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 w-full">
             {dramas.map((drama) => (
