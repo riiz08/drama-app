@@ -103,6 +103,8 @@ interface JsonDrama {
   drama: DramaDetail;
 }
 
+export const revalidate = 60;
+
 export default async function Page({
   params,
 }: {
@@ -110,8 +112,7 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const resEp = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`
   );
   const { episode } = (await resEp.json()) as JsonEpisode;
   const resDrama = await fetch(
