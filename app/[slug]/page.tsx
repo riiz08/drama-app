@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getEpisodeBySlug } from "@/app/actions/episode/getEpisodes";
 import { Drama, Episode } from "@/app/generated/prisma";
@@ -46,12 +47,19 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
   const episode = (await getEpisodeBySlug(slug)) as EpisodeDetail;
 
   if (!episode) {
-    return {
-      title: "Episod tidak ditemukan | MangEakkk Drama",
-    };
+    // Return fallback metadata (SEO aman)
+    return getSeoMetadata({
+      title: `Halaman tidak ditemukan - Mangeakkk`,
+      description: `Maaf, halaman yang anda cari tidak tersedia di Mangeakkk.`,
+      url: `https://mangeakkk.my.id/${slug}`,
+      keywords: `halaman tidak ditemukan, mangeakkk`,
+      image: `/logo/logo.png`, // ganti dengan default img
+      type: "website",
+    });
   }
 
   return getSeoMetadata({
@@ -103,7 +111,7 @@ interface JsonDrama {
   drama: DramaDetail;
 }
 
-export const revalidate = 300;
+export const revalidate = 86400;
 
 export default async function Page({
   params,
@@ -112,17 +120,42 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const resEp = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`,
+    { cache: "no-store" }
   );
+
+  if (!resEp.ok) {
+    notFound();
+  }
+
   const { episode } = (await resEp.json()) as JsonEpisode;
+
+  if (!episode || !episode.drama) {
+    return notFound(); // 🔒 pastikan sebelum akses property
+  }
+
   const resDrama = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`,
+    { cache: "no-store" }
   );
+
+  if (!resDrama.ok) {
+    notFound();
+  }
+
   const { drama } = (await resDrama.json()) as JsonDrama;
+
   const resPop = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
+    { cache: "no-store" }
   );
+
+  if (!resPop.ok) {
+    notFound();
+  }
+
   const popular = (await resPop.json()) as Drama[];
+
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
