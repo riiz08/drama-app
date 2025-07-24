@@ -6,7 +6,6 @@ import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import { getSeoMetadata } from "@/libs/seo";
 import LatestUpdate from "@/components/latest-update";
 import AdsenseSlot from "@/components/adsense-slot";
-import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru Hari Ini | Mangeakkk",
@@ -17,8 +16,10 @@ export const metadata = getSeoMetadata({
     "drama melayu terbaru, episod baru hari ini, update drama 2025, rilisan drama melayu, mangeakkk, streaming HD percuma",
 });
 
+export const revalidate = 300;
+
 const Page = async () => {
-  const { episodes } = await getLatestEpisodes();
+  const { episodes } = await getLatestEpisodes(1, 20);
   const populars = await getAllPopularDrama();
 
   return (

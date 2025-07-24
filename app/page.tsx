@@ -7,8 +7,9 @@ import DramaCard from "@/components/drama-card";
 import Heading from "@/components/heading";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import CarouselSlider from "@/components/carousel";
-import PaginationClient from "@/components/pagination-client";
 import AdsenseSlot from "@/components/adsense-slot";
+
+export const revalidate = 300; // Re-generate halaman setiap 5 menit
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -34,15 +35,8 @@ interface jsonResp {
   currentPage: number;
 }
 
-export const revalidate = 180; // Re-generate halaman setiap 60 detik
-
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const { page } = await searchParams;
-  const currentPage = Number(page) || 1;
+export default async function Home() {
+  const currentPage = 1;
   const limit = 10;
 
   const episodeRes = await fetch(
@@ -98,13 +92,6 @@ export default async function Home({
               />
             </Link>
           ))}
-        </div>
-
-        <div className="mx-auto my-4">
-          <PaginationClient
-            total={episodeData.totalPages}
-            initialPage={episodeData.currentPage}
-          />
         </div>
 
         <AdsenseSlot slot="3453782357" />

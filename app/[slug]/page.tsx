@@ -12,6 +12,8 @@ import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
 import { Image } from "@heroui/image";
+import { prisma } from "@/libs/db";
+import { notFound } from "next/navigation";
 
 interface EpisodeDetail {
   slug: string;
@@ -48,10 +50,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const episode = (await getEpisodeBySlug(slug)) as EpisodeDetail;
 
-  if (!episode) {
-    return {
-      title: "Episod tidak ditemukan | MangEakkk Drama",
-    };
+  if (!episode || !slug) {
+    return notFound();
   }
 
   return getSeoMetadata({
@@ -104,6 +104,11 @@ interface JsonDrama {
 }
 
 export const revalidate = 86400;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  return [];
+}
 
 export default async function Page({
   params,
@@ -117,6 +122,9 @@ export default async function Page({
       next: { revalidate: 86400 },
     }
   );
+
+  if (!resEp.ok) return notFound();
+
   const { episode } = (await resEp.json()) as JsonEpisode;
   const resDrama = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`,
@@ -124,6 +132,9 @@ export default async function Page({
       next: { revalidate: 86400 },
     }
   );
+
+  if (!resDrama.ok) return notFound();
+
   const { drama } = (await resDrama.json()) as JsonDrama;
   const resPop = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
@@ -131,6 +142,9 @@ export default async function Page({
       next: { revalidate: 86400 },
     }
   );
+
+  if (!resPop.ok) return notFound();
+
   const popular = (await resPop.json()) as Drama[];
   return (
     <div className="grid md:grid-cols-3 gap-2">
