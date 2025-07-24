@@ -46,12 +46,18 @@ export default async function Home({
   const limit = 10;
 
   const episodeRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`,
+    {
+      next: { revalidate: 300 },
+    }
   );
   const episodeData: jsonResp = await episodeRes.json();
 
   const popRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
+    {
+      next: { revalidate: 300 },
+    }
   );
   const populars: Drama[] = await popRes.json();
 

@@ -103,7 +103,7 @@ interface JsonDrama {
   drama: DramaDetail;
 }
 
-export const revalidate = 300;
+export const revalidate = 86400;
 
 export default async function Page({
   params,
@@ -112,15 +112,24 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const resEp = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/${slug}`,
+    {
+      next: { revalidate: 86400 },
+    }
   );
   const { episode } = (await resEp.json()) as JsonEpisode;
   const resDrama = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${episode.drama.slug}`,
+    {
+      next: { revalidate: 86400 },
+    }
   );
   const { drama } = (await resDrama.json()) as JsonDrama;
   const resPop = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
+    {
+      next: { revalidate: 86400 },
+    }
   );
   const popular = (await resPop.json()) as Drama[];
   return (

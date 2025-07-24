@@ -35,7 +35,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const resDrama = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`,
+    {
+      next: { revalidate: 300 },
+    }
   );
   const data = (await resDrama.json()) as DramaBySlug;
 
@@ -64,11 +67,17 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const resDrama = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`,
+    {
+      next: { revalidate: 300 },
+    }
   );
   const data = (await resDrama.json()) as DramaBySlug;
   const resPop = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
+    {
+      next: { revalidate: 300 },
+    }
   );
   const populars = (await resPop.json()) as Drama[];
 
