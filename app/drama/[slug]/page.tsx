@@ -9,7 +9,7 @@ import { getSeoMetadata } from "@/libs/seo";
 import { Drama, Episode } from "@/app/generated/prisma";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
-import GoogleAdsense from "@/components/google-adsense";
+import { notFound } from "next/navigation";
 
 interface DramaBySlug {
   success: boolean;
@@ -37,9 +37,15 @@ export async function generateMetadata({
   const resDrama = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 900 },
     }
   );
+
+  if (!resDrama.ok) {
+    console.error("Failed fetch dramas drama slug page");
+    return notFound();
+  }
+
   const data = (await resDrama.json()) as DramaBySlug;
 
   if (!data) {
@@ -58,7 +64,7 @@ export async function generateMetadata({
   });
 }
 
-export const revalidate = 180;
+export const revalidate = 600;
 
 export default async function Page({
   params,
@@ -69,16 +75,28 @@ export default async function Page({
   const resDrama = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/${slug}`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 600 },
     }
   );
+
+  if (!resDrama.ok) {
+    console.error("Failed fetch dramas slug page");
+    return notFound();
+  }
+
   const data = (await resDrama.json()) as DramaBySlug;
   const resPop = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 600 },
     }
   );
+
+  if (!resPop) {
+    console.error("Failed fetch dramas popular in drama slug page");
+    return notFound();
+  }
+
   const populars = (await resPop.json()) as Drama[];
 
   return (

@@ -5,7 +5,7 @@ import DramaCard from "@/components/drama-card";
 import { getSeoMetadata } from "@/libs/seo";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
-import GoogleAdsense from "@/components/google-adsense";
+import { notFound } from "next/navigation";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terpopuler 2025 | Mangeakkk",
@@ -20,6 +20,11 @@ export const revalidate = 604800;
 
 const Page = async () => {
   const dramas = await getAllPopularDrama();
+
+  if (!dramas) {
+    console.error("Failed fetch dramas popular page");
+    return notFound();
+  }
 
   return (
     <div className="grid md:grid-cols-3 gap-2">

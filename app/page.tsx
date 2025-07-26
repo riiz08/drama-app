@@ -8,8 +8,9 @@ import Heading from "@/components/heading";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import CarouselSlider from "@/components/carousel";
 import AdsenseSlot from "@/components/adsense-slot";
+import { notFound } from "next/navigation";
 
-export const revalidate = 300; // Re-generate halaman setiap 5 menit
+export const revalidate = 900; // Re-generate halaman setiap 15 menit
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -42,17 +43,29 @@ export default async function Home() {
   const episodeRes = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/episodes/latest?page=${currentPage}&limit=${limit}`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 900 },
     }
   );
+
+  if (!episodeRes.ok) {
+    console.error("Failed get slug in homepage");
+    return notFound();
+  }
+
   const episodeData: jsonResp = await episodeRes.json();
 
   const popRes = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/drama/popular`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 900 },
     }
   );
+
+  if (!popRes.ok) {
+    console.error("Failed get slug in homepage");
+    return notFound();
+  }
+
   const populars: Drama[] = await popRes.json();
 
   return (

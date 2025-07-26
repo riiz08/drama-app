@@ -50,7 +50,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const episode = (await getEpisodeBySlug(slug)) as EpisodeDetail;
 
-  if (!episode || !slug) {
+  if (!episode) {
+    return notFound();
+  } else if (slug.length < 1) {
     return notFound();
   }
 

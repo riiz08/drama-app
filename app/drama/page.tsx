@@ -1,5 +1,4 @@
 import Heading from "@/components/heading";
-import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
 import { getAllDramas } from "../actions/drama/getAllDramas";
 import { Link } from "@heroui/link";
 import DramaCard from "@/components/drama-card";
@@ -8,7 +7,7 @@ import getAllPopularDrama from "../actions/drama/getAllPopularDrama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import { getSeoMetadata } from "@/libs/seo";
 import AdsenseSlot from "@/components/adsense-slot";
-import GoogleAdsense from "@/components/google-adsense";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
   return getSeoMetadata({
@@ -22,11 +21,22 @@ export async function generateMetadata() {
   });
 }
 
-export const revalidate = 180;
+export const revalidate = 900;
 
 const Page = async () => {
   const dramas = await getAllDramas();
+
+  if (!dramas) {
+    console.error("Failed fetch dramas drama page");
+    return notFound();
+  }
+
   const populars = await getAllPopularDrama();
+
+  if (!populars) {
+    console.error("Failed fetch popular drama page");
+    return notFound();
+  }
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
