@@ -26,7 +26,7 @@ interface DramaDetail {
 
 type Props = {
   episodes: Episode[];
-  drama: DramaDetail;
+  drama: any;
 };
 
 const EpisodeBox = ({ episodes, drama }: Props) => {
