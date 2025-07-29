@@ -11,6 +11,7 @@ import PopularDrama from "@/components/popular-drama";
 import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
 import { getAllDramas } from "./actions/drama/getAllDramas";
+import { unstable_cache } from "next/cache";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -23,20 +24,50 @@ export const metadata = getSeoMetadata({
 
 export const revalidate = 60;
 
+export async function generateStaticParams() {
+  return [];
+}
+
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page: string }>;
 }) {
-  const { page } = await searchParams;
+  const { page } = (await searchParams) || 1;
   const currentPage = Number(page) || 1;
+  const pageString = String(currentPage);
   const limit = 10;
 
-  const episodeData = await getLatestEpisodes(currentPage, limit);
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    [pageString],
+    { revalidate: 60 } // cache selama 60 detik
+  );
 
-  const populars: any = await getAllPopularDrama();
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
 
-  const dramas = await getAllDramas();
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const episodeData = await cachedGetLatestEpisodes(currentPage, limit);
+
+  const populars: any = await cachedGetAllPopularDrama();
+
+  const dramas = await cachedGetAllDramas();
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">

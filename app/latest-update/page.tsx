@@ -10,6 +10,7 @@ import { getAllDramas } from "../actions/drama/getAllDramas";
 import { Link } from "@heroui/link";
 import DramaCard from "@/components/drama-card";
 import PaginationClient from "@/components/pagination-client";
+import { unstable_cache } from "next/cache";
 
 export const revalidate = 60;
 
@@ -22,6 +23,10 @@ export const metadata = getSeoMetadata({
     "drama melayu terbaru, episod baru hari ini, update drama 2025, rilisan drama melayu, mangeakkk, streaming HD percuma",
 });
 
+export async function generateStaticParams() {
+  return [];
+}
+
 const Page = async ({
   searchParams,
 }: {
@@ -30,10 +35,38 @@ const Page = async ({
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const limit = 10;
+  const pageString = String(currentPage);
 
-  const episodeData = await getLatestEpisodes(currentPage, limit);
-  const populars: any = await getAllPopularDrama();
-  const dramas = await getAllDramas();
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    [pageString],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const episodeData = await cachedGetLatestEpisodes(currentPage, limit);
+
+  const populars: any = await cachedGetAllPopularDrama();
+
+  const dramas = await cachedGetAllDramas();
 
   return (
     <section>

@@ -17,6 +17,7 @@ import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
 import { getAllDramas } from "../actions/drama/getAllDramas";
 import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
+import { unstable_cache } from "next/cache";
 
 interface EpisodeDetail {
   slug: string;
@@ -51,7 +52,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const episode: any = await getEpisodeBySlug(slug);
+
+  const cacheGetEpisodeBySlug = unstable_cache(
+    async (slug) => {
+      return await getEpisodeBySlug(slug);
+    },
+    [slug],
+    { revalidate: 86400 }
+  );
+
+  const episode: any = await cacheGetEpisodeBySlug(slug);
 
   return getSeoMetadata({
     title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
@@ -97,11 +107,6 @@ interface DramaDetail {
   episodes: Episode[];
 }
 
-interface JsonDrama {
-  success: boolean;
-  drama: DramaDetail;
-}
-
 export const revalidate = 60;
 export async function generateStaticParams() {
   return [];
@@ -113,11 +118,55 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const episode: any = await getEpisodeBySlug(slug);
-  const drama = (await getDramaBySlug(episode.drama.slug)) as JsonDrama;
-  const popular: any = await getAllPopularDrama();
-  const dramas = await getAllDramas();
-  const episodeData = await getLatestEpisodes();
+
+  const cacheGetEpisodeBySlug = unstable_cache(
+    async (slug) => {
+      return await getEpisodeBySlug(slug);
+    },
+    [slug],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetDramaBySlug = unstable_cache(
+    async (slug) => {
+      return await getDramaBySlug(slug);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    [slug],
+    { revalidate: 300 } // cache selama 60 detik
+  );
+
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    ["latest-episodes"],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const episode: any = await cacheGetEpisodeBySlug(slug);
+  const drama: any = await cachedGetDramaBySlug(episode.drama.slug);
+  const popular: any = await cachedGetAllPopularDrama();
+  const dramas = await cachedGetAllDramas();
+  const episodeData = await cachedGetLatestEpisodes(1, 8);
+
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">

@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   eslint: {
     dirs: ["app", "components"],
@@ -12,4 +16,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

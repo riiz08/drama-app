@@ -7,6 +7,8 @@ import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
 import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
 import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
+import { unstable_cache } from "next/cache";
+import { getAllDramas } from "../actions/drama/getAllDramas";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terpopuler 2025",
@@ -20,9 +22,33 @@ export const metadata = getSeoMetadata({
 export const revalidate = 60;
 
 const Page = async () => {
-  const popDramas = await getAllPopularDrama();
-  const dramas = await getAllPopularDrama();
-  const episodeData = await getLatestEpisodes();
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    ["latest-episodes"],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+  const popDramas = await cachedGetAllPopularDrama();
+  const dramas = await cachedGetAllDramas();
+  const episodeData = await cachedGetLatestEpisodes(1, 8);
 
   return (
     <div className="grid md:grid-cols-3 gap-2">

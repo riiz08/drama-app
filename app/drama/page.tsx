@@ -3,10 +3,13 @@ import { getAllDramas } from "../actions/drama/getAllDramas";
 import { Link } from "@heroui/link";
 import DramaCard from "@/components/drama-card";
 import PopularDrama from "@/components/popular-drama";
-import BoxUpdateFetch from "@/components/box-update-fetch";
 import { getSeoMetadata } from "@/libs/seo";
 import AdsenseSlot from "@/components/adsense-slot";
 import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
+import ListBoxUpdate from "@/components/list-box-update";
+import BoxAllDrama from "@/components/box-all-drama";
+import { unstable_cache } from "next/cache";
+import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
 
 export async function generateMetadata() {
   return getSeoMetadata({
@@ -23,8 +26,33 @@ export async function generateMetadata() {
 export const revalidate = 60;
 
 const Page = async () => {
-  const dramas = await getAllDramas();
-  const populars: any = await getAllPopularDrama();
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    ["latest-episodes"],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+  const popDramas: any = await cachedGetAllPopularDrama();
+  const dramas = await cachedGetAllDramas();
+  const episodeData = await cachedGetLatestEpisodes(1, 8);
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
@@ -47,10 +75,13 @@ const Page = async () => {
               </Link>
             ))}
           </div>
-          <PopularDrama drama={populars} isLoading={false} />
+          <PopularDrama drama={popDramas} isLoading={false} />
         </div>
       </section>
-      <BoxUpdateFetch />
+      <div>
+        <ListBoxUpdate episodes={episodeData.episodes} />
+        <BoxAllDrama dramas={dramas} />
+      </div>
     </div>
   );
 };
