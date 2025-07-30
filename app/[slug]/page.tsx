@@ -73,45 +73,6 @@ export async function generateMetadata({
   });
 }
 
-interface EpisodeDetail {
-  slug: string;
-  id: string;
-  title: string;
-  videoUrl: string;
-  episodeNum: number;
-  dramaId: string;
-  releaseDate: Date;
-  createdAt: Date;
-  updatedAt: Date;
-  drama: Drama;
-}
-
-interface JsonEpisode {
-  success: boolean;
-  episode: EpisodeDetail;
-}
-
-interface DramaDetail {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  thumbnail: string;
-  status: string;
-  releaseDate: Date;
-  totalEpisode: number;
-  airTime: string;
-  isPopular: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  episodes: Episode[];
-}
-
-export const revalidate = 60;
-export async function generateStaticParams() {
-  return [];
-}
-
 export default async function Page({
   params,
 }: {

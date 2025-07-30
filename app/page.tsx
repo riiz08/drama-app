@@ -22,12 +22,6 @@ export const metadata = getSeoMetadata({
     "drama melayu 2025, tonton drama malaysia, episod penuh HD, drama terbaru, streaming percuma, mangeakkk",
 });
 
-export const revalidate = 60;
-
-export async function generateStaticParams() {
-  return [];
-}
-
 export default async function Home({
   searchParams,
 }: {

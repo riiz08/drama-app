@@ -16,23 +16,6 @@ import { getAllDramas } from "@/app/actions/drama/getAllDramas";
 import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
 import { unstable_cache } from "next/cache";
 
-interface DramaBySlug {
-  success: boolean;
-  drama: {
-    id: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: string;
-    releaseDate: Date;
-    isPopular: boolean;
-    episodes: Episode[];
-    totalEpisode: number;
-    airTime: string;
-  };
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -59,12 +42,6 @@ export async function generateMetadata({
     image: `${data.drama.thumbnail}`,
     type: `article`,
   });
-}
-
-export const revalidate = 60;
-
-export async function generateStaticParams() {
-  return [];
 }
 
 export default async function Page({

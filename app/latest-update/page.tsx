@@ -12,8 +12,6 @@ import DramaCard from "@/components/drama-card";
 import PaginationClient from "@/components/pagination-client";
 import { unstable_cache } from "next/cache";
 
-export const revalidate = 60;
-
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru Hari Ini",
   description:
@@ -22,10 +20,6 @@ export const metadata = getSeoMetadata({
   keywords:
     "drama melayu terbaru, episod baru hari ini, update drama 2025, rilisan drama melayu, mangeakkk, streaming HD percuma",
 });
-
-export async function generateStaticParams() {
-  return [];
-}
 
 const Page = async ({
   searchParams,

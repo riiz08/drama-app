@@ -23,8 +23,6 @@ export async function generateMetadata() {
   });
 }
 
-export const revalidate = 60;
-
 const Page = async () => {
   const cachedGetLatestEpisodes = unstable_cache(
     async (page: number, limit: number) => {

@@ -19,8 +19,6 @@ export const metadata = getSeoMetadata({
     "drama melayu 2025, drama malaysia populer, tonton drama percuma, episod penuh HD, drama trending tanpa iklan, mangeakkk",
 });
 
-export const revalidate = 60;
-
 const Page = async () => {
   const cachedGetLatestEpisodes = unstable_cache(
     async (page: number, limit: number) => {
