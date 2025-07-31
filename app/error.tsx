@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@heroui/button";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Error({
@@ -15,17 +17,22 @@ export default function Error({
     console.error(error);
   }, [error]);
 
+  const router = useRouter();
+
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
+    <div className="min-h-screen w-full justify-center flex items-center flex-col gap-2">
+      <h2 className="font-extrabold">Something went wrong!</h2>
+      <Button
+        size="sm"
+        variant="shadow"
+        color="warning"
+        onPress={
           // Attempt to recover by trying to re-render the segment
-          () => reset()
+          () => router.push("/")
         }
       >
-        Try again
-      </button>
+        Back to homepage
+      </Button>
     </div>
   );
 }

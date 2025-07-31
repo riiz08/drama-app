@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="ms">
       <head>
-        <GoogleAdsense />
         <Script
           async
           id="gtag"
@@ -53,6 +52,13 @@ export default function RootLayout({
           data-key="OtQz1d0e2E+0YDRYqKFR/A"
           async
         />
+        <GoogleAdsense />
+        <meta
+          http-equiv="Cache-Control"
+          content="no-cache, no-store, must-revalidate"
+        />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
       </head>
       <body
         className={clsx(

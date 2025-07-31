@@ -75,6 +75,7 @@ export default async function Home({
               className="font-semibold text-tiny mr-1"
               color="foreground"
               href="/"
+              target="_parent"
             >
               <h2>MangEakk Drama</h2>
             </Link>

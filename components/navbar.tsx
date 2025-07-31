@@ -14,7 +14,7 @@ export default function Navbar() {
     <HeroUiNavbar shouldHideOnScroll maxWidth="full">
       <NavbarContent justify="start">
         <NavbarItem>
-          <Link color="foreground" href="/">
+          <Link color="foreground" href="/" target="_parent">
             <Image
               alt="MangEakkk Drama"
               height={40}

@@ -18,6 +18,7 @@ import BoxAllDrama from "@/components/box-all-drama";
 import { getAllDramas } from "../actions/drama/getAllDramas";
 import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
 import { unstable_cache } from "next/cache";
+import { notFound } from "next/navigation";
 
 interface EpisodeDetail {
   slug: string;
@@ -53,6 +54,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
+  if (!slug) return notFound();
+
   const cacheGetEpisodeBySlug = unstable_cache(
     async (slug) => {
       return await getEpisodeBySlug(slug);
@@ -79,6 +82,8 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  if (!slug) return notFound();
 
   const cacheGetEpisodeBySlug = unstable_cache(
     async (slug) => {

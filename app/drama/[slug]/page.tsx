@@ -6,7 +6,6 @@ import { Metadata } from "next";
 import PopularDrama from "@/components/popular-drama";
 import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { getSeoMetadata } from "@/libs/seo";
-import { Episode } from "@/app/generated/prisma";
 import AdsenseSlot from "@/components/adsense-slot";
 import { getDramaBySlug } from "@/app/actions/drama/getDramaBySlug";
 import { getAllPopularDrama } from "@/app/actions/drama/getAllPopularDrama";
@@ -15,6 +14,7 @@ import BoxAllDrama from "@/components/box-all-drama";
 import { getAllDramas } from "@/app/actions/drama/getAllDramas";
 import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
 import { unstable_cache } from "next/cache";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -22,6 +22,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+
+  if (!slug) return notFound();
 
   const cachedGetDramaBySlug = unstable_cache(
     async (slug) => {
@@ -50,6 +52,8 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  if (!slug) return notFound();
 
   const cachedGetDramaBySlug = unstable_cache(
     async (slug) => {
