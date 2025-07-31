@@ -1,16 +1,17 @@
+import { Link } from "@heroui/link";
+
+import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
+import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
+import { getAllDramas } from "../actions/drama/getAllDramas";
+
 import Heading from "@/components/heading";
 import ListBoxUpdate from "@/components/list-box-update";
-import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
 import PopularDrama from "@/components/popular-drama";
 import { getSeoMetadata } from "@/libs/seo";
 import AdsenseSlot from "@/components/adsense-slot";
-import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
 import BoxAllDrama from "@/components/box-all-drama";
-import { getAllDramas } from "../actions/drama/getAllDramas";
-import { Link } from "@heroui/link";
 import DramaCard from "@/components/drama-card";
 import PaginationClient from "@/components/pagination-client";
-import { unstable_cache } from "next/cache";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru Hari Ini",
@@ -29,38 +30,12 @@ const Page = async ({
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const limit = 10;
-  const pageString = String(currentPage);
 
-  const cachedGetLatestEpisodes = unstable_cache(
-    async (page: number, limit: number) => {
-      return await getLatestEpisodes(page, limit);
-    },
-    // Cache key harus berubah jika `page` atau `limit` berubah
-    [pageString],
-    { revalidate: 60 } // cache selama 60 detik
-  );
+  const episodeData = await getLatestEpisodes(currentPage, limit);
 
-  const cachedGetAllPopularDrama = unstable_cache(
-    async () => {
-      return await getAllPopularDrama();
-    },
-    ["popular-dramas"],
-    { revalidate: 86400 }
-  );
+  const populars: any = await getAllPopularDrama();
 
-  const cachedGetAllDramas = unstable_cache(
-    async () => {
-      return await getAllDramas();
-    },
-    ["all-dramas"],
-    { revalidate: 86400 }
-  );
-
-  const episodeData = await cachedGetLatestEpisodes(currentPage, limit);
-
-  const populars: any = await cachedGetAllPopularDrama();
-
-  const dramas = await cachedGetAllDramas();
+  const dramas = await getAllDramas();
 
   return (
     <section>
@@ -80,8 +55,8 @@ const Page = async ({
       </div>
       <div className="mx-auto my-4">
         <PaginationClient
-          total={episodeData.totalPages}
           initialPage={episodeData.currentPage}
+          total={episodeData.totalPages}
         />
       </div>
       <PopularDrama drama={populars} isLoading={false} />

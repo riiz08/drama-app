@@ -2,10 +2,12 @@ import { Link } from "@heroui/link";
 import { Chip } from "@heroui/chip";
 import React from "react";
 import { Divider } from "@heroui/divider";
-import { PlayIcon } from "./icons";
-import { Drama } from "@/app/generated/prisma";
 import { Skeleton } from "@heroui/skeleton";
+
+import { PlayIcon } from "./icons";
 import Heading from "./heading";
+
+import { Drama } from "@/app/generated/prisma";
 
 interface LatestEpisode {
   episodeNum: number;
@@ -27,7 +29,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
   return (
     <div className="bg-content1 w-full px-4 py-2 my-4">
       <div className="space-y-1">
-        <Heading h1={false} title="Drama terbaru 2025" href="/latest-update" />
+        <Heading h1={false} href="/latest-update" title="Drama terbaru 2025" />
       </div>
       <Divider className="my-2" />
       <div>
@@ -47,7 +49,7 @@ const ListBoxUpdate: React.FC<ListBoxUpdateProps> = ({ episodes }) => {
                     {list.drama.title}
                   </h3>
                 </div>
-                <Chip size="sm" variant="shadow" color="primary">
+                <Chip color="primary" size="sm" variant="shadow">
                   Episod {list.episodeNum}
                 </Chip>
               </div>

@@ -27,7 +27,6 @@ export async function getLatestEpisodes(page: number = 1, limit: number = 8) {
       currentPage: page,
     };
   } catch (error) {
-    console.error("Error fetching episodes:", error);
     return {
       episodes: [],
       total: 0,

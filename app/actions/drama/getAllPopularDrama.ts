@@ -24,7 +24,6 @@ export async function getAllPopularDrama() {
 
     return dramas;
   } catch (error) {
-    console.error("Failed to fetch popular dramas:", error);
     return [];
   }
 }

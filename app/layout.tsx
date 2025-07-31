@@ -1,16 +1,15 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import Script from "next/script";
+import { ToastProvider } from "@heroui/toast";
 
 import { Providers } from "./providers";
 
 import { fontSans } from "@/config/fonts";
-import Script from "next/script";
 import Navbar from "@/components/navbar";
-import { ToastProvider } from "@heroui/toast";
 import { ThemeSwitch } from "@/components/theme-switch";
 import Footer from "@/components/footer";
-import dynamic from "next/dynamic";
 import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata: Metadata = {
@@ -46,24 +45,18 @@ export default function RootLayout({
 
   gtag('config', 'G-MG1B3ZG1YZ')`}
         </Script>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="OtQz1d0e2E+0YDRYqKFR/A"
           async
+          data-key="OtQz1d0e2E+0YDRYqKFR/A"
+          src="https://analytics.ahrefs.com/analytics.js"
         />
         <GoogleAdsense />
-        <meta
-          http-equiv="Cache-Control"
-          content="no-cache, no-store, must-revalidate"
-        />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
       </head>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

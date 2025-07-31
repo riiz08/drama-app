@@ -5,9 +5,11 @@ export function useWindowWidth() {
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
+
     handleResize(); // Set initial width
 
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

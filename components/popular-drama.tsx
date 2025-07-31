@@ -2,10 +2,12 @@
 
 import React from "react";
 import { Link } from "@heroui/link";
+import { Skeleton } from "@heroui/skeleton";
+
 import Heading from "./heading";
 import DramaCard from "./drama-card";
+
 import { Drama } from "@/app/generated/prisma";
-import { Skeleton } from "@heroui/skeleton";
 
 interface PopularProps {
   drama: Drama[];
@@ -21,7 +23,7 @@ const PopularDrama: React.FC<PopularProps> = ({ drama, isLoading }) => {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <Skeleton className="rounded-lg" key={i}>
+              <Skeleton key={i} className="rounded-lg">
                 <div className="w-60 h-60 md:h-80" />
               </Skeleton>
             ))}

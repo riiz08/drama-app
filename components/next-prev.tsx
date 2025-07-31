@@ -2,10 +2,12 @@
 
 import { Button } from "@heroui/button";
 import React from "react";
+import { useRouter } from "next/navigation";
+
 import { ChevronLeft } from "./icons";
 import { ChevronRight } from "./heading";
+
 import { Episode } from "@/app/generated/prisma";
-import { useRouter } from "next/navigation";
 
 interface NextPrevProps {
   episodes: Episode[];
@@ -16,7 +18,7 @@ const NextPrev: React.FC<NextPrevProps> = ({ episodes, slug }) => {
   const router = useRouter();
 
   const sortedEpisodes = [...episodes].sort(
-    (a, b) => a.episodeNum - b.episodeNum
+    (a, b) => a.episodeNum - b.episodeNum,
   );
 
   const currentIndex = sortedEpisodes.findIndex((ep) => ep.slug === slug);

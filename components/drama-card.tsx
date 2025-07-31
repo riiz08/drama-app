@@ -26,12 +26,12 @@ const DramaCard: React.FC<DramaCardProps> = ({
         fill
         priority
         removeWrapper
-        as={NextImage}
         alt={
           episodeNum
             ? `Poster drama melayu ${title} episode ${episodeNum}`
             : `Poster drama melayu ${title}`
         }
+        as={NextImage}
         className="absolute inset-0 w-60 h-60 md:h-80 object-cover z-0"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         src={image}

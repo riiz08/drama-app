@@ -6,6 +6,7 @@ import { Select, SelectItem } from "@heroui/select";
 import { Button } from "@heroui/button";
 import { Form } from "@heroui/form";
 import { addToast } from "@heroui/toast";
+
 import { createEpisode } from "@/app/actions/episode/createEpisode";
 import { getAllDramas } from "@/app/actions/drama/getAllDramas";
 import { Drama } from "@/app/generated/prisma";
@@ -55,7 +56,7 @@ export default function CreateEpisodeForm() {
   }, [form.slug, form.episodeNum]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
 

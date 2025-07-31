@@ -1,17 +1,19 @@
-import { getSeoMetadata } from "@/libs/seo";
 import { Link } from "@heroui/link";
-import DramaCard from "@/components/drama-card";
-import Heading from "@/components/heading";
 import { ScrollShadow } from "@heroui/scroll-shadow";
-import PaginationClient from "@/components/pagination-client";
-import AdsenseSlot from "@/components/adsense-slot";
+
 import { getLatestEpisodes } from "./actions/episode/getLatestEpisodes";
 import { getAllPopularDrama } from "./actions/drama/getAllPopularDrama";
+import { getAllDramas } from "./actions/drama/getAllDramas";
+
+import { getSeoMetadata } from "@/libs/seo";
+import DramaCard from "@/components/drama-card";
+import Heading from "@/components/heading";
+import PaginationClient from "@/components/pagination-client";
+import AdsenseSlot from "@/components/adsense-slot";
 import PopularDrama from "@/components/popular-drama";
 import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
-import { getAllDramas } from "./actions/drama/getAllDramas";
-import { unstable_cache } from "next/cache";
+import ToastCoffe from "@/components/toast-coffe";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru 2025 - Tonton Episod Penuh HD",
@@ -29,39 +31,14 @@ export default async function Home({
 }) {
   const { page } = (await searchParams) || 1;
   const currentPage = Number(page) || 1;
-  const pageString = String(currentPage);
   const limit = 10;
 
-  const cachedGetLatestEpisodes = unstable_cache(
-    async (page: number, limit: number) => {
-      return await getLatestEpisodes(page, limit);
-    },
-    // Cache key harus berubah jika `page` atau `limit` berubah
-    [pageString],
-    { revalidate: 60 } // cache selama 60 detik
-  );
+  const episodeData = await getLatestEpisodes(currentPage, limit);
 
-  const cachedGetAllPopularDrama = unstable_cache(
-    async () => {
-      return await getAllPopularDrama();
-    },
-    ["popular-dramas"],
-    { revalidate: 86400 }
-  );
+  const populars: any = await getAllPopularDrama();
 
-  const cachedGetAllDramas = unstable_cache(
-    async () => {
-      return await getAllDramas();
-    },
-    ["all-dramas"],
-    { revalidate: 86400 }
-  );
+  const dramas = await getAllDramas();
 
-  const episodeData = await cachedGetLatestEpisodes(currentPage, limit);
-
-  const populars: any = await cachedGetAllPopularDrama();
-
-  const dramas = await cachedGetAllDramas();
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2">
@@ -87,7 +64,7 @@ export default async function Home({
           </span>
         </ScrollShadow>
 
-        <Heading href="/latest-update" h1={true} title="Drama Terbaru" />
+        <Heading h1={true} href="/latest-update" title="Drama Terbaru" />
         <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-2 w-full">
           {episodeData.episodes.map((episode) => (
             <Link key={episode.slug} href={`/${episode.slug}`} target="_parent">
@@ -103,8 +80,8 @@ export default async function Home({
 
         <div className="mx-auto my-4">
           <PaginationClient
-            total={episodeData.totalPages}
             initialPage={episodeData.currentPage}
+            total={episodeData.totalPages}
           />
         </div>
 
@@ -115,6 +92,7 @@ export default async function Home({
       <div>
         <ListBoxUpdate episodes={episodeData.episodes} />
         <BoxAllDrama dramas={dramas} />
+        <ToastCoffe />
       </div>
     </div>
   );

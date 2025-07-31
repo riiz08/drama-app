@@ -1,19 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Drama, Episode } from "@/app/generated/prisma";
 import { useParams } from "next/navigation";
-import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import { Card, CardBody } from "@heroui/card";
+import Link from "next/link";
+import { Image } from "@heroui/image";
+import { Spinner } from "@heroui/spinner";
+
+import { Drama, Episode } from "@/app/generated/prisma";
+import MyBreadcrumbs from "@/components/my-breadcrumbs";
 import VideoJSPlayer from "@/components/video-js-player";
 import NextPrev from "@/components/next-prev";
 import EpisodeBox from "@/components/episode-box";
-import Link from "next/link";
 import PopularDrama from "@/components/popular-drama";
 import BoxUpdateFetch from "@/components/box-update-fetch";
 import AdsenseSlot from "@/components/adsense-slot";
-import { Image } from "@heroui/image";
-import { Spinner } from "@heroui/spinner";
 
 interface EpisodeDetail {
   slug: string;
@@ -50,14 +51,17 @@ export default function EpisodeClientPage() {
     async function fetchData() {
       const resEp = await fetch(`/api/episodes/${slug}`);
       const epJson: JsonEpisode = await resEp.json();
+
       setEpisode(epJson.episode);
 
       const resDrama = await fetch(`/api/drama/${epJson.episode.drama.slug}`);
       const dramaJson: JsonDrama = await resDrama.json();
+
       setDrama(dramaJson.drama);
 
       const resPop = await fetch(`/api/drama/popular`);
       const popJson: Drama[] = await resPop.json();
+
       setPopular(popJson);
     }
 
@@ -66,7 +70,7 @@ export default function EpisodeClientPage() {
 
   if (!episode || !drama)
     return (
-      <Spinner size="lg" className="min-h-screen w-full" label="Loading..." />
+      <Spinner className="min-h-screen w-full" label="Loading..." size="lg" />
     );
 
   return (
@@ -86,8 +90,8 @@ export default function EpisodeClientPage() {
           <CardBody className="px-4 py-4">
             <Image
               alt={episode.drama.title}
-              src={episode.drama.thumbnail}
               className="md:w-1/2 mx-auto my-4"
+              src={episode.drama.thumbnail}
             />
             <div className="my-4">
               <h2 className="md:text-2xl text-md mb-2 font-bold">
@@ -114,7 +118,7 @@ export default function EpisodeClientPage() {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
-                    }
+                    },
                   )}
                 </time>
               </p>
@@ -145,7 +149,7 @@ export default function EpisodeClientPage() {
 
         <AdsenseSlot slot="3453782357" />
 
-        <EpisodeBox episodes={drama.episodes} drama={drama} />
+        <EpisodeBox drama={drama} episodes={drama.episodes} />
 
         <Card className="my-4">
           <CardBody>

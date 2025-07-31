@@ -19,8 +19,8 @@ export default function PaginationClient({
 
   return (
     <Pagination
-      total={total}
       initialPage={initialPage}
+      total={total}
       onChange={handleChange}
     />
   );

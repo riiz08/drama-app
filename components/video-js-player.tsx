@@ -44,7 +44,7 @@ const VideoJSPlayer = ({ src }: Props) => {
 
   return (
     <div data-vjs-player>
-      <video ref={videoRef} className="video-js vjs-fantasy" playsInline />
+      <video ref={videoRef} playsInline className="video-js vjs-fantasy" />
     </div>
   );
 };

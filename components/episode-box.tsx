@@ -1,12 +1,14 @@
 "use client";
 
 import React from "react";
-import { Drama, Episode } from "@/app/generated/prisma";
 import { Divider } from "@heroui/divider";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import Heading from "./heading";
 import { Link } from "@heroui/link";
+
+import Heading from "./heading";
+
+import { Episode } from "@/app/generated/prisma";
 
 interface DramaDetail {
   id: string;
@@ -46,15 +48,15 @@ const EpisodeBox = ({ episodes, drama }: Props) => {
         {episodes.map((ep) => (
           <li key={ep.slug}>
             <Link
-              href={`/${ep.slug}`}
               className="flex items-center gap-2 p-2 rounded-md hover:bg-content2 transition"
+              href={`/${ep.slug}`}
             >
               <Image
-                src={drama.thumbnail}
                 alt={`Tonton drama ${drama.title} full episod`}
-                height={50}
-                width={50}
                 className="rounded-md"
+                height={50}
+                src={drama.thumbnail}
+                width={50}
               />
               <div>
                 <h3 className="text-sm font-semibold text-foreground">

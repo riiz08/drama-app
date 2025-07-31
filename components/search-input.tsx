@@ -1,10 +1,11 @@
 "use client";
 
-import { Episode } from "@/app/generated/prisma";
 import { Input } from "@heroui/input";
 import { Listbox, ListboxItem } from "@heroui/listbox";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import { Episode } from "@/app/generated/prisma";
 
 interface jsonResp {
   success: boolean;
@@ -80,9 +81,7 @@ const SearchInput = () => {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (searchValue.length > 2) {
-        fetchData(searchValue)
-          .then((res: any) => setResult(res.drama))
-          .catch((err) => console.error("Fetch error:", err));
+        fetchData(searchValue).then((res: any) => setResult(res.drama));
       }
     }, 500);
 

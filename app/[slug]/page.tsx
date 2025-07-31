@@ -1,52 +1,25 @@
 import { Metadata } from "next";
+import { Card, CardBody } from "@heroui/card";
+import Link from "next/link";
+import { Image } from "@heroui/image";
+import { notFound } from "next/navigation";
+
+import { getDramaBySlug } from "../actions/drama/getDramaBySlug";
+import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
+import { getAllDramas } from "../actions/drama/getAllDramas";
+import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
+
 import { getEpisodeBySlug } from "@/app/actions/episode/getEpisodes";
-import { Drama, Episode } from "@/app/generated/prisma";
 import { getSeoMetadata } from "@/libs/seo";
 import MyBreadcrumbs from "@/components/my-breadcrumbs";
-import { Card, CardBody } from "@heroui/card";
 import VideoJSPlayer from "@/components/video-js-player";
 import NextPrev from "@/components/next-prev";
 import EpisodeBox from "@/components/episode-box";
-import Link from "next/link";
 import PopularDrama from "@/components/popular-drama";
 import AdsenseSlot from "@/components/adsense-slot";
-import { Image } from "@heroui/image";
-import { getDramaBySlug } from "../actions/drama/getDramaBySlug";
-import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
 import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
-import { getAllDramas } from "../actions/drama/getAllDramas";
-import { getLatestEpisodes } from "../actions/episode/getLatestEpisodes";
-import { unstable_cache } from "next/cache";
-import { notFound } from "next/navigation";
 
-interface EpisodeDetail {
-  slug: string;
-  id: string;
-  title: string;
-  videoUrl: string;
-  episodeNum: number;
-  dramaId: string;
-  releaseDate: Date;
-  createdAt: Date;
-  updatedAt: Date;
-  drama: Drama;
-}
-
-interface DramaBySlug {
-  success: boolean;
-  drama: {
-    id: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: string;
-    releaseDate: Date;
-    isPopular: boolean;
-    episodes: Episode[];
-  };
-}
 export async function generateMetadata({
   params,
 }: {
@@ -56,15 +29,7 @@ export async function generateMetadata({
 
   if (!slug) return notFound();
 
-  const cacheGetEpisodeBySlug = unstable_cache(
-    async (slug) => {
-      return await getEpisodeBySlug(slug);
-    },
-    [slug],
-    { revalidate: 86400 }
-  );
-
-  const episode: any = await cacheGetEpisodeBySlug(slug);
+  const episode: any = await getEpisodeBySlug(slug);
 
   return getSeoMetadata({
     title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
@@ -85,53 +50,11 @@ export default async function Page({
 
   if (!slug) return notFound();
 
-  const cacheGetEpisodeBySlug = unstable_cache(
-    async (slug) => {
-      return await getEpisodeBySlug(slug);
-    },
-    [slug],
-    { revalidate: 86400 }
-  );
-
-  const cachedGetDramaBySlug = unstable_cache(
-    async (slug) => {
-      return await getDramaBySlug(slug);
-    },
-    // Cache key harus berubah jika `page` atau `limit` berubah
-    [slug],
-    { revalidate: 300 } // cache selama 60 detik
-  );
-
-  const cachedGetLatestEpisodes = unstable_cache(
-    async (page: number, limit: number) => {
-      return await getLatestEpisodes(page, limit);
-    },
-    // Cache key harus berubah jika `page` atau `limit` berubah
-    ["latest-episodes"],
-    { revalidate: 60 } // cache selama 60 detik
-  );
-
-  const cachedGetAllPopularDrama = unstable_cache(
-    async () => {
-      return await getAllPopularDrama();
-    },
-    ["popular-dramas"],
-    { revalidate: 86400 }
-  );
-
-  const cachedGetAllDramas = unstable_cache(
-    async () => {
-      return await getAllDramas();
-    },
-    ["all-dramas"],
-    { revalidate: 86400 }
-  );
-
-  const episode: any = await cacheGetEpisodeBySlug(slug);
-  const drama: any = await cachedGetDramaBySlug(episode.drama.slug);
-  const popular: any = await cachedGetAllPopularDrama();
-  const dramas = await cachedGetAllDramas();
-  const episodeData = await cachedGetLatestEpisodes(1, 8);
+  const episode: any = await getEpisodeBySlug(slug);
+  const drama: any = await getDramaBySlug(episode.drama.slug);
+  const popular: any = await getAllPopularDrama();
+  const dramas = await getAllDramas();
+  const episodeData = await getLatestEpisodes(1, 8);
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
@@ -151,10 +74,10 @@ export default async function Page({
           <CardBody className="px-4 py-4">
             <div className="flex justify-center">
               <Image
-                src={episode.drama.thumbnail}
                 alt={episode.drama.title}
-                loading="lazy"
                 className="mx-auto"
+                loading="lazy"
+                src={episode.drama.thumbnail}
               />
             </div>
             <div className="my-4">
@@ -183,7 +106,7 @@ export default async function Page({
                         day: "numeric",
                         month: "long",
                         year: "numeric",
-                      }
+                      },
                     )}
                   </time>
                 </p>
@@ -213,7 +136,7 @@ export default async function Page({
         <NextPrev episodes={drama.drama.episodes} slug={slug} />
         <AdsenseSlot slot="3453782357" />
 
-        <EpisodeBox episodes={drama.drama.episodes} drama={drama.drama} />
+        <EpisodeBox drama={drama.drama} episodes={drama.drama.episodes} />
 
         <Card className="my-4">
           <CardBody>

@@ -6,8 +6,9 @@ import {
 } from "@heroui/navbar";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { Button } from "@heroui/button";
-import SearchInput, { SearchIcon } from "./search-input";
 import Image from "next/image";
+
+import SearchInput, { SearchIcon } from "./search-input";
 
 export default function Navbar() {
   return (
@@ -16,12 +17,12 @@ export default function Navbar() {
         <NavbarItem>
           <Link color="foreground" href="/" target="_parent">
             <Image
+              priority
               alt="MangEakkk Drama"
               height={40}
               src={"/logo/logo.png"}
-              width={40}
               style={{ height: "auto", width: "auto" }}
-              priority
+              width={40}
             />
             <span className="font-semibold text-inherit text-sm md:text-medium">
               MangEakkk

@@ -1,11 +1,13 @@
 "use client";
 
-import { Episode } from "@/app/generated/prisma";
 import { Link } from "@heroui/link";
 import { Skeleton } from "@heroui/skeleton";
 import { useEffect, useState } from "react";
-import DramaCard from "./drama-card";
 import { Pagination } from "@heroui/pagination";
+
+import DramaCard from "./drama-card";
+
+import { Episode } from "@/app/generated/prisma";
 
 interface jsonResp {
   episodes: Episode[];
@@ -25,9 +27,10 @@ const LatestUpdate = () => {
     async function fetchData() {
       try {
         const res = await fetch(
-          `/api/episodes/latest?page=${currentPage}&limit=8`
+          `/api/episodes/latest?page=${currentPage}&limit=8`,
         );
         const data = (await res.json()) as jsonResp;
+
         setEpisodes(data.episodes);
         setTotalPages(data.totalPages);
       } catch (error) {
@@ -47,7 +50,7 @@ const LatestUpdate = () => {
           {Array(limit)
             .fill(0)
             .map((_, i) => (
-              <Skeleton className="rounded-lg" key={i}>
+              <Skeleton key={i} className="rounded-lg">
                 <div className="w-60 h-60 md:h-80" />
               </Skeleton>
             ))}
