@@ -21,8 +21,17 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self' https://pagead2.googlesyndication.com https://www.googletagservices.com 'unsafe-inline' 'unsafe-eval'; frame-src https://*.google.com https://*.doubleclick.net; child-src https://*.google.com https://*.doubleclick.net; object-src 'none';",
+            value: `
+default-src * data: blob: 'unsafe-inline' 'unsafe-eval';
+script-src * data: blob: 'unsafe-inline' 'unsafe-eval';
+style-src * data: blob: 'unsafe-inline';
+img-src * data: blob:;
+frame-src *;
+connect-src *;
+font-src * data:;
+media-src *;
+object-src *;
+`.replace(/\n/g, ""),
           },
         ],
       },
