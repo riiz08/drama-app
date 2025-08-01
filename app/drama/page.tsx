@@ -11,6 +11,7 @@ import { getSeoMetadata } from "@/libs/seo";
 import AdsenseSlot from "@/components/adsense-slot";
 import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
+import { unstable_cache } from "next/cache";
 
 export async function generateMetadata() {
   return getSeoMetadata({
@@ -25,9 +26,33 @@ export async function generateMetadata() {
 }
 
 const Page = async () => {
-  const popDramas: any = await getAllPopularDrama();
-  const dramas = await getAllDramas();
-  const episodeData = await getLatestEpisodes(1, 8);
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    ["latest-episodes"],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+  const popDramas: any = await cachedGetAllPopularDrama();
+  const dramas = await cachedGetAllDramas();
+  const episodeData = await cachedGetLatestEpisodes(1, 8);
 
   return (
     <div className="grid md:grid-cols-3 gap-2">

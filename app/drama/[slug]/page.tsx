@@ -15,6 +15,7 @@ import ListBoxUpdate from "@/components/list-box-update";
 import BoxAllDrama from "@/components/box-all-drama";
 import { getAllDramas } from "@/app/actions/drama/getAllDramas";
 import { getLatestEpisodes } from "@/app/actions/episode/getLatestEpisodes";
+import { unstable_cache } from "next/cache";
 
 export async function generateMetadata({
   params,
@@ -46,10 +47,43 @@ export default async function Page({
 
   if (!slug) return notFound();
 
-  const data: any = await getDramaBySlug(slug);
-  const populars: any = await getAllPopularDrama();
-  const dramas = await getAllDramas();
-  const episodeData = await getLatestEpisodes(1, 8);
+  const cachedGetDramaBySlug = unstable_cache(
+    async (slug) => {
+      return await getDramaBySlug(slug);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    [slug],
+    { revalidate: 300 } // cache selama 60 detik
+  );
+
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    ["latest-episodes"],
+    { revalidate: 60 } // cache selama 60 detik
+  );
+
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
+
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
+  const data: any = await cachedGetDramaBySlug(slug);
+  const populars: any = await cachedGetAllPopularDrama();
+  const dramas = await cachedGetAllDramas();
+  const episodeData = await cachedGetLatestEpisodes(1, 8);
 
   return (
     <div className="grid md:grid-cols-3 gap-2">
@@ -91,7 +125,7 @@ export default async function Page({
                       day: "numeric",
                       month: "long",
                       year: "numeric",
-                    },
+                    }
                   )}
                 </time>
               </p>

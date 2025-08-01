@@ -12,6 +12,7 @@ import AdsenseSlot from "@/components/adsense-slot";
 import BoxAllDrama from "@/components/box-all-drama";
 import DramaCard from "@/components/drama-card";
 import PaginationClient from "@/components/pagination-client";
+import { unstable_cache } from "next/cache";
 
 export const metadata = getSeoMetadata({
   title: "Drama Melayu Terbaru Hari Ini",
@@ -30,13 +31,38 @@ const Page = async ({
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const limit = 10;
+  const pageString = String(currentPage);
 
-  const episodeData = await getLatestEpisodes(currentPage, limit);
+  const cachedGetLatestEpisodes = unstable_cache(
+    async (page: number, limit: number) => {
+      return await getLatestEpisodes(page, limit);
+    },
+    // Cache key harus berubah jika `page` atau `limit` berubah
+    [pageString],
+    { revalidate: 60 } // cache selama 60 detik
+  );
 
-  const populars: any = await getAllPopularDrama();
+  const cachedGetAllPopularDrama = unstable_cache(
+    async () => {
+      return await getAllPopularDrama();
+    },
+    ["popular-dramas"],
+    { revalidate: 86400 }
+  );
 
-  const dramas = await getAllDramas();
+  const cachedGetAllDramas = unstable_cache(
+    async () => {
+      return await getAllDramas();
+    },
+    ["all-dramas"],
+    { revalidate: 86400 }
+  );
 
+  const episodeData = await cachedGetLatestEpisodes(currentPage, limit);
+
+  const populars: any = await cachedGetAllPopularDrama();
+
+  const dramas = await cachedGetAllDramas();
   return (
     <section>
       <AdsenseSlot slot="5978949902" />

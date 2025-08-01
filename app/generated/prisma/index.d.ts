@@ -1,43 +1,45 @@
+
 /**
  * Client
- **/
+**/
 
-import * as runtime from "./runtime/library.js";
+import * as runtime from './runtime/library.js';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
 
-import $Types = runtime.Types; // general types
-import $Public = runtime.Types.Public;
-import $Utils = runtime.Types.Utils;
-import $Extensions = runtime.Types.Extensions;
-import $Result = runtime.Types.Result;
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
-export type PrismaPromise<T> = $Public.PrismaPromise<T>;
 
 /**
  * Model Drama
- *
+ * 
  */
-export type Drama = $Result.DefaultSelection<Prisma.$DramaPayload>;
+export type Drama = $Result.DefaultSelection<Prisma.$DramaPayload>
 /**
  * Model Episode
- *
+ * 
  */
-export type Episode = $Result.DefaultSelection<Prisma.$EpisodePayload>;
+export type Episode = $Result.DefaultSelection<Prisma.$EpisodePayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const Status: {
-    ONGOING: "ONGOING";
-    TAMAT: "TAMAT";
-  };
+  ONGOING: 'ONGOING',
+  TAMAT: 'TAMAT'
+};
 
-  export type Status = (typeof Status)[keyof typeof Status];
+export type Status = (typeof Status)[keyof typeof Status]
+
 }
 
-export type Status = $Enums.Status;
+export type Status = $Enums.Status
 
-export const Status: typeof $Enums.Status;
+export const Status: typeof $Enums.Status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -55,16 +57,12 @@ export const Status: typeof $Enums.Status;
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = "log" extends keyof ClientOptions
-    ? ClientOptions["log"] extends Array<Prisma.LogLevel | Prisma.LogDefinition>
-      ? Prisma.GetEvents<ClientOptions["log"]>
-      : never
-    : never,
-  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["other"] };
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-  /**
+    /**
    * ##  Prisma Client ʲˢ
    *
    * Type-safe database client for TypeScript & Node.js
@@ -79,15 +77,8 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(
-    optionsArg?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>,
-  );
-  $on<V extends U>(
-    eventType: V,
-    callback: (
-      event: V extends "query" ? Prisma.QueryEvent : Prisma.LogEvent,
-    ) => void,
-  ): PrismaClient;
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
 
   /**
    * Connect with the database
@@ -104,9 +95,9 @@ export class PrismaClient<
    * @deprecated since 4.16.0. For new code, prefer client extensions instead.
    * @see https://pris.ly/d/extensions
    */
-  $use(cb: Prisma.Middleware): void;
+  $use(cb: Prisma.Middleware): void
 
-  /**
+/**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
@@ -115,10 +106,7 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRaw<T = unknown>(
-    query: TemplateStringsArray | Prisma.Sql,
-    ...values: any[]
-  ): Prisma.PrismaPromise<number>;
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
   /**
    * Executes a raw query and returns the number of affected rows.
@@ -130,10 +118,7 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRawUnsafe<T = unknown>(
-    query: string,
-    ...values: any[]
-  ): Prisma.PrismaPromise<number>;
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
   /**
    * Performs a prepared raw query and returns the `SELECT` data.
@@ -144,10 +129,7 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRaw<T = unknown>(
-    query: TemplateStringsArray | Prisma.Sql,
-    ...values: any[]
-  ): Prisma.PrismaPromise<T>;
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
   /**
    * Performs a raw query and returns the `SELECT` data.
@@ -159,10 +141,8 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRawUnsafe<T = unknown>(
-    query: string,
-    ...values: any[]
-  ): Prisma.PrismaPromise<T>;
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -174,131 +154,115 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(
-    arg: [...P],
-    options?: { isolationLevel?: Prisma.TransactionIsolationLevel },
-  ): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>;
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
-  $transaction<R>(
-    fn: (
-      prisma: Omit<PrismaClient, runtime.ITXClientDenyList>,
-    ) => $Utils.JsPromise<R>,
-    options?: {
-      maxWait?: number;
-      timeout?: number;
-      isolationLevel?: Prisma.TransactionIsolationLevel;
-    },
-  ): $Utils.JsPromise<R>;
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
-  $extends: $Extensions.ExtendsHook<
-    "extends",
-    Prisma.TypeMapCb<ClientOptions>,
-    ExtArgs,
-    $Utils.Call<
-      Prisma.TypeMapCb<ClientOptions>,
-      {
-        extArgs: ExtArgs;
-      }
-    >
-  >;
 
-  /**
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
+
+      /**
    * `prisma.drama`: Exposes CRUD operations for the **Drama** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Dramas
-   * const dramas = await prisma.drama.findMany()
-   * ```
-   */
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Dramas
+    * const dramas = await prisma.drama.findMany()
+    * ```
+    */
   get drama(): Prisma.DramaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.episode`: Exposes CRUD operations for the **Episode** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Episodes
-   * const episodes = await prisma.episode.findMany()
-   * ```
-   */
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Episodes
+    * const episodes = await prisma.episode.findMany()
+    * ```
+    */
   get episode(): Prisma.EpisodeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
-  export import DMMF = runtime.DMMF;
+  export import DMMF = runtime.DMMF
 
-  export type PrismaPromise<T> = $Public.PrismaPromise<T>;
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
   /**
    * Validator
    */
-  export import validator = runtime.Public.validator;
+  export import validator = runtime.Public.validator
 
   /**
    * Prisma Errors
    */
-  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError;
-  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError;
-  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError;
-  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError;
-  export import PrismaClientValidationError = runtime.PrismaClientValidationError;
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
 
   /**
    * Re-export of sql-template-tag
    */
-  export import sql = runtime.sqltag;
-  export import empty = runtime.empty;
-  export import join = runtime.join;
-  export import raw = runtime.raw;
-  export import Sql = runtime.Sql;
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+
 
   /**
    * Decimal.js
    */
-  export import Decimal = runtime.Decimal;
+  export import Decimal = runtime.Decimal
 
-  export type DecimalJsLike = runtime.DecimalJsLike;
+  export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
    * Metrics
    */
-  export type Metrics = runtime.Metrics;
-  export type Metric<T> = runtime.Metric<T>;
-  export type MetricHistogram = runtime.MetricHistogram;
-  export type MetricHistogramBucket = runtime.MetricHistogramBucket;
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-   * Extensions
-   */
-  export import Extension = $Extensions.UserArgs;
-  export import getExtensionContext = runtime.Extensions.getExtensionContext;
-  export import Args = $Public.Args;
-  export import Payload = $Public.Payload;
-  export import Result = $Public.Result;
-  export import Exact = $Public.Exact;
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
 
   /**
    * Prisma Client JS version: 6.12.0
    * Query Engine version: 8047c96bbd92db98a2abc7c9323ce77c02c89dbc
    */
   export type PrismaVersion = {
-    client: string;
-  };
+    client: string
+  }
 
-  export const prismaVersion: PrismaVersion;
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
    */
 
-  export import JsonObject = runtime.JsonObject;
-  export import JsonArray = runtime.JsonArray;
-  export import JsonValue = runtime.JsonValue;
-  export import InputJsonObject = runtime.InputJsonObject;
-  export import InputJsonArray = runtime.InputJsonArray;
-  export import InputJsonValue = runtime.InputJsonValue;
+
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -307,39 +271,39 @@ export namespace Prisma {
    */
   namespace NullTypes {
     /**
-     * Type of `Prisma.DbNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.DbNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class DbNull {
-      private DbNull: never;
-      private constructor();
+      private DbNull: never
+      private constructor()
     }
 
     /**
-     * Type of `Prisma.JsonNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.JsonNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class JsonNull {
-      private JsonNull: never;
-      private constructor();
+      private JsonNull: never
+      private constructor()
     }
 
     /**
-     * Type of `Prisma.AnyNull`.
-     *
-     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-     *
-     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-     */
+    * Type of `Prisma.AnyNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
     class AnyNull {
-      private AnyNull: never;
-      private constructor();
+      private AnyNull: never
+      private constructor()
     }
   }
 
@@ -348,63 +312,61 @@ export namespace Prisma {
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const DbNull: NullTypes.DbNull;
+  export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const JsonNull: NullTypes.JsonNull;
+  export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const AnyNull: NullTypes.AnyNull;
+  export const AnyNull: NullTypes.AnyNull
 
   type SelectAndInclude = {
-    select: any;
-    include: any;
-  };
+    select: any
+    include: any
+  }
 
   type SelectAndOmit = {
-    select: any;
-    omit: any;
-  };
+    select: any
+    omit: any
+  }
 
   /**
    * Get the type of the value, that the Promise holds.
    */
-  export type PromiseType<T extends PromiseLike<any>> =
-    T extends PromiseLike<infer U> ? U : T;
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
 
   /**
    * Get the return type of a function which returns a Promise.
    */
-  export type PromiseReturnType<
-    T extends (...args: any) => $Utils.JsPromise<any>,
-  > = PromiseType<ReturnType<T>>;
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
 
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
   type Prisma__Pick<T, K extends keyof T> = {
-    [P in K]: T[P];
+      [P in K]: T[P];
   };
+
 
   export type Enumerable<T> = T | Array<T>;
 
   export type RequiredKeys<T> = {
-    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K;
-  }[keyof T];
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
 
   export type TruthyKeys<T> = keyof {
-    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K;
-  };
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
 
-  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>;
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
 
   /**
    * Subset
@@ -420,20 +382,22 @@ export namespace Prisma {
    * Additionally, it validates, if both select and include are present. If the case, it errors.
    */
   export type SelectSubset<T, U> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never;
-  } & (T extends SelectAndInclude
-    ? "Please either choose `select` or `include`."
-    : T extends SelectAndOmit
-      ? "Please either choose `select` or `omit`."
-      : {});
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
 
   /**
    * Subset + Intersection
    * @desc From `T` pick properties that exist in `U` and intersect `K`
    */
   export type SubsetIntersection<T, U, K> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never;
-  } & K;
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
 
   type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
@@ -441,32 +405,33 @@ export namespace Prisma {
    * XOR is needed to have a real mutually exclusive union type
    * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
    */
-  type XOR<T, U> = T extends object
-    ? U extends object
-      ? (Without<T, U> & U) | (Without<U, T> & T)
-      : U
-    : T;
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
 
   /**
    * Is T a Record?
    */
-  type IsObject<T extends any> =
-    T extends Array<any>
-      ? False
-      : T extends Date
-        ? False
-        : T extends Uint8Array
-          ? False
-          : T extends BigInt
-            ? False
-            : T extends object
-              ? True
-              : False;
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
 
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T;
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
 
   /**
    * From ts-toolbelt
@@ -475,74 +440,61 @@ export namespace Prisma {
   type __Either<O extends object, K extends Key> = Omit<O, K> &
     {
       // Merge all but K
-      [P in K]: Prisma__Pick<O, P & keyof O>; // With K possibilities
-    }[K];
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
 
-  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>;
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
 
-  type EitherLoose<O extends object, K extends Key> = ComputeRaw<
-    __Either<O, K>
-  >;
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
 
-  type _Either<O extends object, K extends Key, strict extends Boolean> = {
-    1: EitherStrict<O, K>;
-    0: EitherLoose<O, K>;
-  }[strict];
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
 
   type Either<
     O extends object,
     K extends Key,
-    strict extends Boolean = 1,
-  > = O extends unknown ? _Either<O, K, strict> : never;
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
 
-  export type Union = any;
+  export type Union = any
 
   type PatchUndefined<O extends object, O1 extends object> = {
-    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K];
-  } & {};
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
 
   /** Helper Types for "Merge" **/
   export type IntersectOf<U extends Union> = (
     U extends unknown ? (k: U) => void : never
   ) extends (k: infer I) => void
     ? I
-    : never;
+    : never
 
   export type Overwrite<O extends object, O1 extends object> = {
-    [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
   } & {};
 
-  type _Merge<U extends object> = IntersectOf<
-    Overwrite<
-      U,
-      {
-        [K in keyof U]-?: At<U, K>;
-      }
-    >
-  >;
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
 
   type Key = string | number | symbol;
-  type AtBasic<O extends object, K extends Key> = K extends keyof O
-    ? O[K]
-    : never;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
   type AtStrict<O extends object, K extends Key> = O[K & keyof O];
-  type AtLoose<O extends object, K extends Key> = O extends unknown
-    ? AtStrict<O, K>
-    : never;
-  export type At<
-    O extends object,
-    K extends Key,
-    strict extends Boolean = 1,
-  > = {
-    1: AtStrict<O, K>;
-    0: AtLoose<O, K>;
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
   }[strict];
 
-  export type ComputeRaw<A extends any> = A extends Function
-    ? A
-    : {
-        [K in keyof A]: A[K];
-      } & {};
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
 
   export type OptionalFlat<O> = {
     [K in keyof O]?: O[K];
@@ -558,15 +510,11 @@ export namespace Prisma {
   // this type assumes the passed object is entirely optional
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
-      ?
-          | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-          | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
-      : never
-  >;
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
+    : never>;
 
-  type _Strict<U, _U = U> = U extends unknown
-    ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
-    : never;
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 
   export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
   /** End Helper Types for "Merge" **/
@@ -576,343 +524,325 @@ export namespace Prisma {
   /**
   A [[Boolean]]
   */
-  export type Boolean = True | False;
+  export type Boolean = True | False
 
   // /**
   // 1
   // */
-  export type True = 1;
+  export type True = 1
 
   /**
   0
   */
-  export type False = 0;
+  export type False = 0
 
   export type Not<B extends Boolean> = {
-    0: 1;
-    1: 0;
-  }[B];
+    0: 1
+    1: 0
+  }[B]
 
   export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
-      ? 1
-      : 0;
+    ? 1
+    : 0
 
   export type Has<U extends Union, U1 extends Union> = Not<
     Extends<Exclude<U1, U>, U1>
-  >;
+  >
 
   export type Or<B1 extends Boolean, B2 extends Boolean> = {
     0: {
-      0: 0;
-      1: 1;
-    };
+      0: 0
+      1: 1
+    }
     1: {
-      0: 1;
-      1: 1;
-    };
-  }[B1][B2];
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
 
-  export type Keys<U extends Union> = U extends unknown ? keyof U : never;
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
 
   type Cast<A, B> = A extends B ? A : B;
 
   export const type: unique symbol;
 
+
+
   /**
    * Used by group by
    */
 
-  export type GetScalarType<T, O> = O extends object
-    ? {
-        [P in keyof T]: P extends keyof O ? O[P] : never;
-      }
-    : never;
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
 
   type FieldPaths<
     T,
-    U = Omit<T, "_avg" | "_sum" | "_count" | "_min" | "_max">,
-  > = IsObject<T> extends True ? U : T;
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
 
   type GetHavingFields<T> = {
     [K in keyof T]: Or<
-      Or<Extends<"OR", K>, Extends<"AND", K>>,
-      Extends<"NOT", K>
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
     > extends True
       ? // infer is only needed to not hit TS limit
         // based on the brilliant idea of Pierre-Antoine Mills
         // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
         T[K] extends infer TK
-        ? GetHavingFields<
-            UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never
-          >
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
         : never
       : {} extends FieldPaths<T[K]>
-        ? never
-        : K;
-  }[keyof T];
+      ? never
+      : K
+  }[keyof T]
 
   /**
    * Convert tuple to union
    */
-  type _TupleToUnion<T> = T extends (infer E)[] ? E : never;
-  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>;
-  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T;
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
 
   /**
    * Like `Pick`, but additionally can also accept an array of keys
    */
-  type PickEnumerable<
-    T,
-    K extends Enumerable<keyof T> | keyof T,
-  > = Prisma__Pick<T, MaybeTupleToUnion<K>>;
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
 
   /**
    * Exclude all keys with underscores
    */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}`
-    ? never
-    : T;
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
 
-  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 
-  type FieldRefInputType<Model, FieldType> = Model extends never
-    ? never
-    : FieldRef<Model, FieldType>;
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
 
   export const ModelName: {
-    Drama: "Drama";
-    Episode: "Episode";
+    Drama: 'Drama',
+    Episode: 'Episode'
   };
 
-  export type ModelName = (typeof ModelName)[keyof typeof ModelName];
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
 
   export type Datasources = {
-    db?: Datasource;
-  };
-
-  interface TypeMapCb<ClientOptions = {}>
-    extends $Utils.Fn<
-      { extArgs: $Extensions.InternalArgs },
-      $Utils.Record<string, any>
-    > {
-    returns: Prisma.TypeMap<
-      this["params"]["extArgs"],
-      ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}
-    >;
+    db?: Datasource
   }
 
-  export type TypeMap<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > = {
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
     globalOmitOptions: {
-      omit: GlobalOmitOptions;
-    };
+      omit: GlobalOmitOptions
+    }
     meta: {
-      modelProps: "drama" | "episode";
-      txIsolationLevel: Prisma.TransactionIsolationLevel;
-    };
+      modelProps: "drama" | "episode"
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    }
     model: {
       Drama: {
-        payload: Prisma.$DramaPayload<ExtArgs>;
-        fields: Prisma.DramaFieldRefs;
+        payload: Prisma.$DramaPayload<ExtArgs>
+        fields: Prisma.DramaFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.DramaFindUniqueArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload> | null;
-          };
+            args: Prisma.DramaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload> | null
+          }
           findUniqueOrThrow: {
-            args: Prisma.DramaFindUniqueOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           findFirst: {
-            args: Prisma.DramaFindFirstArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload> | null;
-          };
+            args: Prisma.DramaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload> | null
+          }
           findFirstOrThrow: {
-            args: Prisma.DramaFindFirstOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           findMany: {
-            args: Prisma.DramaFindManyArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[];
-          };
+            args: Prisma.DramaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[]
+          }
           create: {
-            args: Prisma.DramaCreateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           createMany: {
-            args: Prisma.DramaCreateManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.DramaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           createManyAndReturn: {
-            args: Prisma.DramaCreateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[];
-          };
+            args: Prisma.DramaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[]
+          }
           delete: {
-            args: Prisma.DramaDeleteArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           update: {
-            args: Prisma.DramaUpdateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           deleteMany: {
-            args: Prisma.DramaDeleteManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.DramaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           updateMany: {
-            args: Prisma.DramaUpdateManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.DramaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           updateManyAndReturn: {
-            args: Prisma.DramaUpdateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[];
-          };
+            args: Prisma.DramaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>[]
+          }
           upsert: {
-            args: Prisma.DramaUpsertArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$DramaPayload>;
-          };
+            args: Prisma.DramaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DramaPayload>
+          }
           aggregate: {
-            args: Prisma.DramaAggregateArgs<ExtArgs>;
-            result: $Utils.Optional<AggregateDrama>;
-          };
+            args: Prisma.DramaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDrama>
+          }
           groupBy: {
-            args: Prisma.DramaGroupByArgs<ExtArgs>;
-            result: $Utils.Optional<DramaGroupByOutputType>[];
-          };
+            args: Prisma.DramaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DramaGroupByOutputType>[]
+          }
           count: {
-            args: Prisma.DramaCountArgs<ExtArgs>;
-            result: $Utils.Optional<DramaCountAggregateOutputType> | number;
-          };
-        };
-      };
+            args: Prisma.DramaCountArgs<ExtArgs>
+            result: $Utils.Optional<DramaCountAggregateOutputType> | number
+          }
+        }
+      }
       Episode: {
-        payload: Prisma.$EpisodePayload<ExtArgs>;
-        fields: Prisma.EpisodeFieldRefs;
+        payload: Prisma.$EpisodePayload<ExtArgs>
+        fields: Prisma.EpisodeFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.EpisodeFindUniqueArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload> | null;
-          };
+            args: Prisma.EpisodeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload> | null
+          }
           findUniqueOrThrow: {
-            args: Prisma.EpisodeFindUniqueOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           findFirst: {
-            args: Prisma.EpisodeFindFirstArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload> | null;
-          };
+            args: Prisma.EpisodeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload> | null
+          }
           findFirstOrThrow: {
-            args: Prisma.EpisodeFindFirstOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           findMany: {
-            args: Prisma.EpisodeFindManyArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[];
-          };
+            args: Prisma.EpisodeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[]
+          }
           create: {
-            args: Prisma.EpisodeCreateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           createMany: {
-            args: Prisma.EpisodeCreateManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.EpisodeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           createManyAndReturn: {
-            args: Prisma.EpisodeCreateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[];
-          };
+            args: Prisma.EpisodeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[]
+          }
           delete: {
-            args: Prisma.EpisodeDeleteArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           update: {
-            args: Prisma.EpisodeUpdateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           deleteMany: {
-            args: Prisma.EpisodeDeleteManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.EpisodeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           updateMany: {
-            args: Prisma.EpisodeUpdateManyArgs<ExtArgs>;
-            result: BatchPayload;
-          };
+            args: Prisma.EpisodeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
           updateManyAndReturn: {
-            args: Prisma.EpisodeUpdateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[];
-          };
+            args: Prisma.EpisodeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>[]
+          }
           upsert: {
-            args: Prisma.EpisodeUpsertArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>;
-          };
+            args: Prisma.EpisodeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EpisodePayload>
+          }
           aggregate: {
-            args: Prisma.EpisodeAggregateArgs<ExtArgs>;
-            result: $Utils.Optional<AggregateEpisode>;
-          };
+            args: Prisma.EpisodeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEpisode>
+          }
           groupBy: {
-            args: Prisma.EpisodeGroupByArgs<ExtArgs>;
-            result: $Utils.Optional<EpisodeGroupByOutputType>[];
-          };
+            args: Prisma.EpisodeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EpisodeGroupByOutputType>[]
+          }
           count: {
-            args: Prisma.EpisodeCountArgs<ExtArgs>;
-            result: $Utils.Optional<EpisodeCountAggregateOutputType> | number;
-          };
-        };
-      };
-    };
+            args: Prisma.EpisodeCountArgs<ExtArgs>
+            result: $Utils.Optional<EpisodeCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
   } & {
     other: {
-      payload: any;
+      payload: any
       operations: {
         $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
-          result: any;
-        };
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
         $executeRawUnsafe: {
-          args: [query: string, ...values: any[]];
-          result: any;
-        };
+          args: [query: string, ...values: any[]],
+          result: any
+        }
         $queryRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
-          result: any;
-        };
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
         $queryRawUnsafe: {
-          args: [query: string, ...values: any[]];
-          result: any;
-        };
-      };
-    };
-  };
-  export const defineExtension: $Extensions.ExtendsHook<
-    "define",
-    Prisma.TypeMapCb,
-    $Extensions.DefaultArgs
-  >;
-  export type DefaultPrismaClient = PrismaClient;
-  export type ErrorFormat = "pretty" | "colorless" | "minimal";
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
-    datasources?: Datasources;
+    datasources?: Datasources
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
-    datasourceUrl?: string;
+    datasourceUrl?: string
     /**
      * @default "colorless"
      */
-    errorFormat?: ErrorFormat;
+    errorFormat?: ErrorFormat
     /**
      * @example
      * ```
      * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
-     *
+     * 
      * // Emit as events
      * log: [
      *   { emit: 'stdout', level: 'query' },
@@ -923,20 +853,20 @@ export namespace Prisma {
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
-    log?: (LogLevel | LogDefinition)[];
+    log?: (LogLevel | LogDefinition)[]
     /**
      * The default values for transactionOptions
      * maxWait ?= 2000
      * timeout ?= 5000
      */
     transactionOptions?: {
-      maxWait?: number;
-      timeout?: number;
-      isolationLevel?: Prisma.TransactionIsolationLevel;
-    };
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
     /**
      * Global configuration for omitting model fields by default.
-     *
+     * 
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -948,83 +878,74 @@ export namespace Prisma {
      * })
      * ```
      */
-    omit?: Prisma.GlobalOmitConfig;
+    omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    drama?: DramaOmit;
-    episode?: EpisodeOmit;
-  };
+    drama?: DramaOmit
+    episode?: EpisodeOmit
+  }
 
   /* Types for Logging */
-  export type LogLevel = "info" | "query" | "warn" | "error";
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
   export type LogDefinition = {
-    level: LogLevel;
-    emit: "stdout" | "event";
-  };
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> =
-    T extends LogDefinition
-      ? T["emit"] extends "event"
-        ? T["level"]
-        : never
-      : never;
-  export type GetEvents<T extends any> =
-    T extends Array<LogLevel | LogDefinition>
-      ?
-          | GetLogType<T[0]>
-          | GetLogType<T[1]>
-          | GetLogType<T[2]>
-          | GetLogType<T[3]>
-      : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
-    timestamp: Date;
-    query: string;
-    params: string;
-    duration: number;
-    target: string;
-  };
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
 
   export type LogEvent = {
-    timestamp: Date;
-    message: string;
-    target: string;
-  };
+    timestamp: Date
+    message: string
+    target: string
+  }
   /* End Types for Logging */
 
+
   export type PrismaAction =
-    | "findUnique"
-    | "findUniqueOrThrow"
-    | "findMany"
-    | "findFirst"
-    | "findFirstOrThrow"
-    | "create"
-    | "createMany"
-    | "createManyAndReturn"
-    | "update"
-    | "updateMany"
-    | "updateManyAndReturn"
-    | "upsert"
-    | "delete"
-    | "deleteMany"
-    | "executeRaw"
-    | "queryRaw"
-    | "aggregate"
-    | "count"
-    | "runCommandRaw"
-    | "findRaw"
-    | "groupBy";
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'createManyAndReturn'
+    | 'update'
+    | 'updateMany'
+    | 'updateManyAndReturn'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
 
   /**
    * These options are being passed into the middleware as "params"
    */
   export type MiddlewareParams = {
-    model?: ModelName;
-    action: PrismaAction;
-    args: any;
-    dataPath: string[];
-    runInTransaction: boolean;
-  };
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
 
   /**
    * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
@@ -1032,64 +953,55 @@ export namespace Prisma {
   export type Middleware<T = any> = (
     params: MiddlewareParams,
     next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>;
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
-  export function getLogLevel(
-    log: Array<LogLevel | LogDefinition>,
-  ): LogLevel | undefined;
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
   /**
    * `PrismaClient` proxy available in interactive transactions.
    */
-  export type TransactionClient = Omit<
-    Prisma.DefaultPrismaClient,
-    runtime.ITXClientDenyList
-  >;
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
 
   export type Datasource = {
-    url?: string;
-  };
+    url?: string
+  }
 
   /**
    * Count Types
    */
+
 
   /**
    * Count Type DramaCountOutputType
    */
 
   export type DramaCountOutputType = {
-    episodes: number;
-  };
+    episodes: number
+  }
 
-  export type DramaCountOutputTypeSelect<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    episodes?: boolean | DramaCountOutputTypeCountEpisodesArgs;
-  };
+  export type DramaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    episodes?: boolean | DramaCountOutputTypeCountEpisodesArgs
+  }
 
   // Custom InputTypes
   /**
    * DramaCountOutputType without action
    */
-  export type DramaCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the DramaCountOutputType
      */
-    select?: DramaCountOutputTypeSelect<ExtArgs> | null;
-  };
+    select?: DramaCountOutputTypeSelect<ExtArgs> | null
+  }
 
   /**
    * DramaCountOutputType without action
    */
-  export type DramaCountOutputTypeCountEpisodesArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: EpisodeWhereInput;
-  };
+  export type DramaCountOutputTypeCountEpisodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EpisodeWhereInput
+  }
+
 
   /**
    * Models
@@ -1100,395 +1012,343 @@ export namespace Prisma {
    */
 
   export type AggregateDrama = {
-    _count: DramaCountAggregateOutputType | null;
-    _avg: DramaAvgAggregateOutputType | null;
-    _sum: DramaSumAggregateOutputType | null;
-    _min: DramaMinAggregateOutputType | null;
-    _max: DramaMaxAggregateOutputType | null;
-  };
+    _count: DramaCountAggregateOutputType | null
+    _avg: DramaAvgAggregateOutputType | null
+    _sum: DramaSumAggregateOutputType | null
+    _min: DramaMinAggregateOutputType | null
+    _max: DramaMaxAggregateOutputType | null
+  }
 
   export type DramaAvgAggregateOutputType = {
-    totalEpisode: number | null;
-  };
+    totalEpisode: number | null
+  }
 
   export type DramaSumAggregateOutputType = {
-    totalEpisode: number | null;
-  };
+    totalEpisode: number | null
+  }
 
   export type DramaMinAggregateOutputType = {
-    id: string | null;
-    title: string | null;
-    slug: string | null;
-    description: string | null;
-    thumbnail: string | null;
-    status: $Enums.Status | null;
-    releaseDate: Date | null;
-    isPopular: boolean | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    totalEpisode: number | null;
-    airTime: string | null;
-  };
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    thumbnail: string | null
+    status: $Enums.Status | null
+    releaseDate: Date | null
+    isPopular: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    totalEpisode: number | null
+    airTime: string | null
+  }
 
   export type DramaMaxAggregateOutputType = {
-    id: string | null;
-    title: string | null;
-    slug: string | null;
-    description: string | null;
-    thumbnail: string | null;
-    status: $Enums.Status | null;
-    releaseDate: Date | null;
-    isPopular: boolean | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    totalEpisode: number | null;
-    airTime: string | null;
-  };
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    thumbnail: string | null
+    status: $Enums.Status | null
+    releaseDate: Date | null
+    isPopular: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    totalEpisode: number | null
+    airTime: string | null
+  }
 
   export type DramaCountAggregateOutputType = {
-    id: number;
-    title: number;
-    slug: number;
-    description: number;
-    thumbnail: number;
-    status: number;
-    releaseDate: number;
-    isPopular: number;
-    createdAt: number;
-    updatedAt: number;
-    totalEpisode: number;
-    airTime: number;
-    _all: number;
-  };
+    id: number
+    title: number
+    slug: number
+    description: number
+    thumbnail: number
+    status: number
+    releaseDate: number
+    isPopular: number
+    createdAt: number
+    updatedAt: number
+    totalEpisode: number
+    airTime: number
+    _all: number
+  }
+
 
   export type DramaAvgAggregateInputType = {
-    totalEpisode?: true;
-  };
+    totalEpisode?: true
+  }
 
   export type DramaSumAggregateInputType = {
-    totalEpisode?: true;
-  };
+    totalEpisode?: true
+  }
 
   export type DramaMinAggregateInputType = {
-    id?: true;
-    title?: true;
-    slug?: true;
-    description?: true;
-    thumbnail?: true;
-    status?: true;
-    releaseDate?: true;
-    isPopular?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    totalEpisode?: true;
-    airTime?: true;
-  };
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnail?: true
+    status?: true
+    releaseDate?: true
+    isPopular?: true
+    createdAt?: true
+    updatedAt?: true
+    totalEpisode?: true
+    airTime?: true
+  }
 
   export type DramaMaxAggregateInputType = {
-    id?: true;
-    title?: true;
-    slug?: true;
-    description?: true;
-    thumbnail?: true;
-    status?: true;
-    releaseDate?: true;
-    isPopular?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    totalEpisode?: true;
-    airTime?: true;
-  };
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnail?: true
+    status?: true
+    releaseDate?: true
+    isPopular?: true
+    createdAt?: true
+    updatedAt?: true
+    totalEpisode?: true
+    airTime?: true
+  }
 
   export type DramaCountAggregateInputType = {
-    id?: true;
-    title?: true;
-    slug?: true;
-    description?: true;
-    thumbnail?: true;
-    status?: true;
-    releaseDate?: true;
-    isPopular?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    totalEpisode?: true;
-    airTime?: true;
-    _all?: true;
-  };
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnail?: true
+    status?: true
+    releaseDate?: true
+    isPopular?: true
+    createdAt?: true
+    updatedAt?: true
+    totalEpisode?: true
+    airTime?: true
+    _all?: true
+  }
 
-  export type DramaAggregateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Drama to aggregate.
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Dramas to fetch.
      */
-    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[];
+    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
-    cursor?: DramaWhereUniqueInput;
+    cursor?: DramaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Dramas from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Dramas.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Dramas
-     **/
-    _count?: true | DramaCountAggregateInputType;
+    **/
+    _count?: true | DramaCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
-    _avg?: DramaAvgAggregateInputType;
+    **/
+    _avg?: DramaAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
-    _sum?: DramaSumAggregateInputType;
+    **/
+    _sum?: DramaSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
-    _min?: DramaMinAggregateInputType;
+    **/
+    _min?: DramaMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
-    _max?: DramaMaxAggregateInputType;
-  };
+    **/
+    _max?: DramaMaxAggregateInputType
+  }
 
   export type GetDramaAggregateType<T extends DramaAggregateArgs> = {
-    [P in keyof T & keyof AggregateDrama]: P extends "_count" | "count"
+        [P in keyof T & keyof AggregateDrama]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateDrama[P]>
-      : GetScalarType<T[P], AggregateDrama[P]>;
-  };
+      : GetScalarType<T[P], AggregateDrama[P]>
+  }
 
-  export type DramaGroupByArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: DramaWhereInput;
-    orderBy?:
-      | DramaOrderByWithAggregationInput
-      | DramaOrderByWithAggregationInput[];
-    by: DramaScalarFieldEnum[] | DramaScalarFieldEnum;
-    having?: DramaScalarWhereWithAggregatesInput;
-    take?: number;
-    skip?: number;
-    _count?: DramaCountAggregateInputType | true;
-    _avg?: DramaAvgAggregateInputType;
-    _sum?: DramaSumAggregateInputType;
-    _min?: DramaMinAggregateInputType;
-    _max?: DramaMaxAggregateInputType;
-  };
+
+
+
+  export type DramaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DramaWhereInput
+    orderBy?: DramaOrderByWithAggregationInput | DramaOrderByWithAggregationInput[]
+    by: DramaScalarFieldEnum[] | DramaScalarFieldEnum
+    having?: DramaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DramaCountAggregateInputType | true
+    _avg?: DramaAvgAggregateInputType
+    _sum?: DramaSumAggregateInputType
+    _min?: DramaMinAggregateInputType
+    _max?: DramaMaxAggregateInputType
+  }
 
   export type DramaGroupByOutputType = {
-    id: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date;
-    isPopular: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    totalEpisode: number | null;
-    airTime: string | null;
-    _count: DramaCountAggregateOutputType | null;
-    _avg: DramaAvgAggregateOutputType | null;
-    _sum: DramaSumAggregateOutputType | null;
-    _min: DramaMinAggregateOutputType | null;
-    _max: DramaMaxAggregateOutputType | null;
-  };
+    id: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date
+    isPopular: boolean
+    createdAt: Date
+    updatedAt: Date
+    totalEpisode: number | null
+    airTime: string | null
+    _count: DramaCountAggregateOutputType | null
+    _avg: DramaAvgAggregateOutputType | null
+    _sum: DramaSumAggregateOutputType | null
+    _min: DramaMinAggregateOutputType | null
+    _max: DramaMaxAggregateOutputType | null
+  }
 
-  type GetDramaGroupByPayload<T extends DramaGroupByArgs> =
-    Prisma.PrismaPromise<
-      Array<
-        PickEnumerable<DramaGroupByOutputType, T["by"]> & {
-          [P in keyof T & keyof DramaGroupByOutputType]: P extends "_count"
+  type GetDramaGroupByPayload<T extends DramaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DramaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DramaGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], DramaGroupByOutputType[P]>
-            : GetScalarType<T[P], DramaGroupByOutputType[P]>;
+            : GetScalarType<T[P], DramaGroupByOutputType[P]>
         }
       >
-    >;
+    >
 
-  export type DramaSelect<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      title?: boolean;
-      slug?: boolean;
-      description?: boolean;
-      thumbnail?: boolean;
-      status?: boolean;
-      releaseDate?: boolean;
-      isPopular?: boolean;
-      createdAt?: boolean;
-      updatedAt?: boolean;
-      totalEpisode?: boolean;
-      airTime?: boolean;
-      episodes?: boolean | Drama$episodesArgs<ExtArgs>;
-      _count?: boolean | DramaCountOutputTypeDefaultArgs<ExtArgs>;
-    },
-    ExtArgs["result"]["drama"]
-  >;
 
-  export type DramaSelectCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      title?: boolean;
-      slug?: boolean;
-      description?: boolean;
-      thumbnail?: boolean;
-      status?: boolean;
-      releaseDate?: boolean;
-      isPopular?: boolean;
-      createdAt?: boolean;
-      updatedAt?: boolean;
-      totalEpisode?: boolean;
-      airTime?: boolean;
-    },
-    ExtArgs["result"]["drama"]
-  >;
+  export type DramaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnail?: boolean
+    status?: boolean
+    releaseDate?: boolean
+    isPopular?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    totalEpisode?: boolean
+    airTime?: boolean
+    episodes?: boolean | Drama$episodesArgs<ExtArgs>
+    _count?: boolean | DramaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["drama"]>
 
-  export type DramaSelectUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      title?: boolean;
-      slug?: boolean;
-      description?: boolean;
-      thumbnail?: boolean;
-      status?: boolean;
-      releaseDate?: boolean;
-      isPopular?: boolean;
-      createdAt?: boolean;
-      updatedAt?: boolean;
-      totalEpisode?: boolean;
-      airTime?: boolean;
-    },
-    ExtArgs["result"]["drama"]
-  >;
+  export type DramaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnail?: boolean
+    status?: boolean
+    releaseDate?: boolean
+    isPopular?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    totalEpisode?: boolean
+    airTime?: boolean
+  }, ExtArgs["result"]["drama"]>
+
+  export type DramaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnail?: boolean
+    status?: boolean
+    releaseDate?: boolean
+    isPopular?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    totalEpisode?: boolean
+    airTime?: boolean
+  }, ExtArgs["result"]["drama"]>
 
   export type DramaSelectScalar = {
-    id?: boolean;
-    title?: boolean;
-    slug?: boolean;
-    description?: boolean;
-    thumbnail?: boolean;
-    status?: boolean;
-    releaseDate?: boolean;
-    isPopular?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    totalEpisode?: boolean;
-    airTime?: boolean;
-  };
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnail?: boolean
+    status?: boolean
+    releaseDate?: boolean
+    isPopular?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    totalEpisode?: boolean
+    airTime?: boolean
+  }
 
-  export type DramaOmit<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetOmit<
-    | "id"
-    | "title"
-    | "slug"
-    | "description"
-    | "thumbnail"
-    | "status"
-    | "releaseDate"
-    | "isPopular"
-    | "createdAt"
-    | "updatedAt"
-    | "totalEpisode"
-    | "airTime",
-    ExtArgs["result"]["drama"]
-  >;
-  export type DramaInclude<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    episodes?: boolean | Drama$episodesArgs<ExtArgs>;
-    _count?: boolean | DramaCountOutputTypeDefaultArgs<ExtArgs>;
-  };
-  export type DramaIncludeCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {};
-  export type DramaIncludeUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {};
+  export type DramaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "thumbnail" | "status" | "releaseDate" | "isPopular" | "createdAt" | "updatedAt" | "totalEpisode" | "airTime", ExtArgs["result"]["drama"]>
+  export type DramaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    episodes?: boolean | Drama$episodesArgs<ExtArgs>
+    _count?: boolean | DramaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DramaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DramaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $DramaPayload<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    name: "Drama";
+  export type $DramaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Drama"
     objects: {
-      episodes: Prisma.$EpisodePayload<ExtArgs>[];
-    };
-    scalars: $Extensions.GetPayloadResult<
-      {
-        id: string;
-        title: string;
-        slug: string;
-        description: string;
-        thumbnail: string;
-        status: $Enums.Status;
-        releaseDate: Date;
-        isPopular: boolean;
-        createdAt: Date;
-        updatedAt: Date;
-        totalEpisode: number | null;
-        airTime: string | null;
-      },
-      ExtArgs["result"]["drama"]
-    >;
-    composites: {};
-  };
+      episodes: Prisma.$EpisodePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      slug: string
+      description: string
+      thumbnail: string
+      status: $Enums.Status
+      releaseDate: Date
+      isPopular: boolean
+      createdAt: Date
+      updatedAt: Date
+      totalEpisode: number | null
+      airTime: string | null
+    }, ExtArgs["result"]["drama"]>
+    composites: {}
+  }
 
-  type DramaGetPayload<
-    S extends boolean | null | undefined | DramaDefaultArgs,
-  > = $Result.GetResult<Prisma.$DramaPayload, S>;
+  type DramaGetPayload<S extends boolean | null | undefined | DramaDefaultArgs> = $Result.GetResult<Prisma.$DramaPayload, S>
 
-  type DramaCountArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = Omit<DramaFindManyArgs, "select" | "include" | "distinct" | "omit"> & {
-    select?: DramaCountAggregateInputType | true;
-  };
+  type DramaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DramaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DramaCountAggregateInputType | true
+    }
 
-  export interface DramaDelegate<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>["model"]["Drama"];
-      meta: { name: "Drama" };
-    };
+  export interface DramaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Drama'], meta: { name: 'Drama' } }
     /**
      * Find zero or one Drama that matches the filter.
      * @param {DramaFindUniqueArgs} args - Arguments to find a Drama
@@ -1500,19 +1360,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends DramaFindUniqueArgs>(
-      args: SelectSubset<T, DramaFindUniqueArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "findUnique",
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findUnique<T extends DramaFindUniqueArgs>(args: SelectSubset<T, DramaFindUniqueArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Drama that matches the filter or throw an error with `error.code='P2025'`
@@ -1526,19 +1374,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends DramaFindUniqueOrThrowArgs>(
-      args: SelectSubset<T, DramaFindUniqueOrThrowArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "findUniqueOrThrow",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findUniqueOrThrow<T extends DramaFindUniqueOrThrowArgs>(args: SelectSubset<T, DramaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Drama that matches the filter.
@@ -1553,19 +1389,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends DramaFindFirstArgs>(
-      args?: SelectSubset<T, DramaFindFirstArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "findFirst",
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findFirst<T extends DramaFindFirstArgs>(args?: SelectSubset<T, DramaFindFirstArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Drama that matches the filter or
@@ -1581,19 +1405,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends DramaFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, DramaFindFirstOrThrowArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "findFirstOrThrow",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findFirstOrThrow<T extends DramaFindFirstOrThrowArgs>(args?: SelectSubset<T, DramaFindFirstOrThrowArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Dramas that matches the filter.
@@ -1603,24 +1415,15 @@ export namespace Prisma {
      * @example
      * // Get all Dramas
      * const dramas = await prisma.drama.findMany()
-     *
+     * 
      * // Get first 10 Dramas
      * const dramas = await prisma.drama.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const dramaWithIdOnly = await prisma.drama.findMany({ select: { id: true } })
-     *
+     * 
      */
-    findMany<T extends DramaFindManyArgs>(
-      args?: SelectSubset<T, DramaFindManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "findMany",
-        GlobalOmitOptions
-      >
-    >;
+    findMany<T extends DramaFindManyArgs>(args?: SelectSubset<T, DramaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Drama.
@@ -1632,21 +1435,9 @@ export namespace Prisma {
      *     // ... data to create a Drama
      *   }
      * })
-     *
+     * 
      */
-    create<T extends DramaCreateArgs>(
-      args: SelectSubset<T, DramaCreateArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "create",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    create<T extends DramaCreateArgs>(args: SelectSubset<T, DramaCreateArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Dramas.
@@ -1658,11 +1449,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
-    createMany<T extends DramaCreateManyArgs>(
-      args?: SelectSubset<T, DramaCreateManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    createMany<T extends DramaCreateManyArgs>(args?: SelectSubset<T, DramaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Dramas and returns the data saved in the database.
@@ -1674,7 +1463,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Dramas and only return the `id`
      * const dramaWithIdOnly = await prisma.drama.createManyAndReturn({
      *   select: { id: true },
@@ -1684,18 +1473,9 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
-    createManyAndReturn<T extends DramaCreateManyAndReturnArgs>(
-      args?: SelectSubset<T, DramaCreateManyAndReturnArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "createManyAndReturn",
-        GlobalOmitOptions
-      >
-    >;
+    createManyAndReturn<T extends DramaCreateManyAndReturnArgs>(args?: SelectSubset<T, DramaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Delete a Drama.
@@ -1707,21 +1487,9 @@ export namespace Prisma {
      *     // ... filter to delete one Drama
      *   }
      * })
-     *
+     * 
      */
-    delete<T extends DramaDeleteArgs>(
-      args: SelectSubset<T, DramaDeleteArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "delete",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    delete<T extends DramaDeleteArgs>(args: SelectSubset<T, DramaDeleteArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Drama.
@@ -1736,21 +1504,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
-    update<T extends DramaUpdateArgs>(
-      args: SelectSubset<T, DramaUpdateArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "update",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    update<T extends DramaUpdateArgs>(args: SelectSubset<T, DramaUpdateArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Dramas.
@@ -1762,11 +1518,9 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
-    deleteMany<T extends DramaDeleteManyArgs>(
-      args?: SelectSubset<T, DramaDeleteManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    deleteMany<T extends DramaDeleteManyArgs>(args?: SelectSubset<T, DramaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Dramas.
@@ -1783,11 +1537,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
-    updateMany<T extends DramaUpdateManyArgs>(
-      args: SelectSubset<T, DramaUpdateManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    updateMany<T extends DramaUpdateManyArgs>(args: SelectSubset<T, DramaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Dramas and returns the data updated in the database.
@@ -1802,7 +1554,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Dramas and only return the `id`
      * const dramaWithIdOnly = await prisma.drama.updateManyAndReturn({
      *   select: { id: true },
@@ -1815,18 +1567,9 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
-    updateManyAndReturn<T extends DramaUpdateManyAndReturnArgs>(
-      args: SelectSubset<T, DramaUpdateManyAndReturnArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "updateManyAndReturn",
-        GlobalOmitOptions
-      >
-    >;
+    updateManyAndReturn<T extends DramaUpdateManyAndReturnArgs>(args: SelectSubset<T, DramaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Drama.
@@ -1845,19 +1588,8 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends DramaUpsertArgs>(
-      args: SelectSubset<T, DramaUpsertArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      $Result.GetResult<
-        Prisma.$DramaPayload<ExtArgs>,
-        T,
-        "upsert",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    upsert<T extends DramaUpsertArgs>(args: SelectSubset<T, DramaUpsertArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
 
     /**
      * Count the number of Dramas.
@@ -1871,16 +1603,16 @@ export namespace Prisma {
      *     // ... the filter for the Dramas we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends DramaCountArgs>(
       args?: Subset<T, DramaCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<"select", any>
-        ? T["select"] extends true
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
           ? number
-          : GetScalarType<T["select"], DramaCountAggregateOutputType>
+          : GetScalarType<T['select'], DramaCountAggregateOutputType>
         : number
-    >;
+    >
 
     /**
      * Allows you to perform aggregations operations on a Drama.
@@ -1905,10 +1637,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends DramaAggregateArgs>(
-      args: Subset<T, DramaAggregateArgs>,
-    ): Prisma.PrismaPromise<GetDramaAggregateType<T>>;
+    **/
+    aggregate<T extends DramaAggregateArgs>(args: Subset<T, DramaAggregateArgs>): Prisma.PrismaPromise<GetDramaAggregateType<T>>
 
     /**
      * Group by Drama.
@@ -1926,76 +1656,70 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends DramaGroupByArgs,
       HasSelectOrTake extends Or<
-        Extends<"skip", Keys<T>>,
-        Extends<"take", Keys<T>>
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DramaGroupByArgs["orderBy"] }
-        : { orderBy?: DramaGroupByArgs["orderBy"] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T["orderBy"]>>
-      >,
-      ByFields extends MaybeTupleToUnion<T["by"]>,
+        ? { orderBy: DramaGroupByArgs['orderBy'] }
+        : { orderBy?: DramaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T["having"]>,
+      HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T["by"] extends never[] ? True : False,
+      ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-          ? {
-              [P in HavingFields]: P extends ByFields
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
                 ? never
-                : P extends string
-                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                  : [
-                      Error,
-                      "Field ",
-                      P,
-                      ` in "having" needs to be provided in "by"`,
-                    ];
-            }[HavingFields]
-          : "take" extends Keys<T>
-            ? "orderBy" extends Keys<T>
-              ? ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields]
-              : 'Error: If you provide "take", you also need to provide "orderBy"'
-            : "skip" extends Keys<T>
-              ? "orderBy" extends Keys<T>
-                ? ByValid extends True
-                  ? {}
-                  : {
-                      [P in OrderFields]: P extends ByFields
-                        ? never
-                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                    }[OrderFields]
-                : 'Error: If you provide "skip", you also need to provide "orderBy"'
-              : ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields],
-    >(
-      args: SubsetIntersection<T, DramaGroupByArgs, OrderByArg> & InputErrors,
-    ): {} extends InputErrors
-      ? GetDramaGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>;
-    /**
-     * Fields of the Drama model
-     */
-    readonly fields: DramaFieldRefs;
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DramaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDramaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Drama model
+   */
+  readonly fields: DramaFieldRefs;
   }
 
   /**
@@ -2004,886 +1728,778 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__DramaClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise";
-    episodes<T extends Drama$episodesArgs<ExtArgs> = {}>(
-      args?: Subset<T, Drama$episodesArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      | $Result.GetResult<
-          Prisma.$EpisodePayload<ExtArgs>,
-          T,
-          "findMany",
-          GlobalOmitOptions
-        >
-      | Null
-    >;
+  export interface Prisma__DramaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    episodes<T extends Drama$episodesArgs<ExtArgs> = {}>(args?: Subset<T, Drama$episodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null,
-    ): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null,
-    ): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
+
+
 
   /**
    * Fields of the Drama model
    */
   interface DramaFieldRefs {
-    readonly id: FieldRef<"Drama", "String">;
-    readonly title: FieldRef<"Drama", "String">;
-    readonly slug: FieldRef<"Drama", "String">;
-    readonly description: FieldRef<"Drama", "String">;
-    readonly thumbnail: FieldRef<"Drama", "String">;
-    readonly status: FieldRef<"Drama", "Status">;
-    readonly releaseDate: FieldRef<"Drama", "DateTime">;
-    readonly isPopular: FieldRef<"Drama", "Boolean">;
-    readonly createdAt: FieldRef<"Drama", "DateTime">;
-    readonly updatedAt: FieldRef<"Drama", "DateTime">;
-    readonly totalEpisode: FieldRef<"Drama", "Int">;
-    readonly airTime: FieldRef<"Drama", "String">;
+    readonly id: FieldRef<"Drama", 'String'>
+    readonly title: FieldRef<"Drama", 'String'>
+    readonly slug: FieldRef<"Drama", 'String'>
+    readonly description: FieldRef<"Drama", 'String'>
+    readonly thumbnail: FieldRef<"Drama", 'String'>
+    readonly status: FieldRef<"Drama", 'Status'>
+    readonly releaseDate: FieldRef<"Drama", 'DateTime'>
+    readonly isPopular: FieldRef<"Drama", 'Boolean'>
+    readonly createdAt: FieldRef<"Drama", 'DateTime'>
+    readonly updatedAt: FieldRef<"Drama", 'DateTime'>
+    readonly totalEpisode: FieldRef<"Drama", 'Int'>
+    readonly airTime: FieldRef<"Drama", 'String'>
   }
+    
 
   // Custom InputTypes
   /**
    * Drama findUnique
    */
-  export type DramaFindUniqueArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter, which Drama to fetch.
      */
-    where: DramaWhereUniqueInput;
-  };
+    where: DramaWhereUniqueInput
+  }
 
   /**
    * Drama findUniqueOrThrow
    */
-  export type DramaFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter, which Drama to fetch.
      */
-    where: DramaWhereUniqueInput;
-  };
+    where: DramaWhereUniqueInput
+  }
 
   /**
    * Drama findFirst
    */
-  export type DramaFindFirstArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter, which Drama to fetch.
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Dramas to fetch.
      */
-    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[];
+    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Dramas.
      */
-    cursor?: DramaWhereUniqueInput;
+    cursor?: DramaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Dramas from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Dramas.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Dramas.
      */
-    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[];
-  };
+    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[]
+  }
 
   /**
    * Drama findFirstOrThrow
    */
-  export type DramaFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter, which Drama to fetch.
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Dramas to fetch.
      */
-    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[];
+    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Dramas.
      */
-    cursor?: DramaWhereUniqueInput;
+    cursor?: DramaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Dramas from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Dramas.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Dramas.
      */
-    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[];
-  };
+    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[]
+  }
 
   /**
    * Drama findMany
    */
-  export type DramaFindManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter, which Dramas to fetch.
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Dramas to fetch.
      */
-    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[];
+    orderBy?: DramaOrderByWithRelationInput | DramaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Dramas.
      */
-    cursor?: DramaWhereUniqueInput;
+    cursor?: DramaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Dramas from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Dramas.
      */
-    skip?: number;
-    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[];
-  };
+    skip?: number
+    distinct?: DramaScalarFieldEnum | DramaScalarFieldEnum[]
+  }
 
   /**
    * Drama create
    */
-  export type DramaCreateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * The data needed to create a Drama.
      */
-    data: XOR<DramaCreateInput, DramaUncheckedCreateInput>;
-  };
+    data: XOR<DramaCreateInput, DramaUncheckedCreateInput>
+  }
 
   /**
    * Drama createMany
    */
-  export type DramaCreateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Dramas.
      */
-    data: DramaCreateManyInput | DramaCreateManyInput[];
-    skipDuplicates?: boolean;
-  };
+    data: DramaCreateManyInput | DramaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Drama createManyAndReturn
    */
-  export type DramaCreateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelectCreateManyAndReturn<ExtArgs> | null;
+    select?: DramaSelectCreateManyAndReturn<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * The data used to create many Dramas.
      */
-    data: DramaCreateManyInput | DramaCreateManyInput[];
-    skipDuplicates?: boolean;
-  };
+    data: DramaCreateManyInput | DramaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Drama update
    */
-  export type DramaUpdateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * The data needed to update a Drama.
      */
-    data: XOR<DramaUpdateInput, DramaUncheckedUpdateInput>;
+    data: XOR<DramaUpdateInput, DramaUncheckedUpdateInput>
     /**
      * Choose, which Drama to update.
      */
-    where: DramaWhereUniqueInput;
-  };
+    where: DramaWhereUniqueInput
+  }
 
   /**
    * Drama updateMany
    */
-  export type DramaUpdateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Dramas.
      */
-    data: XOR<DramaUpdateManyMutationInput, DramaUncheckedUpdateManyInput>;
+    data: XOR<DramaUpdateManyMutationInput, DramaUncheckedUpdateManyInput>
     /**
      * Filter which Dramas to update
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * Limit how many Dramas to update.
      */
-    limit?: number;
-  };
+    limit?: number
+  }
 
   /**
    * Drama updateManyAndReturn
    */
-  export type DramaUpdateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelectUpdateManyAndReturn<ExtArgs> | null;
+    select?: DramaSelectUpdateManyAndReturn<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * The data used to update Dramas.
      */
-    data: XOR<DramaUpdateManyMutationInput, DramaUncheckedUpdateManyInput>;
+    data: XOR<DramaUpdateManyMutationInput, DramaUncheckedUpdateManyInput>
     /**
      * Filter which Dramas to update
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * Limit how many Dramas to update.
      */
-    limit?: number;
-  };
+    limit?: number
+  }
 
   /**
    * Drama upsert
    */
-  export type DramaUpsertArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * The filter to search for the Drama to update in case it exists.
      */
-    where: DramaWhereUniqueInput;
+    where: DramaWhereUniqueInput
     /**
      * In case the Drama found by the `where` argument doesn't exist, create a new Drama with this data.
      */
-    create: XOR<DramaCreateInput, DramaUncheckedCreateInput>;
+    create: XOR<DramaCreateInput, DramaUncheckedCreateInput>
     /**
      * In case the Drama was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<DramaUpdateInput, DramaUncheckedUpdateInput>;
-  };
+    update: XOR<DramaUpdateInput, DramaUncheckedUpdateInput>
+  }
 
   /**
    * Drama delete
    */
-  export type DramaDeleteArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
+    include?: DramaInclude<ExtArgs> | null
     /**
      * Filter which Drama to delete.
      */
-    where: DramaWhereUniqueInput;
-  };
+    where: DramaWhereUniqueInput
+  }
 
   /**
    * Drama deleteMany
    */
-  export type DramaDeleteManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Dramas to delete
      */
-    where?: DramaWhereInput;
+    where?: DramaWhereInput
     /**
      * Limit how many Dramas to delete.
      */
-    limit?: number;
-  };
+    limit?: number
+  }
 
   /**
    * Drama.episodes
    */
-  export type Drama$episodesArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type Drama$episodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
-    where?: EpisodeWhereInput;
-    orderBy?:
-      | EpisodeOrderByWithRelationInput
-      | EpisodeOrderByWithRelationInput[];
-    cursor?: EpisodeWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[];
-  };
+    include?: EpisodeInclude<ExtArgs> | null
+    where?: EpisodeWhereInput
+    orderBy?: EpisodeOrderByWithRelationInput | EpisodeOrderByWithRelationInput[]
+    cursor?: EpisodeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[]
+  }
 
   /**
    * Drama without action
    */
-  export type DramaDefaultArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type DramaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Drama
      */
-    select?: DramaSelect<ExtArgs> | null;
+    select?: DramaSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Drama
      */
-    omit?: DramaOmit<ExtArgs> | null;
+    omit?: DramaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DramaInclude<ExtArgs> | null;
-  };
+    include?: DramaInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model Episode
    */
 
   export type AggregateEpisode = {
-    _count: EpisodeCountAggregateOutputType | null;
-    _avg: EpisodeAvgAggregateOutputType | null;
-    _sum: EpisodeSumAggregateOutputType | null;
-    _min: EpisodeMinAggregateOutputType | null;
-    _max: EpisodeMaxAggregateOutputType | null;
-  };
+    _count: EpisodeCountAggregateOutputType | null
+    _avg: EpisodeAvgAggregateOutputType | null
+    _sum: EpisodeSumAggregateOutputType | null
+    _min: EpisodeMinAggregateOutputType | null
+    _max: EpisodeMaxAggregateOutputType | null
+  }
 
   export type EpisodeAvgAggregateOutputType = {
-    episodeNum: number | null;
-  };
+    episodeNum: number | null
+  }
 
   export type EpisodeSumAggregateOutputType = {
-    episodeNum: number | null;
-  };
+    episodeNum: number | null
+  }
 
   export type EpisodeMinAggregateOutputType = {
-    id: string | null;
-    videoUrl: string | null;
-    dramaId: string | null;
-    createdAt: Date | null;
-    episodeNum: number | null;
-    releaseDate: Date | null;
-    updatedAt: Date | null;
-    slug: string | null;
-  };
+    id: string | null
+    videoUrl: string | null
+    dramaId: string | null
+    createdAt: Date | null
+    episodeNum: number | null
+    releaseDate: Date | null
+    updatedAt: Date | null
+    slug: string | null
+  }
 
   export type EpisodeMaxAggregateOutputType = {
-    id: string | null;
-    videoUrl: string | null;
-    dramaId: string | null;
-    createdAt: Date | null;
-    episodeNum: number | null;
-    releaseDate: Date | null;
-    updatedAt: Date | null;
-    slug: string | null;
-  };
+    id: string | null
+    videoUrl: string | null
+    dramaId: string | null
+    createdAt: Date | null
+    episodeNum: number | null
+    releaseDate: Date | null
+    updatedAt: Date | null
+    slug: string | null
+  }
 
   export type EpisodeCountAggregateOutputType = {
-    id: number;
-    videoUrl: number;
-    dramaId: number;
-    createdAt: number;
-    episodeNum: number;
-    releaseDate: number;
-    updatedAt: number;
-    slug: number;
-    _all: number;
-  };
+    id: number
+    videoUrl: number
+    dramaId: number
+    createdAt: number
+    episodeNum: number
+    releaseDate: number
+    updatedAt: number
+    slug: number
+    _all: number
+  }
+
 
   export type EpisodeAvgAggregateInputType = {
-    episodeNum?: true;
-  };
+    episodeNum?: true
+  }
 
   export type EpisodeSumAggregateInputType = {
-    episodeNum?: true;
-  };
+    episodeNum?: true
+  }
 
   export type EpisodeMinAggregateInputType = {
-    id?: true;
-    videoUrl?: true;
-    dramaId?: true;
-    createdAt?: true;
-    episodeNum?: true;
-    releaseDate?: true;
-    updatedAt?: true;
-    slug?: true;
-  };
+    id?: true
+    videoUrl?: true
+    dramaId?: true
+    createdAt?: true
+    episodeNum?: true
+    releaseDate?: true
+    updatedAt?: true
+    slug?: true
+  }
 
   export type EpisodeMaxAggregateInputType = {
-    id?: true;
-    videoUrl?: true;
-    dramaId?: true;
-    createdAt?: true;
-    episodeNum?: true;
-    releaseDate?: true;
-    updatedAt?: true;
-    slug?: true;
-  };
+    id?: true
+    videoUrl?: true
+    dramaId?: true
+    createdAt?: true
+    episodeNum?: true
+    releaseDate?: true
+    updatedAt?: true
+    slug?: true
+  }
 
   export type EpisodeCountAggregateInputType = {
-    id?: true;
-    videoUrl?: true;
-    dramaId?: true;
-    createdAt?: true;
-    episodeNum?: true;
-    releaseDate?: true;
-    updatedAt?: true;
-    slug?: true;
-    _all?: true;
-  };
+    id?: true
+    videoUrl?: true
+    dramaId?: true
+    createdAt?: true
+    episodeNum?: true
+    releaseDate?: true
+    updatedAt?: true
+    slug?: true
+    _all?: true
+  }
 
-  export type EpisodeAggregateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Episode to aggregate.
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Episodes to fetch.
      */
-    orderBy?:
-      | EpisodeOrderByWithRelationInput
-      | EpisodeOrderByWithRelationInput[];
+    orderBy?: EpisodeOrderByWithRelationInput | EpisodeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
-    cursor?: EpisodeWhereUniqueInput;
+    cursor?: EpisodeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Episodes from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Episodes.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Episodes
-     **/
-    _count?: true | EpisodeCountAggregateInputType;
+    **/
+    _count?: true | EpisodeCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
-     **/
-    _avg?: EpisodeAvgAggregateInputType;
+    **/
+    _avg?: EpisodeAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
-     **/
-    _sum?: EpisodeSumAggregateInputType;
+    **/
+    _sum?: EpisodeSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
-     **/
-    _min?: EpisodeMinAggregateInputType;
+    **/
+    _min?: EpisodeMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
-     **/
-    _max?: EpisodeMaxAggregateInputType;
-  };
+    **/
+    _max?: EpisodeMaxAggregateInputType
+  }
 
   export type GetEpisodeAggregateType<T extends EpisodeAggregateArgs> = {
-    [P in keyof T & keyof AggregateEpisode]: P extends "_count" | "count"
+        [P in keyof T & keyof AggregateEpisode]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateEpisode[P]>
-      : GetScalarType<T[P], AggregateEpisode[P]>;
-  };
+      : GetScalarType<T[P], AggregateEpisode[P]>
+  }
 
-  export type EpisodeGroupByArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: EpisodeWhereInput;
-    orderBy?:
-      | EpisodeOrderByWithAggregationInput
-      | EpisodeOrderByWithAggregationInput[];
-    by: EpisodeScalarFieldEnum[] | EpisodeScalarFieldEnum;
-    having?: EpisodeScalarWhereWithAggregatesInput;
-    take?: number;
-    skip?: number;
-    _count?: EpisodeCountAggregateInputType | true;
-    _avg?: EpisodeAvgAggregateInputType;
-    _sum?: EpisodeSumAggregateInputType;
-    _min?: EpisodeMinAggregateInputType;
-    _max?: EpisodeMaxAggregateInputType;
-  };
+
+
+
+  export type EpisodeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EpisodeWhereInput
+    orderBy?: EpisodeOrderByWithAggregationInput | EpisodeOrderByWithAggregationInput[]
+    by: EpisodeScalarFieldEnum[] | EpisodeScalarFieldEnum
+    having?: EpisodeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EpisodeCountAggregateInputType | true
+    _avg?: EpisodeAvgAggregateInputType
+    _sum?: EpisodeSumAggregateInputType
+    _min?: EpisodeMinAggregateInputType
+    _max?: EpisodeMaxAggregateInputType
+  }
 
   export type EpisodeGroupByOutputType = {
-    id: string;
-    videoUrl: string;
-    dramaId: string;
-    createdAt: Date;
-    episodeNum: number;
-    releaseDate: Date;
-    updatedAt: Date;
-    slug: string;
-    _count: EpisodeCountAggregateOutputType | null;
-    _avg: EpisodeAvgAggregateOutputType | null;
-    _sum: EpisodeSumAggregateOutputType | null;
-    _min: EpisodeMinAggregateOutputType | null;
-    _max: EpisodeMaxAggregateOutputType | null;
-  };
+    id: string
+    videoUrl: string
+    dramaId: string
+    createdAt: Date
+    episodeNum: number
+    releaseDate: Date
+    updatedAt: Date
+    slug: string
+    _count: EpisodeCountAggregateOutputType | null
+    _avg: EpisodeAvgAggregateOutputType | null
+    _sum: EpisodeSumAggregateOutputType | null
+    _min: EpisodeMinAggregateOutputType | null
+    _max: EpisodeMaxAggregateOutputType | null
+  }
 
-  type GetEpisodeGroupByPayload<T extends EpisodeGroupByArgs> =
-    Prisma.PrismaPromise<
-      Array<
-        PickEnumerable<EpisodeGroupByOutputType, T["by"]> & {
-          [P in keyof T & keyof EpisodeGroupByOutputType]: P extends "_count"
+  type GetEpisodeGroupByPayload<T extends EpisodeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EpisodeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EpisodeGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], EpisodeGroupByOutputType[P]>
-            : GetScalarType<T[P], EpisodeGroupByOutputType[P]>;
+            : GetScalarType<T[P], EpisodeGroupByOutputType[P]>
         }
       >
-    >;
+    >
 
-  export type EpisodeSelect<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      videoUrl?: boolean;
-      dramaId?: boolean;
-      createdAt?: boolean;
-      episodeNum?: boolean;
-      releaseDate?: boolean;
-      updatedAt?: boolean;
-      slug?: boolean;
-      drama?: boolean | DramaDefaultArgs<ExtArgs>;
-    },
-    ExtArgs["result"]["episode"]
-  >;
 
-  export type EpisodeSelectCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      videoUrl?: boolean;
-      dramaId?: boolean;
-      createdAt?: boolean;
-      episodeNum?: boolean;
-      releaseDate?: boolean;
-      updatedAt?: boolean;
-      slug?: boolean;
-      drama?: boolean | DramaDefaultArgs<ExtArgs>;
-    },
-    ExtArgs["result"]["episode"]
-  >;
+  export type EpisodeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    videoUrl?: boolean
+    dramaId?: boolean
+    createdAt?: boolean
+    episodeNum?: boolean
+    releaseDate?: boolean
+    updatedAt?: boolean
+    slug?: boolean
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["episode"]>
 
-  export type EpisodeSelectUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      id?: boolean;
-      videoUrl?: boolean;
-      dramaId?: boolean;
-      createdAt?: boolean;
-      episodeNum?: boolean;
-      releaseDate?: boolean;
-      updatedAt?: boolean;
-      slug?: boolean;
-      drama?: boolean | DramaDefaultArgs<ExtArgs>;
-    },
-    ExtArgs["result"]["episode"]
-  >;
+  export type EpisodeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    videoUrl?: boolean
+    dramaId?: boolean
+    createdAt?: boolean
+    episodeNum?: boolean
+    releaseDate?: boolean
+    updatedAt?: boolean
+    slug?: boolean
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["episode"]>
+
+  export type EpisodeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    videoUrl?: boolean
+    dramaId?: boolean
+    createdAt?: boolean
+    episodeNum?: boolean
+    releaseDate?: boolean
+    updatedAt?: boolean
+    slug?: boolean
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["episode"]>
 
   export type EpisodeSelectScalar = {
-    id?: boolean;
-    videoUrl?: boolean;
-    dramaId?: boolean;
-    createdAt?: boolean;
-    episodeNum?: boolean;
-    releaseDate?: boolean;
-    updatedAt?: boolean;
-    slug?: boolean;
-  };
+    id?: boolean
+    videoUrl?: boolean
+    dramaId?: boolean
+    createdAt?: boolean
+    episodeNum?: boolean
+    releaseDate?: boolean
+    updatedAt?: boolean
+    slug?: boolean
+  }
 
-  export type EpisodeOmit<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetOmit<
-    | "id"
-    | "videoUrl"
-    | "dramaId"
-    | "createdAt"
-    | "episodeNum"
-    | "releaseDate"
-    | "updatedAt"
-    | "slug",
-    ExtArgs["result"]["episode"]
-  >;
-  export type EpisodeInclude<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    drama?: boolean | DramaDefaultArgs<ExtArgs>;
-  };
-  export type EpisodeIncludeCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    drama?: boolean | DramaDefaultArgs<ExtArgs>;
-  };
-  export type EpisodeIncludeUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    drama?: boolean | DramaDefaultArgs<ExtArgs>;
-  };
+  export type EpisodeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "videoUrl" | "dramaId" | "createdAt" | "episodeNum" | "releaseDate" | "updatedAt" | "slug", ExtArgs["result"]["episode"]>
+  export type EpisodeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }
+  export type EpisodeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }
+  export type EpisodeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    drama?: boolean | DramaDefaultArgs<ExtArgs>
+  }
 
-  export type $EpisodePayload<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    name: "Episode";
+  export type $EpisodePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Episode"
     objects: {
-      drama: Prisma.$DramaPayload<ExtArgs>;
-    };
-    scalars: $Extensions.GetPayloadResult<
-      {
-        id: string;
-        videoUrl: string;
-        dramaId: string;
-        createdAt: Date;
-        episodeNum: number;
-        releaseDate: Date;
-        updatedAt: Date;
-        slug: string;
-      },
-      ExtArgs["result"]["episode"]
-    >;
-    composites: {};
-  };
+      drama: Prisma.$DramaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      videoUrl: string
+      dramaId: string
+      createdAt: Date
+      episodeNum: number
+      releaseDate: Date
+      updatedAt: Date
+      slug: string
+    }, ExtArgs["result"]["episode"]>
+    composites: {}
+  }
 
-  type EpisodeGetPayload<
-    S extends boolean | null | undefined | EpisodeDefaultArgs,
-  > = $Result.GetResult<Prisma.$EpisodePayload, S>;
+  type EpisodeGetPayload<S extends boolean | null | undefined | EpisodeDefaultArgs> = $Result.GetResult<Prisma.$EpisodePayload, S>
 
-  type EpisodeCountArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = Omit<EpisodeFindManyArgs, "select" | "include" | "distinct" | "omit"> & {
-    select?: EpisodeCountAggregateInputType | true;
-  };
+  type EpisodeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EpisodeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EpisodeCountAggregateInputType | true
+    }
 
-  export interface EpisodeDelegate<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>["model"]["Episode"];
-      meta: { name: "Episode" };
-    };
+  export interface EpisodeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Episode'], meta: { name: 'Episode' } }
     /**
      * Find zero or one Episode that matches the filter.
      * @param {EpisodeFindUniqueArgs} args - Arguments to find a Episode
@@ -2895,19 +2511,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends EpisodeFindUniqueArgs>(
-      args: SelectSubset<T, EpisodeFindUniqueArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "findUnique",
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findUnique<T extends EpisodeFindUniqueArgs>(args: SelectSubset<T, EpisodeFindUniqueArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Episode that matches the filter or throw an error with `error.code='P2025'`
@@ -2921,19 +2525,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends EpisodeFindUniqueOrThrowArgs>(
-      args: SelectSubset<T, EpisodeFindUniqueOrThrowArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "findUniqueOrThrow",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findUniqueOrThrow<T extends EpisodeFindUniqueOrThrowArgs>(args: SelectSubset<T, EpisodeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Episode that matches the filter.
@@ -2948,19 +2540,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends EpisodeFindFirstArgs>(
-      args?: SelectSubset<T, EpisodeFindFirstArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "findFirst",
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findFirst<T extends EpisodeFindFirstArgs>(args?: SelectSubset<T, EpisodeFindFirstArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Episode that matches the filter or
@@ -2976,19 +2556,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends EpisodeFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, EpisodeFindFirstOrThrowArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "findFirstOrThrow",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    findFirstOrThrow<T extends EpisodeFindFirstOrThrowArgs>(args?: SelectSubset<T, EpisodeFindFirstOrThrowArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Episodes that matches the filter.
@@ -2998,24 +2566,15 @@ export namespace Prisma {
      * @example
      * // Get all Episodes
      * const episodes = await prisma.episode.findMany()
-     *
+     * 
      * // Get first 10 Episodes
      * const episodes = await prisma.episode.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const episodeWithIdOnly = await prisma.episode.findMany({ select: { id: true } })
-     *
+     * 
      */
-    findMany<T extends EpisodeFindManyArgs>(
-      args?: SelectSubset<T, EpisodeFindManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "findMany",
-        GlobalOmitOptions
-      >
-    >;
+    findMany<T extends EpisodeFindManyArgs>(args?: SelectSubset<T, EpisodeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Episode.
@@ -3027,21 +2586,9 @@ export namespace Prisma {
      *     // ... data to create a Episode
      *   }
      * })
-     *
+     * 
      */
-    create<T extends EpisodeCreateArgs>(
-      args: SelectSubset<T, EpisodeCreateArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "create",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    create<T extends EpisodeCreateArgs>(args: SelectSubset<T, EpisodeCreateArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Episodes.
@@ -3053,11 +2600,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
-    createMany<T extends EpisodeCreateManyArgs>(
-      args?: SelectSubset<T, EpisodeCreateManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    createMany<T extends EpisodeCreateManyArgs>(args?: SelectSubset<T, EpisodeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Episodes and returns the data saved in the database.
@@ -3069,7 +2614,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Episodes and only return the `id`
      * const episodeWithIdOnly = await prisma.episode.createManyAndReturn({
      *   select: { id: true },
@@ -3079,18 +2624,9 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
-    createManyAndReturn<T extends EpisodeCreateManyAndReturnArgs>(
-      args?: SelectSubset<T, EpisodeCreateManyAndReturnArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "createManyAndReturn",
-        GlobalOmitOptions
-      >
-    >;
+    createManyAndReturn<T extends EpisodeCreateManyAndReturnArgs>(args?: SelectSubset<T, EpisodeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Delete a Episode.
@@ -3102,21 +2638,9 @@ export namespace Prisma {
      *     // ... filter to delete one Episode
      *   }
      * })
-     *
+     * 
      */
-    delete<T extends EpisodeDeleteArgs>(
-      args: SelectSubset<T, EpisodeDeleteArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "delete",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    delete<T extends EpisodeDeleteArgs>(args: SelectSubset<T, EpisodeDeleteArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Episode.
@@ -3131,21 +2655,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
-    update<T extends EpisodeUpdateArgs>(
-      args: SelectSubset<T, EpisodeUpdateArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "update",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    update<T extends EpisodeUpdateArgs>(args: SelectSubset<T, EpisodeUpdateArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Episodes.
@@ -3157,11 +2669,9 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
-    deleteMany<T extends EpisodeDeleteManyArgs>(
-      args?: SelectSubset<T, EpisodeDeleteManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    deleteMany<T extends EpisodeDeleteManyArgs>(args?: SelectSubset<T, EpisodeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Episodes.
@@ -3178,11 +2688,9 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
-    updateMany<T extends EpisodeUpdateManyArgs>(
-      args: SelectSubset<T, EpisodeUpdateManyArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<BatchPayload>;
+    updateMany<T extends EpisodeUpdateManyArgs>(args: SelectSubset<T, EpisodeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Episodes and returns the data updated in the database.
@@ -3197,7 +2705,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Episodes and only return the `id`
      * const episodeWithIdOnly = await prisma.episode.updateManyAndReturn({
      *   select: { id: true },
@@ -3210,18 +2718,9 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
-    updateManyAndReturn<T extends EpisodeUpdateManyAndReturnArgs>(
-      args: SelectSubset<T, EpisodeUpdateManyAndReturnArgs<ExtArgs>>,
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "updateManyAndReturn",
-        GlobalOmitOptions
-      >
-    >;
+    updateManyAndReturn<T extends EpisodeUpdateManyAndReturnArgs>(args: SelectSubset<T, EpisodeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Episode.
@@ -3240,19 +2739,8 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends EpisodeUpsertArgs>(
-      args: SelectSubset<T, EpisodeUpsertArgs<ExtArgs>>,
-    ): Prisma__EpisodeClient<
-      $Result.GetResult<
-        Prisma.$EpisodePayload<ExtArgs>,
-        T,
-        "upsert",
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+    upsert<T extends EpisodeUpsertArgs>(args: SelectSubset<T, EpisodeUpsertArgs<ExtArgs>>): Prisma__EpisodeClient<$Result.GetResult<Prisma.$EpisodePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
 
     /**
      * Count the number of Episodes.
@@ -3266,16 +2754,16 @@ export namespace Prisma {
      *     // ... the filter for the Episodes we want to count
      *   }
      * })
-     **/
+    **/
     count<T extends EpisodeCountArgs>(
       args?: Subset<T, EpisodeCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<"select", any>
-        ? T["select"] extends true
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
           ? number
-          : GetScalarType<T["select"], EpisodeCountAggregateOutputType>
+          : GetScalarType<T['select'], EpisodeCountAggregateOutputType>
         : number
-    >;
+    >
 
     /**
      * Allows you to perform aggregations operations on a Episode.
@@ -3300,10 +2788,8 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-     **/
-    aggregate<T extends EpisodeAggregateArgs>(
-      args: Subset<T, EpisodeAggregateArgs>,
-    ): Prisma.PrismaPromise<GetEpisodeAggregateType<T>>;
+    **/
+    aggregate<T extends EpisodeAggregateArgs>(args: Subset<T, EpisodeAggregateArgs>): Prisma.PrismaPromise<GetEpisodeAggregateType<T>>
 
     /**
      * Group by Episode.
@@ -3321,76 +2807,70 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
-     **/
+     * 
+    **/
     groupBy<
       T extends EpisodeGroupByArgs,
       HasSelectOrTake extends Or<
-        Extends<"skip", Keys<T>>,
-        Extends<"take", Keys<T>>
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: EpisodeGroupByArgs["orderBy"] }
-        : { orderBy?: EpisodeGroupByArgs["orderBy"] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T["orderBy"]>>
-      >,
-      ByFields extends MaybeTupleToUnion<T["by"]>,
+        ? { orderBy: EpisodeGroupByArgs['orderBy'] }
+        : { orderBy?: EpisodeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T["having"]>,
+      HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T["by"] extends never[] ? True : False,
+      ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-          ? {
-              [P in HavingFields]: P extends ByFields
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
                 ? never
-                : P extends string
-                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                  : [
-                      Error,
-                      "Field ",
-                      P,
-                      ` in "having" needs to be provided in "by"`,
-                    ];
-            }[HavingFields]
-          : "take" extends Keys<T>
-            ? "orderBy" extends Keys<T>
-              ? ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields]
-              : 'Error: If you provide "take", you also need to provide "orderBy"'
-            : "skip" extends Keys<T>
-              ? "orderBy" extends Keys<T>
-                ? ByValid extends True
-                  ? {}
-                  : {
-                      [P in OrderFields]: P extends ByFields
-                        ? never
-                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                    }[OrderFields]
-                : 'Error: If you provide "skip", you also need to provide "orderBy"'
-              : ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields],
-    >(
-      args: SubsetIntersection<T, EpisodeGroupByArgs, OrderByArg> & InputErrors,
-    ): {} extends InputErrors
-      ? GetEpisodeGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>;
-    /**
-     * Fields of the Episode model
-     */
-    readonly fields: EpisodeFieldRefs;
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EpisodeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEpisodeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Episode model
+   */
+  readonly fields: EpisodeFieldRefs;
   }
 
   /**
@@ -3399,1898 +2879,1726 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__EpisodeClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise";
-    drama<T extends DramaDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, DramaDefaultArgs<ExtArgs>>,
-    ): Prisma__DramaClient<
-      | $Result.GetResult<
-          Prisma.$DramaPayload<ExtArgs>,
-          T,
-          "findUniqueOrThrow",
-          GlobalOmitOptions
-        >
-      | Null,
-      Null,
-      ExtArgs,
-      GlobalOmitOptions
-    >;
+  export interface Prisma__EpisodeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    drama<T extends DramaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DramaDefaultArgs<ExtArgs>>): Prisma__DramaClient<$Result.GetResult<Prisma.$DramaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null,
-    ): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null,
-    ): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
+
+
 
   /**
    * Fields of the Episode model
    */
   interface EpisodeFieldRefs {
-    readonly id: FieldRef<"Episode", "String">;
-    readonly videoUrl: FieldRef<"Episode", "String">;
-    readonly dramaId: FieldRef<"Episode", "String">;
-    readonly createdAt: FieldRef<"Episode", "DateTime">;
-    readonly episodeNum: FieldRef<"Episode", "Int">;
-    readonly releaseDate: FieldRef<"Episode", "DateTime">;
-    readonly updatedAt: FieldRef<"Episode", "DateTime">;
-    readonly slug: FieldRef<"Episode", "String">;
+    readonly id: FieldRef<"Episode", 'String'>
+    readonly videoUrl: FieldRef<"Episode", 'String'>
+    readonly dramaId: FieldRef<"Episode", 'String'>
+    readonly createdAt: FieldRef<"Episode", 'DateTime'>
+    readonly episodeNum: FieldRef<"Episode", 'Int'>
+    readonly releaseDate: FieldRef<"Episode", 'DateTime'>
+    readonly updatedAt: FieldRef<"Episode", 'DateTime'>
+    readonly slug: FieldRef<"Episode", 'String'>
   }
+    
 
   // Custom InputTypes
   /**
    * Episode findUnique
    */
-  export type EpisodeFindUniqueArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter, which Episode to fetch.
      */
-    where: EpisodeWhereUniqueInput;
-  };
+    where: EpisodeWhereUniqueInput
+  }
 
   /**
    * Episode findUniqueOrThrow
    */
-  export type EpisodeFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter, which Episode to fetch.
      */
-    where: EpisodeWhereUniqueInput;
-  };
+    where: EpisodeWhereUniqueInput
+  }
 
   /**
    * Episode findFirst
    */
-  export type EpisodeFindFirstArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter, which Episode to fetch.
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Episodes to fetch.
      */
-    orderBy?:
-      | EpisodeOrderByWithRelationInput
-      | EpisodeOrderByWithRelationInput[];
+    orderBy?: EpisodeOrderByWithRelationInput | EpisodeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Episodes.
      */
-    cursor?: EpisodeWhereUniqueInput;
+    cursor?: EpisodeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Episodes from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Episodes.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Episodes.
      */
-    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[];
-  };
+    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[]
+  }
 
   /**
    * Episode findFirstOrThrow
    */
-  export type EpisodeFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter, which Episode to fetch.
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Episodes to fetch.
      */
-    orderBy?:
-      | EpisodeOrderByWithRelationInput
-      | EpisodeOrderByWithRelationInput[];
+    orderBy?: EpisodeOrderByWithRelationInput | EpisodeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Episodes.
      */
-    cursor?: EpisodeWhereUniqueInput;
+    cursor?: EpisodeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Episodes from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Episodes.
      */
-    skip?: number;
+    skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Episodes.
      */
-    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[];
-  };
+    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[]
+  }
 
   /**
    * Episode findMany
    */
-  export type EpisodeFindManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter, which Episodes to fetch.
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Episodes to fetch.
      */
-    orderBy?:
-      | EpisodeOrderByWithRelationInput
-      | EpisodeOrderByWithRelationInput[];
+    orderBy?: EpisodeOrderByWithRelationInput | EpisodeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Episodes.
      */
-    cursor?: EpisodeWhereUniqueInput;
+    cursor?: EpisodeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Episodes from the position of the cursor.
      */
-    take?: number;
+    take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Episodes.
      */
-    skip?: number;
-    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[];
-  };
+    skip?: number
+    distinct?: EpisodeScalarFieldEnum | EpisodeScalarFieldEnum[]
+  }
 
   /**
    * Episode create
    */
-  export type EpisodeCreateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * The data needed to create a Episode.
      */
-    data: XOR<EpisodeCreateInput, EpisodeUncheckedCreateInput>;
-  };
+    data: XOR<EpisodeCreateInput, EpisodeUncheckedCreateInput>
+  }
 
   /**
    * Episode createMany
    */
-  export type EpisodeCreateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Episodes.
      */
-    data: EpisodeCreateManyInput | EpisodeCreateManyInput[];
-    skipDuplicates?: boolean;
-  };
+    data: EpisodeCreateManyInput | EpisodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Episode createManyAndReturn
    */
-  export type EpisodeCreateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelectCreateManyAndReturn<ExtArgs> | null;
+    select?: EpisodeSelectCreateManyAndReturn<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * The data used to create many Episodes.
      */
-    data: EpisodeCreateManyInput | EpisodeCreateManyInput[];
-    skipDuplicates?: boolean;
+    data: EpisodeCreateManyInput | EpisodeCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeIncludeCreateManyAndReturn<ExtArgs> | null;
-  };
+    include?: EpisodeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
 
   /**
    * Episode update
    */
-  export type EpisodeUpdateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * The data needed to update a Episode.
      */
-    data: XOR<EpisodeUpdateInput, EpisodeUncheckedUpdateInput>;
+    data: XOR<EpisodeUpdateInput, EpisodeUncheckedUpdateInput>
     /**
      * Choose, which Episode to update.
      */
-    where: EpisodeWhereUniqueInput;
-  };
+    where: EpisodeWhereUniqueInput
+  }
 
   /**
    * Episode updateMany
    */
-  export type EpisodeUpdateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Episodes.
      */
-    data: XOR<EpisodeUpdateManyMutationInput, EpisodeUncheckedUpdateManyInput>;
+    data: XOR<EpisodeUpdateManyMutationInput, EpisodeUncheckedUpdateManyInput>
     /**
      * Filter which Episodes to update
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * Limit how many Episodes to update.
      */
-    limit?: number;
-  };
+    limit?: number
+  }
 
   /**
    * Episode updateManyAndReturn
    */
-  export type EpisodeUpdateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelectUpdateManyAndReturn<ExtArgs> | null;
+    select?: EpisodeSelectUpdateManyAndReturn<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * The data used to update Episodes.
      */
-    data: XOR<EpisodeUpdateManyMutationInput, EpisodeUncheckedUpdateManyInput>;
+    data: XOR<EpisodeUpdateManyMutationInput, EpisodeUncheckedUpdateManyInput>
     /**
      * Filter which Episodes to update
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * Limit how many Episodes to update.
      */
-    limit?: number;
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeIncludeUpdateManyAndReturn<ExtArgs> | null;
-  };
+    include?: EpisodeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
 
   /**
    * Episode upsert
    */
-  export type EpisodeUpsertArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * The filter to search for the Episode to update in case it exists.
      */
-    where: EpisodeWhereUniqueInput;
+    where: EpisodeWhereUniqueInput
     /**
      * In case the Episode found by the `where` argument doesn't exist, create a new Episode with this data.
      */
-    create: XOR<EpisodeCreateInput, EpisodeUncheckedCreateInput>;
+    create: XOR<EpisodeCreateInput, EpisodeUncheckedCreateInput>
     /**
      * In case the Episode was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<EpisodeUpdateInput, EpisodeUncheckedUpdateInput>;
-  };
+    update: XOR<EpisodeUpdateInput, EpisodeUncheckedUpdateInput>
+  }
 
   /**
    * Episode delete
    */
-  export type EpisodeDeleteArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
+    include?: EpisodeInclude<ExtArgs> | null
     /**
      * Filter which Episode to delete.
      */
-    where: EpisodeWhereUniqueInput;
-  };
+    where: EpisodeWhereUniqueInput
+  }
 
   /**
    * Episode deleteMany
    */
-  export type EpisodeDeleteManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Episodes to delete
      */
-    where?: EpisodeWhereInput;
+    where?: EpisodeWhereInput
     /**
      * Limit how many Episodes to delete.
      */
-    limit?: number;
-  };
+    limit?: number
+  }
 
   /**
    * Episode without action
    */
-  export type EpisodeDefaultArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
+  export type EpisodeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Episode
      */
-    select?: EpisodeSelect<ExtArgs> | null;
+    select?: EpisodeSelect<ExtArgs> | null
     /**
      * Omit specific fields from the Episode
      */
-    omit?: EpisodeOmit<ExtArgs> | null;
+    omit?: EpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EpisodeInclude<ExtArgs> | null;
-  };
+    include?: EpisodeInclude<ExtArgs> | null
+  }
+
 
   /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: "ReadUncommitted";
-    ReadCommitted: "ReadCommitted";
-    RepeatableRead: "RepeatableRead";
-    Serializable: "Serializable";
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
   };
 
-  export type TransactionIsolationLevel =
-    (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
 
   export const DramaScalarFieldEnum: {
-    id: "id";
-    title: "title";
-    slug: "slug";
-    description: "description";
-    thumbnail: "thumbnail";
-    status: "status";
-    releaseDate: "releaseDate";
-    isPopular: "isPopular";
-    createdAt: "createdAt";
-    updatedAt: "updatedAt";
-    totalEpisode: "totalEpisode";
-    airTime: "airTime";
+    id: 'id',
+    title: 'title',
+    slug: 'slug',
+    description: 'description',
+    thumbnail: 'thumbnail',
+    status: 'status',
+    releaseDate: 'releaseDate',
+    isPopular: 'isPopular',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    totalEpisode: 'totalEpisode',
+    airTime: 'airTime'
   };
 
-  export type DramaScalarFieldEnum =
-    (typeof DramaScalarFieldEnum)[keyof typeof DramaScalarFieldEnum];
+  export type DramaScalarFieldEnum = (typeof DramaScalarFieldEnum)[keyof typeof DramaScalarFieldEnum]
+
 
   export const EpisodeScalarFieldEnum: {
-    id: "id";
-    videoUrl: "videoUrl";
-    dramaId: "dramaId";
-    createdAt: "createdAt";
-    episodeNum: "episodeNum";
-    releaseDate: "releaseDate";
-    updatedAt: "updatedAt";
-    slug: "slug";
+    id: 'id',
+    videoUrl: 'videoUrl',
+    dramaId: 'dramaId',
+    createdAt: 'createdAt',
+    episodeNum: 'episodeNum',
+    releaseDate: 'releaseDate',
+    updatedAt: 'updatedAt',
+    slug: 'slug'
   };
 
-  export type EpisodeScalarFieldEnum =
-    (typeof EpisodeScalarFieldEnum)[keyof typeof EpisodeScalarFieldEnum];
+  export type EpisodeScalarFieldEnum = (typeof EpisodeScalarFieldEnum)[keyof typeof EpisodeScalarFieldEnum]
+
 
   export const SortOrder: {
-    asc: "asc";
-    desc: "desc";
+    asc: 'asc',
+    desc: 'desc'
   };
 
-  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
 
   export const QueryMode: {
-    default: "default";
-    insensitive: "insensitive";
+    default: 'default',
+    insensitive: 'insensitive'
   };
 
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
 
   export const NullsOrder: {
-    first: "first";
-    last: "last";
+    first: 'first',
+    last: 'last'
   };
 
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
 
   /**
    * Field references
    */
 
+
   /**
    * Reference to a field of type 'String'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "String"
-  >;
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
 
   /**
    * Reference to a field of type 'String[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "String[]"
-  >;
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
 
   /**
    * Reference to a field of type 'Status'
    */
-  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Status"
-  >;
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
 
   /**
    * Reference to a field of type 'Status[]'
    */
-  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Status[]"
-  >;
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+    
+
 
   /**
    * Reference to a field of type 'DateTime'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "DateTime"
-  >;
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "DateTime[]"
-  >;
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
 
   /**
    * Reference to a field of type 'Boolean'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Boolean"
-  >;
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
 
   /**
    * Reference to a field of type 'Int'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Int"
-  >;
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
 
   /**
    * Reference to a field of type 'Int[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Int[]"
-  >;
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
 
   /**
    * Reference to a field of type 'Float'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Float"
-  >;
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
 
   /**
    * Reference to a field of type 'Float[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    "Float[]"
-  >;
-
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
 
+
   export type DramaWhereInput = {
-    AND?: DramaWhereInput | DramaWhereInput[];
-    OR?: DramaWhereInput[];
-    NOT?: DramaWhereInput | DramaWhereInput[];
-    id?: StringFilter<"Drama"> | string;
-    title?: StringFilter<"Drama"> | string;
-    slug?: StringFilter<"Drama"> | string;
-    description?: StringFilter<"Drama"> | string;
-    thumbnail?: StringFilter<"Drama"> | string;
-    status?: EnumStatusFilter<"Drama"> | $Enums.Status;
-    releaseDate?: DateTimeFilter<"Drama"> | Date | string;
-    isPopular?: BoolFilter<"Drama"> | boolean;
-    createdAt?: DateTimeFilter<"Drama"> | Date | string;
-    updatedAt?: DateTimeFilter<"Drama"> | Date | string;
-    totalEpisode?: IntNullableFilter<"Drama"> | number | null;
-    airTime?: StringNullableFilter<"Drama"> | string | null;
-    episodes?: EpisodeListRelationFilter;
-  };
+    AND?: DramaWhereInput | DramaWhereInput[]
+    OR?: DramaWhereInput[]
+    NOT?: DramaWhereInput | DramaWhereInput[]
+    id?: StringFilter<"Drama"> | string
+    title?: StringFilter<"Drama"> | string
+    slug?: StringFilter<"Drama"> | string
+    description?: StringFilter<"Drama"> | string
+    thumbnail?: StringFilter<"Drama"> | string
+    status?: EnumStatusFilter<"Drama"> | $Enums.Status
+    releaseDate?: DateTimeFilter<"Drama"> | Date | string
+    isPopular?: BoolFilter<"Drama"> | boolean
+    createdAt?: DateTimeFilter<"Drama"> | Date | string
+    updatedAt?: DateTimeFilter<"Drama"> | Date | string
+    totalEpisode?: IntNullableFilter<"Drama"> | number | null
+    airTime?: StringNullableFilter<"Drama"> | string | null
+    episodes?: EpisodeListRelationFilter
+  }
 
   export type DramaOrderByWithRelationInput = {
-    id?: SortOrder;
-    title?: SortOrder;
-    slug?: SortOrder;
-    description?: SortOrder;
-    thumbnail?: SortOrder;
-    status?: SortOrder;
-    releaseDate?: SortOrder;
-    isPopular?: SortOrder;
-    createdAt?: SortOrder;
-    updatedAt?: SortOrder;
-    totalEpisode?: SortOrderInput | SortOrder;
-    airTime?: SortOrderInput | SortOrder;
-    episodes?: EpisodeOrderByRelationAggregateInput;
-  };
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnail?: SortOrder
+    status?: SortOrder
+    releaseDate?: SortOrder
+    isPopular?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    totalEpisode?: SortOrderInput | SortOrder
+    airTime?: SortOrderInput | SortOrder
+    episodes?: EpisodeOrderByRelationAggregateInput
+  }
 
-  export type DramaWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: string;
-      slug?: string;
-      AND?: DramaWhereInput | DramaWhereInput[];
-      OR?: DramaWhereInput[];
-      NOT?: DramaWhereInput | DramaWhereInput[];
-      title?: StringFilter<"Drama"> | string;
-      description?: StringFilter<"Drama"> | string;
-      thumbnail?: StringFilter<"Drama"> | string;
-      status?: EnumStatusFilter<"Drama"> | $Enums.Status;
-      releaseDate?: DateTimeFilter<"Drama"> | Date | string;
-      isPopular?: BoolFilter<"Drama"> | boolean;
-      createdAt?: DateTimeFilter<"Drama"> | Date | string;
-      updatedAt?: DateTimeFilter<"Drama"> | Date | string;
-      totalEpisode?: IntNullableFilter<"Drama"> | number | null;
-      airTime?: StringNullableFilter<"Drama"> | string | null;
-      episodes?: EpisodeListRelationFilter;
-    },
-    "id" | "slug"
-  >;
+  export type DramaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: DramaWhereInput | DramaWhereInput[]
+    OR?: DramaWhereInput[]
+    NOT?: DramaWhereInput | DramaWhereInput[]
+    title?: StringFilter<"Drama"> | string
+    description?: StringFilter<"Drama"> | string
+    thumbnail?: StringFilter<"Drama"> | string
+    status?: EnumStatusFilter<"Drama"> | $Enums.Status
+    releaseDate?: DateTimeFilter<"Drama"> | Date | string
+    isPopular?: BoolFilter<"Drama"> | boolean
+    createdAt?: DateTimeFilter<"Drama"> | Date | string
+    updatedAt?: DateTimeFilter<"Drama"> | Date | string
+    totalEpisode?: IntNullableFilter<"Drama"> | number | null
+    airTime?: StringNullableFilter<"Drama"> | string | null
+    episodes?: EpisodeListRelationFilter
+  }, "id" | "slug">
 
   export type DramaOrderByWithAggregationInput = {
-    id?: SortOrder;
-    title?: SortOrder;
-    slug?: SortOrder;
-    description?: SortOrder;
-    thumbnail?: SortOrder;
-    status?: SortOrder;
-    releaseDate?: SortOrder;
-    isPopular?: SortOrder;
-    createdAt?: SortOrder;
-    updatedAt?: SortOrder;
-    totalEpisode?: SortOrderInput | SortOrder;
-    airTime?: SortOrderInput | SortOrder;
-    _count?: DramaCountOrderByAggregateInput;
-    _avg?: DramaAvgOrderByAggregateInput;
-    _max?: DramaMaxOrderByAggregateInput;
-    _min?: DramaMinOrderByAggregateInput;
-    _sum?: DramaSumOrderByAggregateInput;
-  };
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnail?: SortOrder
+    status?: SortOrder
+    releaseDate?: SortOrder
+    isPopular?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    totalEpisode?: SortOrderInput | SortOrder
+    airTime?: SortOrderInput | SortOrder
+    _count?: DramaCountOrderByAggregateInput
+    _avg?: DramaAvgOrderByAggregateInput
+    _max?: DramaMaxOrderByAggregateInput
+    _min?: DramaMinOrderByAggregateInput
+    _sum?: DramaSumOrderByAggregateInput
+  }
 
   export type DramaScalarWhereWithAggregatesInput = {
-    AND?:
-      | DramaScalarWhereWithAggregatesInput
-      | DramaScalarWhereWithAggregatesInput[];
-    OR?: DramaScalarWhereWithAggregatesInput[];
-    NOT?:
-      | DramaScalarWhereWithAggregatesInput
-      | DramaScalarWhereWithAggregatesInput[];
-    id?: StringWithAggregatesFilter<"Drama"> | string;
-    title?: StringWithAggregatesFilter<"Drama"> | string;
-    slug?: StringWithAggregatesFilter<"Drama"> | string;
-    description?: StringWithAggregatesFilter<"Drama"> | string;
-    thumbnail?: StringWithAggregatesFilter<"Drama"> | string;
-    status?: EnumStatusWithAggregatesFilter<"Drama"> | $Enums.Status;
-    releaseDate?: DateTimeWithAggregatesFilter<"Drama"> | Date | string;
-    isPopular?: BoolWithAggregatesFilter<"Drama"> | boolean;
-    createdAt?: DateTimeWithAggregatesFilter<"Drama"> | Date | string;
-    updatedAt?: DateTimeWithAggregatesFilter<"Drama"> | Date | string;
-    totalEpisode?: IntNullableWithAggregatesFilter<"Drama"> | number | null;
-    airTime?: StringNullableWithAggregatesFilter<"Drama"> | string | null;
-  };
+    AND?: DramaScalarWhereWithAggregatesInput | DramaScalarWhereWithAggregatesInput[]
+    OR?: DramaScalarWhereWithAggregatesInput[]
+    NOT?: DramaScalarWhereWithAggregatesInput | DramaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Drama"> | string
+    title?: StringWithAggregatesFilter<"Drama"> | string
+    slug?: StringWithAggregatesFilter<"Drama"> | string
+    description?: StringWithAggregatesFilter<"Drama"> | string
+    thumbnail?: StringWithAggregatesFilter<"Drama"> | string
+    status?: EnumStatusWithAggregatesFilter<"Drama"> | $Enums.Status
+    releaseDate?: DateTimeWithAggregatesFilter<"Drama"> | Date | string
+    isPopular?: BoolWithAggregatesFilter<"Drama"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Drama"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Drama"> | Date | string
+    totalEpisode?: IntNullableWithAggregatesFilter<"Drama"> | number | null
+    airTime?: StringNullableWithAggregatesFilter<"Drama"> | string | null
+  }
 
   export type EpisodeWhereInput = {
-    AND?: EpisodeWhereInput | EpisodeWhereInput[];
-    OR?: EpisodeWhereInput[];
-    NOT?: EpisodeWhereInput | EpisodeWhereInput[];
-    id?: StringFilter<"Episode"> | string;
-    videoUrl?: StringFilter<"Episode"> | string;
-    dramaId?: StringFilter<"Episode"> | string;
-    createdAt?: DateTimeFilter<"Episode"> | Date | string;
-    episodeNum?: IntFilter<"Episode"> | number;
-    releaseDate?: DateTimeFilter<"Episode"> | Date | string;
-    updatedAt?: DateTimeFilter<"Episode"> | Date | string;
-    slug?: StringFilter<"Episode"> | string;
-    drama?: XOR<DramaScalarRelationFilter, DramaWhereInput>;
-  };
+    AND?: EpisodeWhereInput | EpisodeWhereInput[]
+    OR?: EpisodeWhereInput[]
+    NOT?: EpisodeWhereInput | EpisodeWhereInput[]
+    id?: StringFilter<"Episode"> | string
+    videoUrl?: StringFilter<"Episode"> | string
+    dramaId?: StringFilter<"Episode"> | string
+    createdAt?: DateTimeFilter<"Episode"> | Date | string
+    episodeNum?: IntFilter<"Episode"> | number
+    releaseDate?: DateTimeFilter<"Episode"> | Date | string
+    updatedAt?: DateTimeFilter<"Episode"> | Date | string
+    slug?: StringFilter<"Episode"> | string
+    drama?: XOR<DramaScalarRelationFilter, DramaWhereInput>
+  }
 
   export type EpisodeOrderByWithRelationInput = {
-    id?: SortOrder;
-    videoUrl?: SortOrder;
-    dramaId?: SortOrder;
-    createdAt?: SortOrder;
-    episodeNum?: SortOrder;
-    releaseDate?: SortOrder;
-    updatedAt?: SortOrder;
-    slug?: SortOrder;
-    drama?: DramaOrderByWithRelationInput;
-  };
+    id?: SortOrder
+    videoUrl?: SortOrder
+    dramaId?: SortOrder
+    createdAt?: SortOrder
+    episodeNum?: SortOrder
+    releaseDate?: SortOrder
+    updatedAt?: SortOrder
+    slug?: SortOrder
+    drama?: DramaOrderByWithRelationInput
+  }
 
-  export type EpisodeWhereUniqueInput = Prisma.AtLeast<
-    {
-      id?: string;
-      slug?: string;
-      AND?: EpisodeWhereInput | EpisodeWhereInput[];
-      OR?: EpisodeWhereInput[];
-      NOT?: EpisodeWhereInput | EpisodeWhereInput[];
-      videoUrl?: StringFilter<"Episode"> | string;
-      dramaId?: StringFilter<"Episode"> | string;
-      createdAt?: DateTimeFilter<"Episode"> | Date | string;
-      episodeNum?: IntFilter<"Episode"> | number;
-      releaseDate?: DateTimeFilter<"Episode"> | Date | string;
-      updatedAt?: DateTimeFilter<"Episode"> | Date | string;
-      drama?: XOR<DramaScalarRelationFilter, DramaWhereInput>;
-    },
-    "id" | "slug"
-  >;
+  export type EpisodeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: EpisodeWhereInput | EpisodeWhereInput[]
+    OR?: EpisodeWhereInput[]
+    NOT?: EpisodeWhereInput | EpisodeWhereInput[]
+    videoUrl?: StringFilter<"Episode"> | string
+    dramaId?: StringFilter<"Episode"> | string
+    createdAt?: DateTimeFilter<"Episode"> | Date | string
+    episodeNum?: IntFilter<"Episode"> | number
+    releaseDate?: DateTimeFilter<"Episode"> | Date | string
+    updatedAt?: DateTimeFilter<"Episode"> | Date | string
+    drama?: XOR<DramaScalarRelationFilter, DramaWhereInput>
+  }, "id" | "slug">
 
   export type EpisodeOrderByWithAggregationInput = {
-    id?: SortOrder;
-    videoUrl?: SortOrder;
-    dramaId?: SortOrder;
-    createdAt?: SortOrder;
-    episodeNum?: SortOrder;
-    releaseDate?: SortOrder;
-    updatedAt?: SortOrder;
-    slug?: SortOrder;
-    _count?: EpisodeCountOrderByAggregateInput;
-    _avg?: EpisodeAvgOrderByAggregateInput;
-    _max?: EpisodeMaxOrderByAggregateInput;
-    _min?: EpisodeMinOrderByAggregateInput;
-    _sum?: EpisodeSumOrderByAggregateInput;
-  };
+    id?: SortOrder
+    videoUrl?: SortOrder
+    dramaId?: SortOrder
+    createdAt?: SortOrder
+    episodeNum?: SortOrder
+    releaseDate?: SortOrder
+    updatedAt?: SortOrder
+    slug?: SortOrder
+    _count?: EpisodeCountOrderByAggregateInput
+    _avg?: EpisodeAvgOrderByAggregateInput
+    _max?: EpisodeMaxOrderByAggregateInput
+    _min?: EpisodeMinOrderByAggregateInput
+    _sum?: EpisodeSumOrderByAggregateInput
+  }
 
   export type EpisodeScalarWhereWithAggregatesInput = {
-    AND?:
-      | EpisodeScalarWhereWithAggregatesInput
-      | EpisodeScalarWhereWithAggregatesInput[];
-    OR?: EpisodeScalarWhereWithAggregatesInput[];
-    NOT?:
-      | EpisodeScalarWhereWithAggregatesInput
-      | EpisodeScalarWhereWithAggregatesInput[];
-    id?: StringWithAggregatesFilter<"Episode"> | string;
-    videoUrl?: StringWithAggregatesFilter<"Episode"> | string;
-    dramaId?: StringWithAggregatesFilter<"Episode"> | string;
-    createdAt?: DateTimeWithAggregatesFilter<"Episode"> | Date | string;
-    episodeNum?: IntWithAggregatesFilter<"Episode"> | number;
-    releaseDate?: DateTimeWithAggregatesFilter<"Episode"> | Date | string;
-    updatedAt?: DateTimeWithAggregatesFilter<"Episode"> | Date | string;
-    slug?: StringWithAggregatesFilter<"Episode"> | string;
-  };
+    AND?: EpisodeScalarWhereWithAggregatesInput | EpisodeScalarWhereWithAggregatesInput[]
+    OR?: EpisodeScalarWhereWithAggregatesInput[]
+    NOT?: EpisodeScalarWhereWithAggregatesInput | EpisodeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Episode"> | string
+    videoUrl?: StringWithAggregatesFilter<"Episode"> | string
+    dramaId?: StringWithAggregatesFilter<"Episode"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Episode"> | Date | string
+    episodeNum?: IntWithAggregatesFilter<"Episode"> | number
+    releaseDate?: DateTimeWithAggregatesFilter<"Episode"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Episode"> | Date | string
+    slug?: StringWithAggregatesFilter<"Episode"> | string
+  }
 
   export type DramaCreateInput = {
-    id?: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date | string;
-    isPopular?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    totalEpisode?: number | null;
-    airTime?: string | null;
-    episodes?: EpisodeCreateNestedManyWithoutDramaInput;
-  };
+    id?: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date | string
+    isPopular?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    totalEpisode?: number | null
+    airTime?: string | null
+    episodes?: EpisodeCreateNestedManyWithoutDramaInput
+  }
 
   export type DramaUncheckedCreateInput = {
-    id?: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date | string;
-    isPopular?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    totalEpisode?: number | null;
-    airTime?: string | null;
-    episodes?: EpisodeUncheckedCreateNestedManyWithoutDramaInput;
-  };
+    id?: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date | string
+    isPopular?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    totalEpisode?: number | null
+    airTime?: string | null
+    episodes?: EpisodeUncheckedCreateNestedManyWithoutDramaInput
+  }
 
   export type DramaUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-    episodes?: EpisodeUpdateManyWithoutDramaNestedInput;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+    episodes?: EpisodeUpdateManyWithoutDramaNestedInput
+  }
 
   export type DramaUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-    episodes?: EpisodeUncheckedUpdateManyWithoutDramaNestedInput;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+    episodes?: EpisodeUncheckedUpdateManyWithoutDramaNestedInput
+  }
 
   export type DramaCreateManyInput = {
-    id?: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date | string;
-    isPopular?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    totalEpisode?: number | null;
-    airTime?: string | null;
-  };
+    id?: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date | string
+    isPopular?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    totalEpisode?: number | null
+    airTime?: string | null
+  }
 
   export type DramaUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+  }
 
   export type DramaUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+  }
 
   export type EpisodeCreateInput = {
-    id?: string;
-    videoUrl: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-    drama: DramaCreateNestedOneWithoutEpisodesInput;
-  };
+    id?: string
+    videoUrl: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+    drama: DramaCreateNestedOneWithoutEpisodesInput
+  }
 
   export type EpisodeUncheckedCreateInput = {
-    id?: string;
-    videoUrl: string;
-    dramaId: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-  };
+    id?: string
+    videoUrl: string
+    dramaId: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+  }
 
   export type EpisodeUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    drama?: DramaUpdateOneRequiredWithoutEpisodesNestedInput;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+    drama?: DramaUpdateOneRequiredWithoutEpisodesNestedInput
+  }
 
   export type EpisodeUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    dramaId?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    dramaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
 
   export type EpisodeCreateManyInput = {
-    id?: string;
-    videoUrl: string;
-    dramaId: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-  };
+    id?: string
+    videoUrl: string
+    dramaId: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+  }
 
   export type EpisodeUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
 
   export type EpisodeUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    dramaId?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    dramaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
 
   export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    mode?: QueryMode;
-    not?: NestedStringFilter<$PrismaModel> | string;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
 
   export type EnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>;
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status;
-  };
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
 
   export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
-  };
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
 
   export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
-    not?: NestedBoolFilter<$PrismaModel> | boolean;
-  };
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
 
   export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
 
   export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    mode?: QueryMode;
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
 
   export type EpisodeListRelationFilter = {
-    every?: EpisodeWhereInput;
-    some?: EpisodeWhereInput;
-    none?: EpisodeWhereInput;
-  };
+    every?: EpisodeWhereInput
+    some?: EpisodeWhereInput
+    none?: EpisodeWhereInput
+  }
 
   export type SortOrderInput = {
-    sort: SortOrder;
-    nulls?: NullsOrder;
-  };
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
 
   export type EpisodeOrderByRelationAggregateInput = {
-    _count?: SortOrder;
-  };
+    _count?: SortOrder
+  }
 
   export type DramaCountOrderByAggregateInput = {
-    id?: SortOrder;
-    title?: SortOrder;
-    slug?: SortOrder;
-    description?: SortOrder;
-    thumbnail?: SortOrder;
-    status?: SortOrder;
-    releaseDate?: SortOrder;
-    isPopular?: SortOrder;
-    createdAt?: SortOrder;
-    updatedAt?: SortOrder;
-    totalEpisode?: SortOrder;
-    airTime?: SortOrder;
-  };
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnail?: SortOrder
+    status?: SortOrder
+    releaseDate?: SortOrder
+    isPopular?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    totalEpisode?: SortOrder
+    airTime?: SortOrder
+  }
 
   export type DramaAvgOrderByAggregateInput = {
-    totalEpisode?: SortOrder;
-  };
+    totalEpisode?: SortOrder
+  }
 
   export type DramaMaxOrderByAggregateInput = {
-    id?: SortOrder;
-    title?: SortOrder;
-    slug?: SortOrder;
-    description?: SortOrder;
-    thumbnail?: SortOrder;
-    status?: SortOrder;
-    releaseDate?: SortOrder;
-    isPopular?: SortOrder;
-    createdAt?: SortOrder;
-    updatedAt?: SortOrder;
-    totalEpisode?: SortOrder;
-    airTime?: SortOrder;
-  };
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnail?: SortOrder
+    status?: SortOrder
+    releaseDate?: SortOrder
+    isPopular?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    totalEpisode?: SortOrder
+    airTime?: SortOrder
+  }
 
   export type DramaMinOrderByAggregateInput = {
-    id?: SortOrder;
-    title?: SortOrder;
-    slug?: SortOrder;
-    description?: SortOrder;
-    thumbnail?: SortOrder;
-    status?: SortOrder;
-    releaseDate?: SortOrder;
-    isPopular?: SortOrder;
-    createdAt?: SortOrder;
-    updatedAt?: SortOrder;
-    totalEpisode?: SortOrder;
-    airTime?: SortOrder;
-  };
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnail?: SortOrder
+    status?: SortOrder
+    releaseDate?: SortOrder
+    isPopular?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    totalEpisode?: SortOrder
+    airTime?: SortOrder
+  }
 
   export type DramaSumOrderByAggregateInput = {
-    totalEpisode?: SortOrder;
-  };
+    totalEpisode?: SortOrder
+  }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    mode?: QueryMode;
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedStringFilter<$PrismaModel>;
-    _max?: NestedStringFilter<$PrismaModel>;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
 
   export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>;
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedEnumStatusFilter<$PrismaModel>;
-    _max?: NestedEnumStatusFilter<$PrismaModel>;
-  };
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedDateTimeFilter<$PrismaModel>;
-    _max?: NestedDateTimeFilter<$PrismaModel>;
-  };
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedBoolFilter<$PrismaModel>;
-    _max?: NestedBoolFilter<$PrismaModel>;
-  };
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null;
-    _count?: NestedIntNullableFilter<$PrismaModel>;
-    _avg?: NestedFloatNullableFilter<$PrismaModel>;
-    _sum?: NestedIntNullableFilter<$PrismaModel>;
-    _min?: NestedIntNullableFilter<$PrismaModel>;
-    _max?: NestedIntNullableFilter<$PrismaModel>;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    mode?: QueryMode;
-    not?:
-      | NestedStringNullableWithAggregatesFilter<$PrismaModel>
-      | string
-      | null;
-    _count?: NestedIntNullableFilter<$PrismaModel>;
-    _min?: NestedStringNullableFilter<$PrismaModel>;
-    _max?: NestedStringNullableFilter<$PrismaModel>;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
 
   export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntFilter<$PrismaModel> | number;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
 
   export type DramaScalarRelationFilter = {
-    is?: DramaWhereInput;
-    isNot?: DramaWhereInput;
-  };
+    is?: DramaWhereInput
+    isNot?: DramaWhereInput
+  }
 
   export type EpisodeCountOrderByAggregateInput = {
-    id?: SortOrder;
-    videoUrl?: SortOrder;
-    dramaId?: SortOrder;
-    createdAt?: SortOrder;
-    episodeNum?: SortOrder;
-    releaseDate?: SortOrder;
-    updatedAt?: SortOrder;
-    slug?: SortOrder;
-  };
+    id?: SortOrder
+    videoUrl?: SortOrder
+    dramaId?: SortOrder
+    createdAt?: SortOrder
+    episodeNum?: SortOrder
+    releaseDate?: SortOrder
+    updatedAt?: SortOrder
+    slug?: SortOrder
+  }
 
   export type EpisodeAvgOrderByAggregateInput = {
-    episodeNum?: SortOrder;
-  };
+    episodeNum?: SortOrder
+  }
 
   export type EpisodeMaxOrderByAggregateInput = {
-    id?: SortOrder;
-    videoUrl?: SortOrder;
-    dramaId?: SortOrder;
-    createdAt?: SortOrder;
-    episodeNum?: SortOrder;
-    releaseDate?: SortOrder;
-    updatedAt?: SortOrder;
-    slug?: SortOrder;
-  };
+    id?: SortOrder
+    videoUrl?: SortOrder
+    dramaId?: SortOrder
+    createdAt?: SortOrder
+    episodeNum?: SortOrder
+    releaseDate?: SortOrder
+    updatedAt?: SortOrder
+    slug?: SortOrder
+  }
 
   export type EpisodeMinOrderByAggregateInput = {
-    id?: SortOrder;
-    videoUrl?: SortOrder;
-    dramaId?: SortOrder;
-    createdAt?: SortOrder;
-    episodeNum?: SortOrder;
-    releaseDate?: SortOrder;
-    updatedAt?: SortOrder;
-    slug?: SortOrder;
-  };
+    id?: SortOrder
+    videoUrl?: SortOrder
+    dramaId?: SortOrder
+    createdAt?: SortOrder
+    episodeNum?: SortOrder
+    releaseDate?: SortOrder
+    updatedAt?: SortOrder
+    slug?: SortOrder
+  }
 
   export type EpisodeSumOrderByAggregateInput = {
-    episodeNum?: SortOrder;
-  };
+    episodeNum?: SortOrder
+  }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _avg?: NestedFloatFilter<$PrismaModel>;
-    _sum?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedIntFilter<$PrismaModel>;
-    _max?: NestedIntFilter<$PrismaModel>;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
 
   export type EpisodeCreateNestedManyWithoutDramaInput = {
-    create?:
-      | XOR<
-          EpisodeCreateWithoutDramaInput,
-          EpisodeUncheckedCreateWithoutDramaInput
-        >
-      | EpisodeCreateWithoutDramaInput[]
-      | EpisodeUncheckedCreateWithoutDramaInput[];
-    connectOrCreate?:
-      | EpisodeCreateOrConnectWithoutDramaInput
-      | EpisodeCreateOrConnectWithoutDramaInput[];
-    createMany?: EpisodeCreateManyDramaInputEnvelope;
-    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-  };
+    create?: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput> | EpisodeCreateWithoutDramaInput[] | EpisodeUncheckedCreateWithoutDramaInput[]
+    connectOrCreate?: EpisodeCreateOrConnectWithoutDramaInput | EpisodeCreateOrConnectWithoutDramaInput[]
+    createMany?: EpisodeCreateManyDramaInputEnvelope
+    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+  }
 
   export type EpisodeUncheckedCreateNestedManyWithoutDramaInput = {
-    create?:
-      | XOR<
-          EpisodeCreateWithoutDramaInput,
-          EpisodeUncheckedCreateWithoutDramaInput
-        >
-      | EpisodeCreateWithoutDramaInput[]
-      | EpisodeUncheckedCreateWithoutDramaInput[];
-    connectOrCreate?:
-      | EpisodeCreateOrConnectWithoutDramaInput
-      | EpisodeCreateOrConnectWithoutDramaInput[];
-    createMany?: EpisodeCreateManyDramaInputEnvelope;
-    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-  };
+    create?: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput> | EpisodeCreateWithoutDramaInput[] | EpisodeUncheckedCreateWithoutDramaInput[]
+    connectOrCreate?: EpisodeCreateOrConnectWithoutDramaInput | EpisodeCreateOrConnectWithoutDramaInput[]
+    createMany?: EpisodeCreateManyDramaInputEnvelope
+    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+  }
 
   export type StringFieldUpdateOperationsInput = {
-    set?: string;
-  };
+    set?: string
+  }
 
   export type EnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status;
-  };
+    set?: $Enums.Status
+  }
 
   export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string;
-  };
+    set?: Date | string
+  }
 
   export type BoolFieldUpdateOperationsInput = {
-    set?: boolean;
-  };
+    set?: boolean
+  }
 
   export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-  };
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
 
   export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null;
-  };
+    set?: string | null
+  }
 
   export type EpisodeUpdateManyWithoutDramaNestedInput = {
-    create?:
-      | XOR<
-          EpisodeCreateWithoutDramaInput,
-          EpisodeUncheckedCreateWithoutDramaInput
-        >
-      | EpisodeCreateWithoutDramaInput[]
-      | EpisodeUncheckedCreateWithoutDramaInput[];
-    connectOrCreate?:
-      | EpisodeCreateOrConnectWithoutDramaInput
-      | EpisodeCreateOrConnectWithoutDramaInput[];
-    upsert?:
-      | EpisodeUpsertWithWhereUniqueWithoutDramaInput
-      | EpisodeUpsertWithWhereUniqueWithoutDramaInput[];
-    createMany?: EpisodeCreateManyDramaInputEnvelope;
-    set?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    disconnect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    delete?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    update?:
-      | EpisodeUpdateWithWhereUniqueWithoutDramaInput
-      | EpisodeUpdateWithWhereUniqueWithoutDramaInput[];
-    updateMany?:
-      | EpisodeUpdateManyWithWhereWithoutDramaInput
-      | EpisodeUpdateManyWithWhereWithoutDramaInput[];
-    deleteMany?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[];
-  };
+    create?: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput> | EpisodeCreateWithoutDramaInput[] | EpisodeUncheckedCreateWithoutDramaInput[]
+    connectOrCreate?: EpisodeCreateOrConnectWithoutDramaInput | EpisodeCreateOrConnectWithoutDramaInput[]
+    upsert?: EpisodeUpsertWithWhereUniqueWithoutDramaInput | EpisodeUpsertWithWhereUniqueWithoutDramaInput[]
+    createMany?: EpisodeCreateManyDramaInputEnvelope
+    set?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    disconnect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    delete?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    update?: EpisodeUpdateWithWhereUniqueWithoutDramaInput | EpisodeUpdateWithWhereUniqueWithoutDramaInput[]
+    updateMany?: EpisodeUpdateManyWithWhereWithoutDramaInput | EpisodeUpdateManyWithWhereWithoutDramaInput[]
+    deleteMany?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[]
+  }
 
   export type EpisodeUncheckedUpdateManyWithoutDramaNestedInput = {
-    create?:
-      | XOR<
-          EpisodeCreateWithoutDramaInput,
-          EpisodeUncheckedCreateWithoutDramaInput
-        >
-      | EpisodeCreateWithoutDramaInput[]
-      | EpisodeUncheckedCreateWithoutDramaInput[];
-    connectOrCreate?:
-      | EpisodeCreateOrConnectWithoutDramaInput
-      | EpisodeCreateOrConnectWithoutDramaInput[];
-    upsert?:
-      | EpisodeUpsertWithWhereUniqueWithoutDramaInput
-      | EpisodeUpsertWithWhereUniqueWithoutDramaInput[];
-    createMany?: EpisodeCreateManyDramaInputEnvelope;
-    set?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    disconnect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    delete?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[];
-    update?:
-      | EpisodeUpdateWithWhereUniqueWithoutDramaInput
-      | EpisodeUpdateWithWhereUniqueWithoutDramaInput[];
-    updateMany?:
-      | EpisodeUpdateManyWithWhereWithoutDramaInput
-      | EpisodeUpdateManyWithWhereWithoutDramaInput[];
-    deleteMany?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[];
-  };
+    create?: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput> | EpisodeCreateWithoutDramaInput[] | EpisodeUncheckedCreateWithoutDramaInput[]
+    connectOrCreate?: EpisodeCreateOrConnectWithoutDramaInput | EpisodeCreateOrConnectWithoutDramaInput[]
+    upsert?: EpisodeUpsertWithWhereUniqueWithoutDramaInput | EpisodeUpsertWithWhereUniqueWithoutDramaInput[]
+    createMany?: EpisodeCreateManyDramaInputEnvelope
+    set?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    disconnect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    delete?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    connect?: EpisodeWhereUniqueInput | EpisodeWhereUniqueInput[]
+    update?: EpisodeUpdateWithWhereUniqueWithoutDramaInput | EpisodeUpdateWithWhereUniqueWithoutDramaInput[]
+    updateMany?: EpisodeUpdateManyWithWhereWithoutDramaInput | EpisodeUpdateManyWithWhereWithoutDramaInput[]
+    deleteMany?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[]
+  }
 
   export type DramaCreateNestedOneWithoutEpisodesInput = {
-    create?: XOR<
-      DramaCreateWithoutEpisodesInput,
-      DramaUncheckedCreateWithoutEpisodesInput
-    >;
-    connectOrCreate?: DramaCreateOrConnectWithoutEpisodesInput;
-    connect?: DramaWhereUniqueInput;
-  };
+    create?: XOR<DramaCreateWithoutEpisodesInput, DramaUncheckedCreateWithoutEpisodesInput>
+    connectOrCreate?: DramaCreateOrConnectWithoutEpisodesInput
+    connect?: DramaWhereUniqueInput
+  }
 
   export type IntFieldUpdateOperationsInput = {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-  };
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
 
   export type DramaUpdateOneRequiredWithoutEpisodesNestedInput = {
-    create?: XOR<
-      DramaCreateWithoutEpisodesInput,
-      DramaUncheckedCreateWithoutEpisodesInput
-    >;
-    connectOrCreate?: DramaCreateOrConnectWithoutEpisodesInput;
-    upsert?: DramaUpsertWithoutEpisodesInput;
-    connect?: DramaWhereUniqueInput;
-    update?: XOR<
-      XOR<
-        DramaUpdateToOneWithWhereWithoutEpisodesInput,
-        DramaUpdateWithoutEpisodesInput
-      >,
-      DramaUncheckedUpdateWithoutEpisodesInput
-    >;
-  };
+    create?: XOR<DramaCreateWithoutEpisodesInput, DramaUncheckedCreateWithoutEpisodesInput>
+    connectOrCreate?: DramaCreateOrConnectWithoutEpisodesInput
+    upsert?: DramaUpsertWithoutEpisodesInput
+    connect?: DramaWhereUniqueInput
+    update?: XOR<XOR<DramaUpdateToOneWithWhereWithoutEpisodesInput, DramaUpdateWithoutEpisodesInput>, DramaUncheckedUpdateWithoutEpisodesInput>
+  }
 
   export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    not?: NestedStringFilter<$PrismaModel> | string;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
 
   export type NestedEnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>;
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status;
-  };
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
-  };
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
-    not?: NestedBoolFilter<$PrismaModel> | boolean;
-  };
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedStringFilter<$PrismaModel>;
-    _max?: NestedStringFilter<$PrismaModel>;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
 
   export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntFilter<$PrismaModel> | number;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
 
   export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>;
-    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>;
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedEnumStatusFilter<$PrismaModel>;
-    _max?: NestedEnumStatusFilter<$PrismaModel>;
-  };
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedDateTimeFilter<$PrismaModel>;
-    _max?: NestedDateTimeFilter<$PrismaModel>;
-  };
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedBoolFilter<$PrismaModel>;
-    _max?: NestedBoolFilter<$PrismaModel>;
-  };
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null;
-    _count?: NestedIntNullableFilter<$PrismaModel>;
-    _avg?: NestedFloatNullableFilter<$PrismaModel>;
-    _sum?: NestedIntNullableFilter<$PrismaModel>;
-    _min?: NestedIntNullableFilter<$PrismaModel>;
-    _max?: NestedIntNullableFilter<$PrismaModel>;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null;
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
-    lt?: number | FloatFieldRefInput<$PrismaModel>;
-    lte?: number | FloatFieldRefInput<$PrismaModel>;
-    gt?: number | FloatFieldRefInput<$PrismaModel>;
-    gte?: number | FloatFieldRefInput<$PrismaModel>;
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null;
-  };
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null;
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null;
-    lt?: string | StringFieldRefInput<$PrismaModel>;
-    lte?: string | StringFieldRefInput<$PrismaModel>;
-    gt?: string | StringFieldRefInput<$PrismaModel>;
-    gte?: string | StringFieldRefInput<$PrismaModel>;
-    contains?: string | StringFieldRefInput<$PrismaModel>;
-    startsWith?: string | StringFieldRefInput<$PrismaModel>;
-    endsWith?: string | StringFieldRefInput<$PrismaModel>;
-    not?:
-      | NestedStringNullableWithAggregatesFilter<$PrismaModel>
-      | string
-      | null;
-    _count?: NestedIntNullableFilter<$PrismaModel>;
-    _min?: NestedStringNullableFilter<$PrismaModel>;
-    _max?: NestedStringNullableFilter<$PrismaModel>;
-  };
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>;
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
-    lt?: number | IntFieldRefInput<$PrismaModel>;
-    lte?: number | IntFieldRefInput<$PrismaModel>;
-    gt?: number | IntFieldRefInput<$PrismaModel>;
-    gte?: number | IntFieldRefInput<$PrismaModel>;
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
-    _count?: NestedIntFilter<$PrismaModel>;
-    _avg?: NestedFloatFilter<$PrismaModel>;
-    _sum?: NestedIntFilter<$PrismaModel>;
-    _min?: NestedIntFilter<$PrismaModel>;
-    _max?: NestedIntFilter<$PrismaModel>;
-  };
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>;
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
-    lt?: number | FloatFieldRefInput<$PrismaModel>;
-    lte?: number | FloatFieldRefInput<$PrismaModel>;
-    gt?: number | FloatFieldRefInput<$PrismaModel>;
-    gte?: number | FloatFieldRefInput<$PrismaModel>;
-    not?: NestedFloatFilter<$PrismaModel> | number;
-  };
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
 
   export type EpisodeCreateWithoutDramaInput = {
-    id?: string;
-    videoUrl: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-  };
+    id?: string
+    videoUrl: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+  }
 
   export type EpisodeUncheckedCreateWithoutDramaInput = {
-    id?: string;
-    videoUrl: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-  };
+    id?: string
+    videoUrl: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+  }
 
   export type EpisodeCreateOrConnectWithoutDramaInput = {
-    where: EpisodeWhereUniqueInput;
-    create: XOR<
-      EpisodeCreateWithoutDramaInput,
-      EpisodeUncheckedCreateWithoutDramaInput
-    >;
-  };
+    where: EpisodeWhereUniqueInput
+    create: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput>
+  }
 
   export type EpisodeCreateManyDramaInputEnvelope = {
-    data: EpisodeCreateManyDramaInput | EpisodeCreateManyDramaInput[];
-    skipDuplicates?: boolean;
-  };
+    data: EpisodeCreateManyDramaInput | EpisodeCreateManyDramaInput[]
+    skipDuplicates?: boolean
+  }
 
   export type EpisodeUpsertWithWhereUniqueWithoutDramaInput = {
-    where: EpisodeWhereUniqueInput;
-    update: XOR<
-      EpisodeUpdateWithoutDramaInput,
-      EpisodeUncheckedUpdateWithoutDramaInput
-    >;
-    create: XOR<
-      EpisodeCreateWithoutDramaInput,
-      EpisodeUncheckedCreateWithoutDramaInput
-    >;
-  };
+    where: EpisodeWhereUniqueInput
+    update: XOR<EpisodeUpdateWithoutDramaInput, EpisodeUncheckedUpdateWithoutDramaInput>
+    create: XOR<EpisodeCreateWithoutDramaInput, EpisodeUncheckedCreateWithoutDramaInput>
+  }
 
   export type EpisodeUpdateWithWhereUniqueWithoutDramaInput = {
-    where: EpisodeWhereUniqueInput;
-    data: XOR<
-      EpisodeUpdateWithoutDramaInput,
-      EpisodeUncheckedUpdateWithoutDramaInput
-    >;
-  };
+    where: EpisodeWhereUniqueInput
+    data: XOR<EpisodeUpdateWithoutDramaInput, EpisodeUncheckedUpdateWithoutDramaInput>
+  }
 
   export type EpisodeUpdateManyWithWhereWithoutDramaInput = {
-    where: EpisodeScalarWhereInput;
-    data: XOR<
-      EpisodeUpdateManyMutationInput,
-      EpisodeUncheckedUpdateManyWithoutDramaInput
-    >;
-  };
+    where: EpisodeScalarWhereInput
+    data: XOR<EpisodeUpdateManyMutationInput, EpisodeUncheckedUpdateManyWithoutDramaInput>
+  }
 
   export type EpisodeScalarWhereInput = {
-    AND?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[];
-    OR?: EpisodeScalarWhereInput[];
-    NOT?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[];
-    id?: StringFilter<"Episode"> | string;
-    videoUrl?: StringFilter<"Episode"> | string;
-    dramaId?: StringFilter<"Episode"> | string;
-    createdAt?: DateTimeFilter<"Episode"> | Date | string;
-    episodeNum?: IntFilter<"Episode"> | number;
-    releaseDate?: DateTimeFilter<"Episode"> | Date | string;
-    updatedAt?: DateTimeFilter<"Episode"> | Date | string;
-    slug?: StringFilter<"Episode"> | string;
-  };
+    AND?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[]
+    OR?: EpisodeScalarWhereInput[]
+    NOT?: EpisodeScalarWhereInput | EpisodeScalarWhereInput[]
+    id?: StringFilter<"Episode"> | string
+    videoUrl?: StringFilter<"Episode"> | string
+    dramaId?: StringFilter<"Episode"> | string
+    createdAt?: DateTimeFilter<"Episode"> | Date | string
+    episodeNum?: IntFilter<"Episode"> | number
+    releaseDate?: DateTimeFilter<"Episode"> | Date | string
+    updatedAt?: DateTimeFilter<"Episode"> | Date | string
+    slug?: StringFilter<"Episode"> | string
+  }
 
   export type DramaCreateWithoutEpisodesInput = {
-    id?: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date | string;
-    isPopular?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    totalEpisode?: number | null;
-    airTime?: string | null;
-  };
+    id?: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date | string
+    isPopular?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    totalEpisode?: number | null
+    airTime?: string | null
+  }
 
   export type DramaUncheckedCreateWithoutEpisodesInput = {
-    id?: string;
-    title: string;
-    slug: string;
-    description: string;
-    thumbnail: string;
-    status: $Enums.Status;
-    releaseDate: Date | string;
-    isPopular?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    totalEpisode?: number | null;
-    airTime?: string | null;
-  };
+    id?: string
+    title: string
+    slug: string
+    description: string
+    thumbnail: string
+    status: $Enums.Status
+    releaseDate: Date | string
+    isPopular?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    totalEpisode?: number | null
+    airTime?: string | null
+  }
 
   export type DramaCreateOrConnectWithoutEpisodesInput = {
-    where: DramaWhereUniqueInput;
-    create: XOR<
-      DramaCreateWithoutEpisodesInput,
-      DramaUncheckedCreateWithoutEpisodesInput
-    >;
-  };
+    where: DramaWhereUniqueInput
+    create: XOR<DramaCreateWithoutEpisodesInput, DramaUncheckedCreateWithoutEpisodesInput>
+  }
 
   export type DramaUpsertWithoutEpisodesInput = {
-    update: XOR<
-      DramaUpdateWithoutEpisodesInput,
-      DramaUncheckedUpdateWithoutEpisodesInput
-    >;
-    create: XOR<
-      DramaCreateWithoutEpisodesInput,
-      DramaUncheckedCreateWithoutEpisodesInput
-    >;
-    where?: DramaWhereInput;
-  };
+    update: XOR<DramaUpdateWithoutEpisodesInput, DramaUncheckedUpdateWithoutEpisodesInput>
+    create: XOR<DramaCreateWithoutEpisodesInput, DramaUncheckedCreateWithoutEpisodesInput>
+    where?: DramaWhereInput
+  }
 
   export type DramaUpdateToOneWithWhereWithoutEpisodesInput = {
-    where?: DramaWhereInput;
-    data: XOR<
-      DramaUpdateWithoutEpisodesInput,
-      DramaUncheckedUpdateWithoutEpisodesInput
-    >;
-  };
+    where?: DramaWhereInput
+    data: XOR<DramaUpdateWithoutEpisodesInput, DramaUncheckedUpdateWithoutEpisodesInput>
+  }
 
   export type DramaUpdateWithoutEpisodesInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+  }
 
   export type DramaUncheckedUpdateWithoutEpisodesInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    title?: StringFieldUpdateOperationsInput | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-    description?: StringFieldUpdateOperationsInput | string;
-    thumbnail?: StringFieldUpdateOperationsInput | string;
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    isPopular?: BoolFieldUpdateOperationsInput | boolean;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null;
-    airTime?: NullableStringFieldUpdateOperationsInput | string | null;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnail?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPopular?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalEpisode?: NullableIntFieldUpdateOperationsInput | number | null
+    airTime?: NullableStringFieldUpdateOperationsInput | string | null
+  }
 
   export type EpisodeCreateManyDramaInput = {
-    id?: string;
-    videoUrl: string;
-    createdAt?: Date | string;
-    episodeNum: number;
-    releaseDate: Date | string;
-    updatedAt?: Date | string;
-    slug: string;
-  };
+    id?: string
+    videoUrl: string
+    createdAt?: Date | string
+    episodeNum: number
+    releaseDate: Date | string
+    updatedAt?: Date | string
+    slug: string
+  }
 
   export type EpisodeUpdateWithoutDramaInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
 
   export type EpisodeUncheckedUpdateWithoutDramaInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
 
   export type EpisodeUncheckedUpdateManyWithoutDramaInput = {
-    id?: StringFieldUpdateOperationsInput | string;
-    videoUrl?: StringFieldUpdateOperationsInput | string;
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    episodeNum?: IntFieldUpdateOperationsInput | number;
-    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    slug?: StringFieldUpdateOperationsInput | string;
-  };
+    id?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    episodeNum?: IntFieldUpdateOperationsInput | number
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
    */
 
   export type BatchPayload = {
-    count: number;
-  };
+    count: number
+  }
 
   /**
    * DMMF
    */
-  export const dmmf: runtime.BaseDMMF;
+  export const dmmf: runtime.BaseDMMF
 }
