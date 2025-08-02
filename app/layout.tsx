@@ -10,7 +10,6 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import { ThemeSwitch } from "@/components/theme-switch";
 import Footer from "@/components/footer";
-import GoogleAdsense from "@/components/google-adsense";
 
 export const metadata: Metadata = {
   icons: {
@@ -33,6 +32,11 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="ms">
       <head>
+        <script
+          async
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4287822627580434"
+        />
         <Script
           async
           id="gtag"
@@ -51,12 +55,11 @@ export default function RootLayout({
           data-key="OtQz1d0e2E+0YDRYqKFR/A"
           src="https://analytics.ahrefs.com/analytics.js"
         />
-        <GoogleAdsense />
       </head>
       <body
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

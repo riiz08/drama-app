@@ -1,12 +1,12 @@
-"use client";
+"use client"; // Hanya perlu kalau kamu pakai useEffect (dan memang perlu)
 
 import { useEffect, useRef } from "react";
 
 interface AdsenseSlotProps {
-  slot: string;
-  style?: React.CSSProperties;
   format?: string;
   responsive?: boolean;
+  slot: string;
+  style?: React.CSSProperties;
 }
 
 declare global {
@@ -24,17 +24,23 @@ export default function AdsenseSlot({
   const adRef = useRef<HTMLModElement>(null);
 
   useEffect(() => {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    try {
+      if (typeof window !== "undefined" && window.adsbygoogle) {
+        window.adsbygoogle.push({});
+      }
+    } catch (e) {
+      console.error("AdSense error", e);
+    }
   }, []);
 
   return (
     <ins
-      ref={adRef}
       className="adsbygoogle"
       data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}
-      data-ad-format={format}
       data-ad-slot={slot}
+      data-ad-format={format}
       data-full-width-responsive={responsive ? "true" : "false"}
+      ref={adRef}
       style={style}
     />
   );

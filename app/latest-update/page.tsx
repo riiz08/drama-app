@@ -63,6 +63,7 @@ const Page = async ({
   const populars: any = await cachedGetAllPopularDrama();
 
   const dramas = await cachedGetAllDramas();
+
   return (
     <section>
       <AdsenseSlot slot="5978949902" />

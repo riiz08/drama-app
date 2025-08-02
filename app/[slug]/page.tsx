@@ -98,6 +98,7 @@ export default async function Page({
   const popular: any = await cachedGetAllPopularDrama();
   const dramas = await cachedGetAllDramas();
   const episodeData = await cachedGetLatestEpisodes(1, 8);
+
   return (
     <div className="grid md:grid-cols-3 gap-2">
       <section className="md:col-span-2 mt-2">
