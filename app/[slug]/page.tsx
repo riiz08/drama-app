@@ -28,9 +28,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  if (!slug) return notFound();
-
   const episode: any = await getEpisodeBySlug(slug);
+
+  if (!episode) return notFound();
 
   return getSeoMetadata({
     title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
@@ -48,8 +48,6 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  if (!slug) return notFound();
 
   const cacheGetEpisodeBySlug = unstable_cache(
     async (slug) => {

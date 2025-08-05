@@ -24,9 +24,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  if (!slug) return notFound();
-
   const data: any = await getDramaBySlug(slug);
+
+  if (!data) return notFound();
 
   return getSeoMetadata({
     title: `${data.drama.title} Episod Penuh 2025 - Tonton Percuma HD`,
@@ -44,8 +44,6 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  if (!slug) return notFound();
 
   const cachedGetDramaBySlug = unstable_cache(
     async (slug) => {
