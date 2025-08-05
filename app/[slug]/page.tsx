@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { Card, CardBody } from "@heroui/card";
 import Link from "next/link";
 import { Image } from "@heroui/image";
-import { notFound } from "next/navigation";
 
 import { getDramaBySlug } from "../actions/drama/getDramaBySlug";
 import { getAllPopularDrama } from "../actions/drama/getAllPopularDrama";
