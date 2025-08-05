@@ -30,8 +30,6 @@ export async function generateMetadata({
 
   const episode: any = await getEpisodeBySlug(slug);
 
-  if (!episode) return notFound();
-
   return getSeoMetadata({
     title: `${episode.drama.title} Full Episod ${episode.episodeNum} HD | Mangeakkk`,
     description: `Saksikan episod ${episode.episodeNum} drama ${episode.drama.title} dalam HD. Tonton percuma di Mangeakkk.`,
