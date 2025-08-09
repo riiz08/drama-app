@@ -11,5 +11,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (url.pathname === "/" && !url.searchParams.has("v")) {
+    url.searchParams.set("v", Date.now().toString());
+    return NextResponse.redirect(url);
+  }
+
   return NextResponse.next();
 }

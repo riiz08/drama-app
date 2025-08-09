@@ -43,7 +43,7 @@ const ToastCoffe = () => {
         </div>
       ),
       color: "primary",
-      timeout: 3000,
+      timeout: 5000,
     });
 
   useEffect(() => {
