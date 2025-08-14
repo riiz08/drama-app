@@ -10,7 +10,6 @@ import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import { ThemeSwitch } from "@/components/theme-switch";
 import Footer from "@/components/footer";
-import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   icons: {
@@ -67,10 +66,7 @@ export default function RootLayout({
           <div className="overflow-x-hidden">
             <Navbar />
             <ToastProvider />
-            <main className="mx-auto bg-background flex-grow">
-              {children}
-              <Analytics />
-            </main>
+            <main className="mx-auto bg-background flex-grow">{children}</main>
             <div className="fixed bottom-5 right-5 p-2 z-[999] rounded-full shadow-none">
               <ThemeSwitch />
             </div>
