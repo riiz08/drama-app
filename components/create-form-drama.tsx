@@ -48,7 +48,7 @@ export default function CreateDramaForm() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => {
     const { name, value, type } = e.target;
 
@@ -64,7 +64,7 @@ export default function CreateDramaForm() {
         ...prev,
         title: value,
         slug: generateSlug(value),
-        thumbnail: `https://sadjajsd.b-cdn.net/${generateSlug(value)}/${generateSlug(value)}.png`,
+        thumbnail: `https://cdn.mangeakkk.my.id/${generateSlug(value)}/${generateSlug(value)}.webp`,
       }));
     }
   };
