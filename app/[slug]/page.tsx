@@ -51,7 +51,7 @@ export default async function Page({
       return await getEpisodeBySlug(slug);
     },
     [slug],
-    { revalidate: 86400 }
+    { revalidate: 60 }
   );
 
   const cachedGetDramaBySlug = unstable_cache(
